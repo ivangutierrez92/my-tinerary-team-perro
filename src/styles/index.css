@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --white: rgb(245, 245, 245);
+  --black: rgb(10, 10, 10);
+  --lightgray: rgb(210, 210, 210);
+  --darkgray: rgb(50, 50, 50);
+  --primary-color-1: hsl(155, 75%, 25%);
+  --primary-color-2: hsl(155, 50%, 25%);
+  --primary-color-3: hsl(155, 25%, 25%);
+  --primary-color-4: hsl(155, 94%, 34%);
+  --secondary-color-1: hsl(213, 43%, 71%);
+  --secondary-color-2: hsl(213, 75%, 71%);
+  --secondary-color-3: hsl(213, 43%, 50%);
+  --secondary-color-4: hsl(213, 25%, 50%);
+  --tertiary-color-1: hsl(357, 68%, 44%);
+  --tertiary-color-2: hsl(357, 68%, 75%);
+  --tertiary-color-3: hsl(357, 68%, 25%);
+  --tertiary-color-4: hsl(357, 75%, 50%);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--white);
+}
+button {
+  font-size: 1rem;
+}
+a {
+  font-size: 1rem;
+}
