@@ -1,4 +1,4 @@
-  export default [
+ let admin =[
     {
       id: "admin1",
       name: "Ivan",
@@ -44,3 +44,4 @@
       logged: true,
     },
   ];
+  export default admin;

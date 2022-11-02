@@ -7,7 +7,7 @@ let shows = [
     photo:
       "https://ss-static-01.esmsv.com/id/156594/galeriaimagenes/obtenerimagen/?id=19&tipoEscala=stretch&width=570&height=856",
     price: 70,
-    date: new Date(2022, 12, 20),
+    date: new Date("2022 12 20"),
     userId: "user1",
   },
 
@@ -20,7 +20,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20210928-174657-927516.jpg",
     price: 130,
-    date: new Date(2022, 10, 7),
+    date: new Date("2022 10 7"),
     userId: "user1",
   },
 
@@ -33,7 +33,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/profile_images/artists/431136/huge_avatar",
     price: 98,
-    date: new Date(2022, 8, 20),
+    date: new Date("2022 8 20"),
     userId: "user2",
   },
 
@@ -46,7 +46,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/profile_images/artists/431136/huge_avatar",
     price: 48,
-    date: new Date(2022, 3, 20),
+    date: new Date("2022 3 20"),
     userId: "user1",
   },
 
@@ -59,7 +59,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20190913-153414-812957.jpg",
     price: 67,
-    date: new Date(2022, 7, 15),
+    date: new Date("2022 7 15"),
     userId: "user3",
   },
   {
@@ -71,7 +71,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20190913-153414-812957.jpg",
     price: 90,
-    date: new Date(2022, 7, 15),
+    date: new Date("2022 7 15"),
     userId: "user3",
   },
 
@@ -84,7 +84,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/profile_images/artists/149066/huge_avatar",
     price: 45,
-    date: new Date(2022, 5, 10),
+    date: new Date("2022 5 10"),
     userId: "user2",
   },
 
@@ -97,7 +97,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20180201-111734-971908.jpg",
     price: 90,
-    date: new Date(2022, 1, 12),
+    date: new Date("2022 1 12"),
     userId: "user2",
   },
   {
@@ -109,7 +109,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20170815-222349-986117.jpg",
     price: 55,
-    date: new Date(2022, 10, 3),
+    date: new Date("2022 10 3"),
     userId: "user3",
   },
 
@@ -122,7 +122,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/img/col6/20210224-052612-976826.png",
     price: 67,
-    date: new Date(2022, 10, 3),
+    date: new Date("2022 10 3"),
     userId: "user3",
   },
 
@@ -135,7 +135,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/profile_images/artists/1012485/huge_avatar",
     price: 180,
-    date: new Date(2022, 10, 3),
+    date: new Date("2022 10 3"),
     userId: "user4",
   },
 
@@ -148,7 +148,7 @@ let shows = [
     photo:
       "https://images.sk-static.com/images/media/profile_images/artists/468146/huge_avatar",
     price: 100,
-    date: new Date(2022, 6, 13),
+    date: new Date("2022 6 13"),
     userId: "user4",
   },
 ];
