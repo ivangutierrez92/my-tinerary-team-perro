@@ -97,6 +97,15 @@
   gap: 15px;
 }
 
+.bg-navbar {
+  background-color: var(--secondary-color-2);
+  padding-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.bg-navbar button {
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
   .NavBar-menuButton {
     display: initial;
