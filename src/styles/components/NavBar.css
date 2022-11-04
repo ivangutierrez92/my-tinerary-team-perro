@@ -100,7 +100,8 @@
 .bg-navbar {
   background-color: var(--secondary-color-2);
   padding-bottom: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: rgba(0, 0, 0, 60%) 0px 4px 6px;
+  z-index: 1;
 }
 .bg-navbar button {
   box-shadow: none;
