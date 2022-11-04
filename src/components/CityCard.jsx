@@ -6,7 +6,7 @@ export default function CityCard({ city }) {
   return (
     <div className="CityCard">
       <div className="CityCard-photo">
-      <LinkRouter to={`city/${city.id}`}>
+      <LinkRouter to={`/city/${city.id}`}>
         <img src={city.photo} alt={city.name}></img>
       </LinkRouter>
       </div>
@@ -20,8 +20,8 @@ export default function CityCard({ city }) {
             <span className="CityCard-label">Population:</span> {city.population.toLocaleString()}
           </p>
           </div>
-          <LinkRouter to={`city/${city.id}`}>
-            <button className="CityCard-button">Learn More</button>
+          <LinkRouter to={`/city/${city.id}`}>
+            <button className="CityCard-button">Learn More!</button>
           </LinkRouter>
       </div>
     </div>
