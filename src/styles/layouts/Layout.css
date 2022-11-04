@@ -2,9 +2,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: blue;
 }
 .Layout-main {
   flex-grow: 1;
-  background-color: red;
+  background-color: var(--white);
 }
