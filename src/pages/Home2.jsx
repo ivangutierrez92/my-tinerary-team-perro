@@ -16,15 +16,12 @@ let [numero, setNumero] = useState(0);
 
   useEffect(() => {
     let idInterval = setInterval(
-      //primer parametro la funcion que se va a ejecutar en cada intervalo de tiempo
       () => {
         nexti();
-        console.log("pasaron 5 segundos");
+
       },
-      //segundo parametro es el intervalo en milisengudos
+     
       5000
-      //retorna un id asociado al intervalo (que es un numero)
-      //acepta una funcion que resetea el intervalo/contador con ese id
     );
     setId(idInterval);
     return clearInterval(id);
@@ -72,10 +69,5 @@ let [numero, setNumero] = useState(0);
         <Footer />
       </div>
     </>
-
-
-
-
-
   );
 }
