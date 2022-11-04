@@ -27,7 +27,7 @@ export default function SingUpForm({ formRef, onSubmit }) {
       <div className="SignUp-col">
         <div className="SignUp-form-field">
           <label htmlFor="age">Age:</label>
-          <input type="number" name="age" id="age" />
+          <input type="number" min={0} name="age" id="age" />
         </div>
         <div className="SignUp-form-field"></div>
       </div>
