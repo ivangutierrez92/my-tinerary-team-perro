@@ -4,7 +4,7 @@ import '../styles/components/SignUpForm.css'
 export default function SingUpForm({ formRef, onSubmit }) {
   return (
     <form className="SignUp-form" onSubmit={onSubmit} ref={formRef}>
-      <div className="SignUp-col">
+      <div className="SignUp-form-col">
         <div className="SignUp-form-field">
           <label htmlFor="name">Name:</label>
           <input type="text" name="name" id="name" />
