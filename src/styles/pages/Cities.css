@@ -1,0 +1,17 @@
+.Cities {
+  padding: 30px;
+  width: 100%;
+  min-height: 100vh;
+}
+.Cities-title {
+  text-transform: uppercase;
+  color: var(--tertiary-color-1);
+  text-align: center;
+  margin-bottom: 50px;
+}
+.Cities-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 80px 50px;
+}
