@@ -17,9 +17,8 @@ body{
 .slideshow-container {
   position: relative;
   margin:auto;
-  height: 81.5vh;
+  height: 82vh;
   flex-grow: 1;
-
   width: 100%;
 }
 
