@@ -1,0 +1,113 @@
+.SignUp {
+  max-width: 1200px;
+  padding: 20px;
+  background-color: var(--lightgray);
+  margin: 20px auto 20px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.SignUp > hr {
+  margin: auto;
+  width: 100%;
+}
+.SignUp-title {
+  text-align: center;
+
+  color: var(--tertiary-color-1);
+}
+
+/*Form Styles */
+.SignUp-form {
+  font-size: 16px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tertiary-color-1);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  padding: 20px 30px;
+  gap: 25px;
+}
+
+.SignUp-form label {
+  color: white;
+}
+
+.SignUp-form-field {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 350px;
+  gap: 5px;
+}
+
+.SignUp-form-field input {
+  border: 3px solid var(--lightgray);
+  font-size: 20px;
+  border-radius: 4px;
+}
+.SignUp-form-field input:focus {
+  outline: 2px solid var(--primary-color-1);
+}
+
+.SignUp-col {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.SignUp-button {
+  align-self: center;
+  font-size: 16px;
+  background-color: var(--primary-color-1);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.SignUp-button:hover {
+  background-color: var(--primary-color-2);
+  transition: all 0.2s ease-in-out;
+}
+.Google-button {
+  font-size: 14px;
+  padding: 0 8px;
+  height: 40px;
+  color: rgba(0, 0, 0, 0.54);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 280px;
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.54);
+  margin: auto;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.Google-button:hover {
+  transform: translateY(-3px);
+  transition: all 0.2s ease-in-out;
+}
+.Google-button > img {
+  width: 24px;
+}
+.Google-button:focus {
+  outline: 3px solid rgb(197, 217, 251);
+}
+@media (max-width: 768px) {
+  .SignUp-col {
+    flex-direction: column;
+  }
+  .SignUp-form-field {
+    width: 100%;
+  }
+}
+
