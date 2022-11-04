@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/components/not-found.css";
+import "../styles/pages/not-found.css";
 import { Link as LinkRouter } from "react-router-dom";
 import CallToAction from "../components/CallToAction";
 import Layout from "../layouts/Layout";
