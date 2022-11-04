@@ -1,7 +1,9 @@
 import React from "react";
 import AutoToTop from "../components/AutoToTop";
 import Navbar from "../components/NavBar";
-import '../styles/layouts/Layout.css'
+import Footer from "../components/Footer";
+import "../styles/layouts/Layout.css";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function Layout({ children }) {
   return (
@@ -9,6 +11,8 @@ export default function Layout({ children }) {
       <AutoToTop />
       <Navbar />
       <main className="Layout-main">{children}</main>
+      <ScrollToTop />
+      <Footer />
     </div>
   );
 }
