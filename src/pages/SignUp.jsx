@@ -7,10 +7,11 @@ import "../styles/pages/SignUp.css";
 export default function SignUp() {
   let formRef = useRef(null);
   let navigate = useNavigate();
+
   const sendData = event => {
     event.preventDefault();
-
     let formObject = {};
+
     for (let input of formRef.current) {
       if (input.type !== "submit") {
         if (input.value) {
@@ -22,15 +23,20 @@ export default function SignUp() {
         }
       }
     }
-    let storage = localStorage.getItem("registeredUsers");
-    storage = storage ? JSON.parse(storage) : [];
-    storage.push(formObject);
-    localStorage.setItem("registeredUsers", JSON.stringify(storage));
+    saveInStorage("registeredUsers", formObject);
     formRef.current.reset();
 
     alert("Thank for registering! you will be redirected soon ");
     navigate("/");
   };
+
+  const saveInStorage = (key, value) => {
+    let storage = localStorage.getItem(key);
+    storage = storage ? JSON.parse(storage) : [];
+    storage.push(value);
+    localStorage.setItem("registeredUsers", JSON.stringify(storage));
+  };
+
   return (
     <Layout>
       <div className="SignUp">
