@@ -2,27 +2,77 @@
   padding: 30px 100px;
   width: 100%;
 }
+
 .Cities-title {
   color: var(--tertiary-color-1);
   text-align: center;
+  margin-bottom: 10px;
+}
+
+.Cities-formComponents {
+  display: flex;
+  background-color: var(--tertiary-color-1);
+  box-shadow: var(--light-shadow);
+  padding: 5px;
   margin-bottom: 30px;
+  color: var(--white);
+  border-radius: 4px;
+}
+
+.Cities-checkboxsContainer {
+  display: flex;
+  gap: 15px;
+  flex: wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Cities-checkboxContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.Cities-checkboxContainer > input {
+  margin-top: 1px;
+}
+.Cities-inputContainer {
+  flex-grow: 1;
+}
+.Cities-inputContainer > label {
+  display: flex;
   
+}
+.Cities-inputContainer img {
+  padding: 0 5px 0 8px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 4px 0 0 4px;
+}
+
+.Cities-inputContainer input {
+  width: 100%;
+  height: 30px;
+  border-radius: 0 4px 4px 0;
+  border: 1px 1px 1px 0 solid var(--white);
+  font-size: 18px;
+  padding: 0 5px;
 }
 .Cities-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 80px 100px;
-  
 }
+
 @media (max-width: 1200px) {
   .Cities {
     padding: 30px 50px;
   }
   .Cities-content {
-    gap: 30px 50px
+    gap: 30px 50px;
   }
 }
+
 @media (max-width: 768px) {
   .Cities {
     padding: 30px 10px;
