@@ -16,12 +16,9 @@ export default function ScrollToTop() {
       onClick={() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       }}
+      className="scroll-top"
     >
-      <img
-        className="scroll-top"
-        src="./img/scroll-to-top.svg"
-        alt="scroll-button"
-      />
+      <img src="./img/scroll-to-top.svg" alt="scroll-button" />
     </button>
   );
 }
