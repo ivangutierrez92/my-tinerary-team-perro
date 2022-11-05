@@ -1,5 +1,5 @@
 .CityCard {
-  flex: 1 1 400px;
+  flex: 1 400px;
   border-radius: 8px;
   background-color: rgb(240, 240, 240);
   box-shadow: var(--light-shadow) 

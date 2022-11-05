@@ -17,25 +17,18 @@
   margin-bottom: 30px;
   color: var(--white);
   border-radius: 4px;
+  gap: 5px
 }
 
 .Cities-checkboxsContainer {
   display: flex;
-  gap: 15px;
-  flex: wrap;
+  gap: 5px;
+  flex-wrap: wrap;
   flex-grow: 1;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.Cities-checkboxContainer {
-  display: flex;
-  gap: 10px;
-}
-
-.Cities-checkboxContainer > input {
-  margin-top: 1px;
-}
 .Cities-inputContainer {
   flex-grow: 1;
 }
@@ -57,6 +50,9 @@
   font-size: 18px;
   padding: 0 5px;
 }
+.Cities-inputContainer input:focus {
+  outline: 3px solid var(--primary-color-1);
+}
 .Cities-content {
   display: flex;
   flex-wrap: wrap;
@@ -76,5 +72,8 @@
 @media (max-width: 768px) {
   .Cities {
     padding: 30px 10px;
+  }
+  .Cities-formComponents {
+    flex-direction: column;
   }
 }
