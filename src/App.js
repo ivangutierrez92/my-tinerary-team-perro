@@ -4,13 +4,14 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import "./styles/App.css";
 import NotFound from "./pages/NotFound";
-
+import SignIn from "./pages/SignIn"
 function App() {
   return (
     <>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/signin" element={<SignIn/>} />
         <Route path="/cities" element={<Cities />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
