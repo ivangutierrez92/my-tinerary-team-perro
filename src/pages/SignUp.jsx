@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import GoogleButton from "../components/GoogleButton";
 import SignUpForm from "../components/SignUpForm";
 import Layout from "../layouts/Layout";
 import "../styles/pages/SignUp.css";
@@ -43,9 +44,7 @@ export default function SignUp() {
         <h1 className="SignUp-title">Register to share your adventures!</h1>
         <hr />
         <SignUpForm formRef={formRef} onSubmit={sendData} />
-        <button className="Google-button">
-          <img src="./img/g-logo.png" alt="google icon"></img>SIGN IN WITH GOOGLE
-        </button>
+        <GoogleButton content="SIGN UP WITH GOOGLE" />
       </div>
     </Layout>
   );
