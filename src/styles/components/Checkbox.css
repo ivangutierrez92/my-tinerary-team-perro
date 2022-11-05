@@ -1,0 +1,12 @@
+.Checkbox-container {
+  display: flex;
+  gap: 10px;
+}
+
+.Checkbox-container > input {
+  margin-top: 1px;
+  
+}
+.Checkbox-container > input:checked {
+  accent-color: var(--primary-color-1);
+}
