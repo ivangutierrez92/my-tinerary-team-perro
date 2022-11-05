@@ -1,0 +1,23 @@
+.City-header {
+  height: 400px;
+  display: flex;
+}
+.City-image {
+  flex-grow: 3;
+}
+
+.City-image > img {
+  width: 100%;
+  height: 100%;
+  clip-path: ellipse(65px 30px at 125px 40px);
+  
+}
+.City-title {
+  flex-grow: 2;
+}
+.City-title > h1 {
+  color: var(--tertiary-color-1);
+  text-align: center;
+  margin-top: 100px;
+  font-size: 48px;
+}
