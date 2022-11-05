@@ -21,7 +21,7 @@ export default function CityCard({ city }) {
           </p>
           </div>
           <LinkRouter to={`/city/${city.id}`}>
-            <button className="CityCard-button">Learn More!</button>
+            <button className="CityCard-button">See Itineraries!</button>
           </LinkRouter>
       </div>
     </div>
