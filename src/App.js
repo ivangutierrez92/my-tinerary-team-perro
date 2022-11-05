@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Cities from "./pages/Cities";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import "./styles/App.css";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotel />} />
+        <Route path="/cities" element={<Cities />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

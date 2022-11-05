@@ -20,16 +20,19 @@
   --tertiary-color-2: hsl(357, 68%, 75%);
   --tertiary-color-3: hsl(357, 68%, 25%);
   --tertiary-color-4: hsl(357, 75%, 50%);
-  --shadow: rgba(0, 0, 0, 60%) 4px 4px 6px
+  --shadow: rgba(0, 0, 0, 60%) 4px 4px 6px;
+  --light-shadow: 2px 4px 7px rgba(0, 0, 0, 0.2); 
 }
 
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--white);
 }
+
 button {
   font-size: 1rem;
 }
+
 a {
   font-size: 1rem;
 }

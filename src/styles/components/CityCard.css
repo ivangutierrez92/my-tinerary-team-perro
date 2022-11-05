@@ -1,0 +1,53 @@
+.CityCard {
+  flex: 1 400px;
+  border-radius: 8px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: var(--light-shadow) 
+}
+
+.CityCard-photo {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.CityCard-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0 0;
+  transition: 0.4s all ease-in-out;
+  object-fit: cover;
+}
+.CityCard-photo img:hover {
+  transform: scale(1.1);
+}
+.CityCard-title {
+  font-size: 28px;
+  margin: 15px 0 15px 15px;
+  color: var(--tertiary-color-1);
+}
+.CityCard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 15px;
+}
+.CityCard-label {
+  font-weight: 700;
+}
+.CityCard-button {
+  margin-top: 25px;
+  background-color: var(--primary-color-1);
+  color: var(--white);
+  font-size: 18px;
+  height: 40px;
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+  border: none;
+  cursor: pointer;
+}
+.CityCard-button:hover {
+  transition: 0.2s all ease-in-out;
+  background-color: var(--primary-color-2);
+}
