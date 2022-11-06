@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../components/NavBar";
-import CallToAction from "../components/CallToAction";
-import "../styles/pages/Home1.css";
+import Navbar from "./NavBar";
+import CallToAction from "./CallToAction";
+import "../styles/components/Home1.css";
 import { Link as LinkRouter } from "react-router-dom";
-import AutoToTop from "../components/AutoToTop";
+import AutoToTop from "./AutoToTop";
 
 export default function Home1() {
   return (
