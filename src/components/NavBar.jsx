@@ -28,10 +28,10 @@ export default function Navbar() {
     <nav className={`NavBar ${!isHome ? "bg-navbar" : ""}`}>
       <div className="NavBar-navigation">
         <LinkRouter to="/">
-          <img className="NavBar-logo" alt="logo" src="./logo192.png" />
+          <img className="NavBar-logo" alt="logo" src="/logo192.png" />
         </LinkRouter>
         <button className="NavBar-menuButton" onClick={toggleHideNav}>
-          <img src="./img/bx-menu.svg" alt="Menu Icon" />
+          <img src="/img/bx-menu.svg" alt="Menu Icon" />
         </button>
         <div className={`NavBar-dropdown ${hideNav ? "NavBar-hide" : ""}`}>
           <LinkRouter to="/cities">
@@ -44,14 +44,14 @@ export default function Navbar() {
       </div>
       <div className="NavBar-user">
         <button className="user-button" onClick={toggleHideUser}>
-          <img src="./img/bx-user-circle.svg" className="user-icon" alt="user icon" />
+          <img src="/img/bx-user-circle.svg" className="user-icon" alt="user icon" />
         </button>
         {!hideUser && (
           <div className="user-buttons">
             <LinkRouter to="/signin">
               <button className="user-link border-bottom-white border-round-top">Sign in</button>
             </LinkRouter>
-            <LinkRouter to="signup">
+            <LinkRouter to="/signup">
               <button className="user-link border-round-bottom">Sign up</button>
             </LinkRouter>
           </div>

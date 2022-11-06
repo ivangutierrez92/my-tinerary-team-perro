@@ -2,11 +2,11 @@ import React from 'react'
 import "../styles/components/carrousel.css";
 import dataHotel from "../data/datosHoteles";
 import cities from "../data/cities";
-import Flechita from "../components/Flechita";
+import Flechita from "./Flechita";
 import { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import Carrousel from "../components/Carrousel";
-import ScrollToTop from "../components/ScrollToTop";
+import Footer from "./Footer";
+import Carrousel from "./Carrousel";
+import ScrollToTop from "./ScrollToTop";
 
 export default function Home2() {
  

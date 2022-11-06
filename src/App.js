@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import "./styles/App.css";
 import NotFound from "./pages/NotFound";
-import SignIn from "./pages/SignIn"
+import SignIn from "./pages/SignIn";
+import City from "./pages/City";
 import Hotels from "./pages/Hotels";
 import Hotel  from "./pages/Hotel";
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/city/:city" element={<City />} />
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
