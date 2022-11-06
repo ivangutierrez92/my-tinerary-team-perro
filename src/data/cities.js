@@ -1,4 +1,4 @@
-export default [
+let cities = [
   {
     id: "city1",
     name: "Buenos Aires",
@@ -28,7 +28,7 @@ export default [
     name: "Paris",
     continent: "Europe",
     photo:
-      "https://cnnespanol.cnn.com/wp-content/uploads/2022/06/220615171325-nm-1-paris-full-169.jpg?quality=100&strip=info",
+      "https://media.traveler.es/photos/61377a978f298b3a7a5bdbaa/master/pass/98405.jpg",
     population: 2165423,
     userId: "admin4",
   },
@@ -100,3 +100,4 @@ export default [
     userId: "admin3",
   },
 ];
+export default cities;
