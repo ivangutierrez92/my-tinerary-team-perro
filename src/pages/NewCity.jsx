@@ -1,6 +1,8 @@
 import React from "react";
 import { useRef } from "react";
+import NewCityForm from "../components/NewCityForm";
 import Layout from "../layouts/Layout";
+import cities from "../data/cities";
 import "../styles/pages/NewCity.css";
 
 export default function NewCity() {
@@ -8,45 +10,29 @@ export default function NewCity() {
 
   const onSubmit = event => {
     event.preventDefault();
+
     let properties = ["name", "continent", "population", "photo"];
     let newCity = {};
     properties.forEach(property => {
-      newCity[property] = formRef.current.elements[property];
+      newCity[property] = formRef.current.elements[property].value;
     });
-    console.log(newCity);
+
+    if (cities.some(city => city.name.toLowerCase() === newCity.name.toLowerCase())) {
+      alert("La ciudad que intenta ingresar ya está en la base de datos");
+      return;
+    }
+
+    localStorage.setItem("newCity", JSON.stringify(newCity));
+    alert("La ciudad se ha guardado con éxito");
+    formRef.current.reset();
   };
+
   return (
     <Layout>
       <div className="NewCity">
         <h1 className="NewCity-title">New City</h1>
         <hr />
-        <form ref={formRef} onSubmit={onSubmit} className="NewCity-form">
-          <div className="NewCity-form-field">
-            <label htmlFor="name">Name:</label>
-            <input type="text" name="name" id="name" className="NewCity-formInput" />
-          </div>
-          <div className="NewCity-form-field">
-            <label htmlFor="continent">Continent:</label>
-            <select name="continent" id="continent" defaultValue="" className="NewCity-formInput">
-              <option value="">-- Select continent --</option>
-              <option value="Africa">Africa</option>
-              <option value="America">America</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Oceania">Oceania</option>
-            </select>
-          </div>
-          <div className="NewCity-form-field">
-            <label htmlFor="photo">Photo's URL:</label>
-            <input type="email" name="email" id="email" className="NewCity-formInput" />
-          </div>
-          <div className="NewCity-form-field">
-            <label htmlFor="pupulation">Population:</label>
-            <input type="number" name="population" id="population" min={0} className="NewCity-formInput" />
-          </div>
-
-          <input type="submit" value="Create City" className="NewCity-button" />
-        </form>
+        <NewCityForm formRef={formRef} onSubmit={onSubmit} />
       </div>
     </Layout>
   );
