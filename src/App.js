@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import City from "./pages/City";
 import Hotel from "./pages/Hotel";
+import NewCity from "./pages/NewCity";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/hotels" element={<Hotel />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/city/:city" element={<City />} />
+        <Route path="/newcity" element={<NewCity />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
