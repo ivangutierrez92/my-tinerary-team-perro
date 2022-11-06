@@ -24,18 +24,11 @@ export default function SignUp() {
         }
       }
     }
-    saveInStorage("registeredUsers", formObject);
+    localStorage.setItem("registeredUser", JSON.stringify(formObject));
     formRef.current.reset();
 
     alert("Thank for registering! you will be redirected soon ");
     navigate("/");
-  };
-
-  const saveInStorage = (key, value) => {
-    let storage = localStorage.getItem(key);
-    storage = storage ? JSON.parse(storage) : [];
-    storage.push(value);
-    localStorage.setItem("registeredUsers", JSON.stringify(storage));
   };
 
   return (
