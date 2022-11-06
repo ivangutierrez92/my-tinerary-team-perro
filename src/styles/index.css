@@ -21,7 +21,7 @@
   --tertiary-color-3: hsl(357, 68%, 25%);
   --tertiary-color-4: hsl(357, 75%, 50%);
   --shadow: rgba(0, 0, 0, 60%) 4px 4px 6px;
-  --light-shadow: 2px 4px 7px rgba(0, 0, 0, 0.2); 
+  --light-shadow: 2px 4px 7px rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -35,4 +35,8 @@ button {
 
 a {
   font-size: 1rem;
+}
+
+.bold {
+  font-weight: 700;
 }
