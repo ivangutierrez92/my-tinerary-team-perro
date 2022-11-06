@@ -108,7 +108,11 @@ let activities = [
     id: "it8",
     cityId: "city10",
     name: " Chinatown and Little India Guided Walking Tour",
-    photo: ["./img/little-india1.jpg", "./img/little-india2.jpg", "./img/little-india3.jpg"],
+    photo: [
+      "https://cdn.getyourguide.com/img/tour/62724c2f1d1c2.jpeg/145.jpg",
+      "https://cdn.getyourguide.com/img/tour/627243e70be4a.jpeg/145.jpg",
+      "https://cdn.getyourguide.com/img/tour/62724a551af68.jpeg/145.jpg",
+    ],
     description:
       "Discover the best of Singapore on a guided cultural walking tour through Chinatown, Little India, and Kampong Gelam. Learn about the history of these ethnic neighborhoods with plenty of photo stops!",
     price: 60,
@@ -120,9 +124,9 @@ let activities = [
     cityId: "city12",
     name: "Croco Cun Interactive Zoo Tour",
     photo: [
-      "https://cdn.getyourguide.com/img/tour/62724c2f1d1c2.jpeg/145.jpg",
-      "https://cdn.getyourguide.com/img/tour/627243e70be4a.jpeg/145.jpg",
-      "https://cdn.getyourguide.com/img/tour/62724a551af68.jpeg/145.jpg",
+      "https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Atracciones/Croco%20Cun%20Zoo/Croco_Cun_Zoo_1_960x651.png?ver=2017-10-24-154257-383",
+      "https://www.garzablancaresort.com/blog/wp-content/uploads/2017/10/things-to-do-in-riviera-maya-crococun-zoo.jpg",
+      "https://cdn.getyourguide.com/img/tour/60a2988e117c6.jpeg/99.jpg",
     ],
     description:
       "Get inspired through a guided tour of Croco Cun Zoo, a local conservation center. Meet vulnerable species, and learn how to protect wild animals while interacting with these amazing creatures.",
@@ -134,7 +138,11 @@ let activities = [
     id: "it10",
     cityId: "city12",
     name: "Guided Day Trip to Tulum",
-    photo: ["./img/tulum1.jpg", "./img/tulum2.jpg", "./img/tulum3.jpg"],
+    photo: [
+      "https://cdn.getyourguide.com/img/tour/629cbbdb4a470.png/145.jpg",
+      "https://cdn.getyourguide.com/img/tour/622230049d7af.jpeg/145.jpg",
+      "https://cdn.getyourguide.com/img/tour/629cbbb9b2393.jpeg/145.jpg",
+    ],
     description:
       "Experience a guided day trip into Mayan history from Cancun or Puerto Morelos. Explore the archaeological ruins of Tulum, plunge into a jungle cenote, and visit stylish boutiques in Playa del Carmen.",
     price: 50,
