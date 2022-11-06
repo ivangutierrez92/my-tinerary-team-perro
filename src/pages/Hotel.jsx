@@ -1,23 +1,35 @@
-import React from 'react'
-import HotelCard from '../components/HotelCard'
-import SelectSearch from '../components/SelectSearch'
-import data from "../data/datosHoteles";
-import Layout from '../layouts/Layout'
-import "../styles/pages/hotels.css"
-export default function Hotel() {
-  // for(let hotel of data){
-  //   console.log(hotel)
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import HotelData from "../data/datosHoteles";
+import ShowData from "../data/shows";
+import "../styles/pages/Hotel.css";
+import DetailHotel from "../components/DetailHotel";
+import Show from "../components/Show";
+import Layout from "../layouts/Layout";
 
-  // }
- 
-  
+export default function Hotel() {
+  let { id } = useParams();
+  let [hotel, SetHotel] = useState({});
+  let [shows, SetShow] = useState([]);
+
+  useEffect(() => {
+    let aux = HotelData.find((hotel) => hotel.id === id);
+    SetHotel(aux);
+    let auxShow = ShowData.filter((show) => show.hotelId === id);
+    SetShow(auxShow);
+  }, [id]);
+
   return (
     <Layout>
-        <SelectSearch />
-      <div className='card-contain' >
-        {
-          data.map(hotel=> <HotelCard key={hotel.id}  hotel={hotel}/>)
-        }        
+      <div className="container-hotel">
+        
+        <DetailHotel info={hotel} />
+
+        {shows.length > 0 ? (
+          shows?.map((show) => <Show key={show.id} shows={show} />)
+        ) : (
+          <h2 className="no-show">No Show for this Hotel</h2>
+        )}
       </div>
     </Layout>
   );
