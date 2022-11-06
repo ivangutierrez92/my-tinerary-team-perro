@@ -18,7 +18,7 @@ export default function ScrollToTop() {
       }}
       className="scroll-top"
     >
-      <img src="./img/scroll-to-top.svg" alt="scroll-button" />
+      <img src="/img/scroll-to-top.svg" alt="scroll-button" />
     </button>
   );
 }
