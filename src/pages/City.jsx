@@ -5,6 +5,7 @@ import cities from "../data/cities";
 import activities from "../data/activities";
 import "../styles/pages/City.css";
 import Itinerary from "../components/Itinerary";
+import DetailCity from "../components/DetailCity";
 
 export default function City() {
   let { city: cityId } = useParams();
@@ -21,17 +22,7 @@ export default function City() {
   return (
     <Layout>
       <div className="City">
-        <div className="City-header">
-          <div className="City-image">
-            <img src={city?.photo} alt={city?.name} />
-          </div>
-          <div className="City-content">
-            <h1>{city?.name}</h1>
-            <p>{`${city?.name} is a beautiful place in ${city?.continent} `}</p>
-            <p>{`with a population of ${city?.population?.toLocaleString()} people.`}</p>
-            <p>{`Here you can see the opinion of our users of what to do here`}</p>
-          </div>
-        </div>
+        <DetailCity city={city} />
         {itineraries.length ? (
           <>
             <h2 className="City-itinerariesTitle">See what others are saying about the itineraries of the city</h2>
