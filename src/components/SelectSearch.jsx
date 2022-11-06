@@ -8,15 +8,18 @@ export default function SelectSearch() {
   let[search,SetSearch]= useState("");
   let capture= (event => {
     SetSelect(event.target.value)
+    console.log("Select:",select)
+    console.log("Input :",search)
   })
 
 
   let SearchInput = (event =>{
       SetSearch(event.target.value)
+      console.log("Select:",select)
+      console.log("Input :",search)
   }
   )
-  console.log("Select:",select)
-  console.log("Input :",search)
+  
  
 
   return (
