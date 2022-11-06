@@ -51,7 +51,7 @@ export default function Navbar() {
             <LinkRouter to="/signin">
               <button className="user-link border-bottom-white border-round-top">Sign in</button>
             </LinkRouter>
-            <LinkRouter to="signup">
+            <LinkRouter to="/signup">
               <button className="user-link border-round-bottom">Sign up</button>
             </LinkRouter>
           </div>
