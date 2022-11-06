@@ -28,6 +28,7 @@ export default function City() {
           <div className="City-content">
             <h1>{city?.name}</h1>
             <p>{`${city?.name} is a beautiful place in ${city?.continent} `}</p>
+            <p>{`with a population of ${city?.population?.toLocaleString()} people.`}</p>
             <p>{`Here you can see the opinion of our users of what to do here`}</p>
           </div>
         </div>
@@ -35,7 +36,7 @@ export default function City() {
           <>
             <h2 className="City-itinerariesTitle">See what others are saying about the itineraries of the city</h2>
             {itineraries.map(itinerary => (
-              <Itinerary itinerary={itinerary} />
+              <Itinerary itinerary={itinerary} key={itinerary.id}/>
             ))}
           </>
         ) : (
