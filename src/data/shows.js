@@ -43,8 +43,7 @@ let shows = [
     name: "Arctic Monkeys",
     description:
       "Grammy Award–nominated early music ensemble El Mundo performs works from the Archivo de Guatemala: a treasure trove of 17th- and 18th-century music that highlights the unique confluence of sounds heard in the Guatemala City Cathedral. Regional folk music and dance rhythms of Spain, Africa, and the Americas meld with sacred compositions and courtly European elements in pieces by Castellanos, Falconieri, Murcia, Quiroz, and more. This historically and geographically distinctive music, called a “perfect balance of sacred and profane” (The Guardian), remains as vital and full of life as ever.",
-    photo:
-      "https://images.sk-static.com/images/media/profile_images/artists/431136/huge_avatar",
+    photo: "https://i.ytimg.com/vi/C_Wd_U1Et4E/maxresdefault.jpg",
     price: 48,
     date: new Date("2022 3 20"),
     userId: "user1",
@@ -69,7 +68,7 @@ let shows = [
     description:
       "Blink-182 is an American pop punk rock band from San Diego, California in 1992. The group has consisted of Mark Hoppus, Tom DeLonge, Travis Barker and Scott Raynor. The group has sold over 35 million albums worldwide",
     photo:
-      "https://images.sk-static.com/images/media/img/col6/20190913-153414-812957.jpg",
+      "https://tandilrock.com.ar/wp-content/uploads/2022/08/blink-182.webp",
     price: 90,
     date: new Date("2022 7 15"),
     userId: "user3",
