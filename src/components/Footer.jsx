@@ -12,7 +12,7 @@ export default function Footer(){
           <h2>Hotels</h2>
           <LinkRouter to="/hotels">
             <img
-              src="./img/hotel.svg"
+              src="/img/hotel.svg"
               className="footer-icon"
               alt="hotel-icon"
             />
@@ -22,7 +22,7 @@ export default function Footer(){
           <h2>Cities</h2>
           <LinkRouter to="/cities">
             <img
-              src="./img/cities.svg"
+              src="/img/cities.svg"
               className="footer-icon"
               alt="hotel-icon"
             />
@@ -32,21 +32,21 @@ export default function Footer(){
           <p>Social networks</p>
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <img
-              src="./img/facebook.svg"
+              src="/img/facebook.svg"
               className="footer-icon"
               alt="facebook-icon"
             />
           </a>
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <img
-              src="./img/instagram.svg"
+              src="/img/instagram.svg"
               className="footer-icon"
               alt="instagram-icon"
             />
           </a>
           <a href="https://twitter.com/" target="_blank" rel="noreferrer">
             <img
-              src="./img/twitter.svg"
+              src="/img/twitter.svg"
               className="footer-icon"
               alt="twitter-icon"
             />
@@ -57,7 +57,7 @@ export default function Footer(){
             rel="noreferrer"
           >
             <img
-              src="./img/linkedin.svg"
+              src="/img/linkedin.svg"
               className="footer-icon"
               alt="linkedin-icon"
             />
@@ -68,7 +68,7 @@ export default function Footer(){
             rel="noreferrer"
           >
             <img
-              src="./img/github.svg"
+              src="/img/github.svg"
               className="footer-icon"
               alt="github-icon"
             />
@@ -79,7 +79,7 @@ export default function Footer(){
             rel="noreferrer"
           >
             <img
-              src="./img/github.svg"
+              src="/img/github.svg"
               className="footer-icon"
               alt="github-icon"
             />
