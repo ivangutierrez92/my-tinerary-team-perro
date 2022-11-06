@@ -1,4 +1,4 @@
-export default [
+let activities = [
   {
     id: "it1",
     cityId: "city4",
@@ -172,3 +172,4 @@ export default [
     userId: "user1",
   },
 ];
+export default activities;

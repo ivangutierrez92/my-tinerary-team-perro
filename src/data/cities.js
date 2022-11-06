@@ -1,4 +1,4 @@
-export default [
+let cities = [
   {
     id: "city1",
     name: "Buenos Aires",
@@ -100,3 +100,4 @@ export default [
     userId: "admin3",
   },
 ];
+export default cities;

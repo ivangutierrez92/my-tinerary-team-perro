@@ -1,4 +1,4 @@
-export default [
+let users = [
   {
     id: "user1",
     name: "Joaquín",
@@ -44,3 +44,4 @@ export default [
     logged: true,
   },
 ];
+export default users;
