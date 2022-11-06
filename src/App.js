@@ -6,14 +6,15 @@ import "./styles/App.css";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import City from "./pages/City";
-
+import Hotel from "./pages/Hotel";
 function App() {
   return (
     <>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path="/signin" element={<SignIn/>} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/hotels" element={<Hotel />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/city/:city" element={<City />} />
         <Route path="*" element={<NotFound />} />

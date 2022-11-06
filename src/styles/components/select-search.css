@@ -1,0 +1,31 @@
+.select-search{
+  background-color: var(--tertiary-color-1);
+  height: 50px;
+  width: 90.5vw;
+  margin: 2rem  auto 1rem ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem;
+  border-radius: .5rem;
+
+}
+
+.select{
+  height: 90%;
+  border-radius: .5rem;
+  border: none;
+  font-size: 19px
+
+}
+.search-input{
+  height: 90%;
+  padding-left: .5rem;
+  border-radius: .1rem;
+  border: none;
+  font-size: 19px;
+  width:50%;
+}
+
+

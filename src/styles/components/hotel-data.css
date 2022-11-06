@@ -1,0 +1,12 @@
+.hotel-title{
+  text-align: center;
+  color:var(--tertiary-color-1);
+
+
+}
+
+.detail{
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 5px;
+}
