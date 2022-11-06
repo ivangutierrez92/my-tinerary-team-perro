@@ -1,23 +1,69 @@
+.City > hr {
+  max-width: 1300px;
+  margin: auto;
+}
 .City-header {
-  height: 400px;
-  display: flex;
+  height: 700px;
+  margin-bottom: 80px;
 }
 .City-image {
-  flex-grow: 3;
+  max-width: 1300px;
+  height: 700px;
+  margin: auto;
 }
 
 .City-image > img {
   width: 100%;
   height: 100%;
-  clip-path: ellipse(65px 30px at 125px 40px);
-  
+  object-fit: cover;
+  clip-path: polygon(100% 0, 100% 100%, 90% 70%, 10% 70%, 0 100%, 0 0);
 }
-.City-title {
-  flex-grow: 2;
-}
-.City-title > h1 {
+.City-content {
+  position: relative;
+  top: -190px;
   color: var(--tertiary-color-1);
   text-align: center;
-  margin-top: 100px;
+  padding: 0 15px;
+}
+.City-content > h1 {
   font-size: 48px;
+  margin-bottom: 40px;
+  text-decoration: underline;
+}
+.City-content > p {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .City-content > h1 {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .City-image {
+    height: 500px;
+  }
+  .City-image > img {
+    clip-path: none;
+    height: 500px;
+  }
+  .City-content {
+    position: static;
+    padding-bottom: 10px;
+  }
+  .City-content > h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+  }
+  .City-header {
+    height: auto;
+  }
+}
+
+.City-itinerariesTitle {
+  text-align: center;
+  color: var(--tertiary-color-1);
+  margin-bottom: 50px;
 }
