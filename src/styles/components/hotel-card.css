@@ -1,0 +1,14 @@
+.hotel-card{
+  width: 220px;
+  height: 350px;
+  background-color:  hsla(213, 43%, 71%, 0.384);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.hotel-image{
+  width: 220px;
+  height: 250px;
+  object-fit: cover;
+}
