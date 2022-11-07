@@ -8,7 +8,6 @@ import "../styles/pages/new-hotel.css"
 
 
 export default function NewHotel() {
-  let form= useRef(null)
   let hotelStore=[];
   const sendData= event=>{
     let hotelObject = {};
@@ -34,7 +33,7 @@ let inputs=[...event.target.elements]
   return (
     <Layout>
       <div className="form-container">
-        <FormNewHotel formRef={form} onSubmit={sendData}/>
+        <FormNewHotel onSubmit={sendData}/>
         
       </div>
     </Layout>
