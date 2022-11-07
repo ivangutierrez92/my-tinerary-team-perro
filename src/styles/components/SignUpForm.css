@@ -2,14 +2,14 @@
   font-size: 16px;
   width: 100%;
   max-width: 800px;
-  margin: auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   background-color: var(--tertiary-color-1);
   border-radius: 4px;
   box-shadow: var(--shadow);
   padding: 20px 30px;
-  gap: 25px;
+  gap: 20px;
 }
 
 .SignUp-form label {
@@ -26,8 +26,9 @@
 
 .SignUp-form-field input {
   border: 3px solid var(--lightgray);
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 4px;
+  height: 30px;
 }
 .SignUp-form-field input:focus {
   outline: 2px solid var(--primary-color-1);

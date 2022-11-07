@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import GoogleButton from "../components/GoogleButton";
 import SignUpForm from "../components/SignUpForm";
 import Layout from "../layouts/Layout";
+import registeredUsers from "../data/registeredUsers";
 import "../styles/pages/SignUp.css";
+import { Link as LinkRouter } from "react-router-dom";
 
 export default function SignUp() {
   let formRef = useRef(null);
@@ -11,23 +13,20 @@ export default function SignUp() {
 
   const sendData = event => {
     event.preventDefault();
-    let formObject = {};
+    let properties = ["name", "lastName", "email", "password", "age"];
+    let newUser = {};
 
-    for (let input of formRef.current) {
-      if (input.type !== "submit") {
-        if (input.value) {
-          formObject[input.name] = input.value;
-        } else {
-          let label = input.labels[0].innerText.slice(0, -1);
-          alert(`You have to complete the field ${label}`);
-          return;
-        }
-      }
+    properties.forEach(property => {
+      newUser[property] = formRef.current.elements[property].value;
+    });
+    if (registeredUsers.some(user => user.email.toLowerCase() === newUser.email.toLowerCase())) {
+      alert("That email is already in use. Maybe you want to sing in?");
+      return;
     }
-    localStorage.setItem("registeredUser", JSON.stringify(formObject));
-    formRef.current.reset();
 
-    alert("Thank for registering! you will be redirected soon ");
+    localStorage.setItem("newUser", JSON.stringify(newUser));
+    formRef.current.reset();
+    alert("Thank for registering! you will be redirected soon...");
     navigate("/");
   };
 
@@ -38,6 +37,7 @@ export default function SignUp() {
         <hr />
         <SignUpForm formRef={formRef} onSubmit={sendData} />
         <GoogleButton content="SIGN UP WITH GOOGLE" />
+        <LinkRouter to="/signin" className="SignUp-link">Already have an account?</LinkRouter>
       </div>
     </Layout>
   );
