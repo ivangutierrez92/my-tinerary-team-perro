@@ -1,5 +1,8 @@
 import React from 'react'
 import "../styles/components/form-new-hotel.css"
+import cities from "../data/cities";
+
+
 export default function FormNewHotel({formRef, onSubmit}) {
   
   return (
@@ -7,7 +10,7 @@ export default function FormNewHotel({formRef, onSubmit}) {
       <div className="new-hotel-form-col">
         <label htmlFor="hotel-id">Hotel Id:</label>
 
-        <input type="text" name="hotel-id" id="hotel-id" />
+        <input type="text" name="hotelId" id="hotel-id" />
       </div>
       <div className="new-hotel-form-col">
         <label htmlFor="hotel-name">Hotel Name: </label>
@@ -15,20 +18,25 @@ export default function FormNewHotel({formRef, onSubmit}) {
       </div>
       <div className="new-hotel-form-col">
         <label htmlFor="photo-url">Photo (URL):</label>
-        <input type="text" name="photo-url" id="photo-url" />
+        <input type="text" name="photo" id="photo-url" />
       </div>
       <div className="new-hotel-form-col">
         <label htmlFor='capacity' >Capacity:</label>
         <input type="text" name="capacity" id="capacity" />
       </div>
       <div className="new-hotel-form-col">
-        <label htmlFor='city-id' >City Id:</label>
-        <input type="text" name="city-id" id="city-id" />
+        <label htmlFor='city-id' >City:</label>
+        <select defaultValue="" name="cityId" id="city-id" >
+        <option value="">Choose city</option>
+        {
+          cities.map((city)=><option value={city.id}>{city.name}</option>)
+        }
+        </select>
       </div>
-      <div className="new-hotel-form-col">
+      {/* <div className="new-hotel-form-col">
         <label htmlFor='user-id'>User Id:</label>
-        <input type="text" name="user-id" id="user-id" />
-      </div>
+        <input type="text" name="userId" id="user-id" />
+      </div> */}
       <input id='form-button' type="submit" value="Continue" className='new-hotel-form-button'  />
     </form>
   );

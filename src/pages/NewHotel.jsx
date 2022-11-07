@@ -21,13 +21,14 @@ let inputs=[...event.target.elements]
       hotelObject[name]=input.value
     }
    })
-
+   
    let hotelStorage =localStorage.getItem('hotels')
-   hotelStorage=JSON.parse(hotelStorage)
-  hotelStore.push(hotelStorage)
+  hotelStorage=hotelStorage ? JSON.parse(hotelStorage): []
+  hotelStorage.push(hotelObject)
   console.log(hotelStore)
-  localStorage.setItem("hotels", JSON.stringify(hotelStore))
-  }
+  localStorage.setItem("hotels", JSON.stringify(hotelStorage))
+  
+}
   
   
   return (

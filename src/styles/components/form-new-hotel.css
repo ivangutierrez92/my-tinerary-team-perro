@@ -35,6 +35,9 @@
   font-size:20px
 
 }
+.new-hotel-form-col select{
+font-size:20px;
+}
 .new-hotel-form-button{
  
   align-self: center;
