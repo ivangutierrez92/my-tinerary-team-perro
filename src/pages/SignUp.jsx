@@ -23,7 +23,7 @@ export default function SignUp() {
       return;
     }
 
-    localStorage.setItem("newUser", JSON.stringify(formObject));
+    localStorage.setItem("newUser", JSON.stringify(newUser));
     formRef.current.reset();
     alert("Thank for registering! you will be redirected soon...");
     navigate("/");
