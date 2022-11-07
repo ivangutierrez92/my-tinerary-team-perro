@@ -1,46 +1,41 @@
-.SignUp-form {
+.NewCityForm {
   font-size: 16px;
   width: 100%;
   max-width: 800px;
-  margin: 20px auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   background-color: var(--tertiary-color-1);
   border-radius: 4px;
   box-shadow: var(--shadow);
   padding: 20px 30px;
-  gap: 20px;
+  gap: 25px;
 }
 
-.SignUp-form label {
+.NewCityForm label {
   color: white;
 }
 
-.SignUp-form-field {
+.NewCityForm-field {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  width: 350px;
+  width: 100%;
   gap: 5px;
 }
 
-.SignUp-form-field input {
+.NewCityForm-input {
   border: 3px solid var(--lightgray);
   font-size: 16px;
   border-radius: 4px;
   height: 30px;
 }
-.SignUp-form-field input:focus {
+
+.NewCityForm-input:focus {
   outline: 2px solid var(--primary-color-1);
 }
 
-.SignUp-form-col {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.SignUp-button {
+.NewCityForm-button {
   align-self: center;
   font-size: 16px;
   background-color: var(--primary-color-1);
@@ -51,15 +46,13 @@
   margin-top: 15px;
   cursor: pointer;
 }
-.SignUp-button:hover {
+
+.NewCityForm-button:hover {
   background-color: var(--primary-color-2);
   transition: all 0.2s ease-in-out;
 }
 @media (max-width: 768px) {
-  .SignUp-form-col {
-    flex-direction: column;
-  }
-  .SignUp-form-field {
+  .NewCityForm-field {
     width: 100%;
   }
 }

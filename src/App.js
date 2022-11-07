@@ -6,9 +6,11 @@ import "./styles/App.css";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import City from "./pages/City";
+import Hotel from "./pages/Hotel";
+import NewCity from "./pages/NewCity";
 import Hotels from "./pages/Hotels";
-import Hotel  from "./pages/Hotel";
 import NewHotel from "./pages/NewHotel";
+
 function App() {
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/city/:city" element={<City />} />
+        <Route path="/newcity" element={<NewCity />} />
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="/newhotel" element={<NewHotel />} />
         <Route path="*" element={<NotFound />} />
