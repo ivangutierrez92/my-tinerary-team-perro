@@ -1,27 +1,27 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
-import "../styles/components/CityCard.css";
+import "../styles/components/CollectionCard.css";
 
-export default function CityCard({ city }) {
+export default function CollectionCard({ city }) {
   return (
-    <div className="CityCard">
-      <div className="CityCard-photo">
+    <div className="CollectionCard">
+      <div className="CollectionCard-photo">
       <LinkRouter to={`/city/${city.id}`}>
         <img src={city.photo} alt={city.name}></img>
       </LinkRouter>
       </div>
-      <div className="CityCard-body">
-        <h3 className="CityCard-title">{city.name}</h3>
-        <div className="CityCard-content">
+      <div className="CollectionCard-body">
+        <h3 className="CollectionCard-title">{city.name}</h3>
+        <div className="CollectionCard-content">
           <p>
-            <span className="CityCard-label">Continent:</span> {city.continent}
+            <span className="CollectionCard-label">Continent:</span> {city.continent}
           </p>
           <p>
-            <span className="CityCard-label">Population:</span> {city.population.toLocaleString()}
+            <span className="CollectionCard-label">Population:</span> {city.population.toLocaleString()}
           </p>
           </div>
           <LinkRouter to={`/city/${city.id}`}>
-            <button className="CityCard-button">See Itineraries!</button>
+            <button className="CollectionCard-button">See Itineraries!</button>
           </LinkRouter>
       </div>
     </div>

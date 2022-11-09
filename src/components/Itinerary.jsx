@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/components/Itinerary.css";
+import "../styles/components/Activity.css";
 import registeredUsers from "../data/registeredUsers";
 
 export default function Itinerary({ itinerary }) {
@@ -15,12 +15,12 @@ export default function Itinerary({ itinerary }) {
   };
 
   return (
-    <div className="Itinerary" key={itinerary.key}>
-      <img className="Itinerary-image" src={itinerary.photo[0]} alt={itinerary.name} />
-      <div className="Itinerary-body">
+    <div className="Activity" key={itinerary.key}>
+      <img className="Activity-image" src={itinerary.photo[0]} alt={itinerary.name} />
+      <div className="Activity-body">
         <h3>{itinerary.name}</h3>
         <p>{itinerary.description}</p>
-        <div className="Itinerary-info">
+        <div className="Activity-info">
           <p>
             <span className="bold">Price:</span> {itinerary.price} USD.
           </p>
@@ -31,13 +31,13 @@ export default function Itinerary({ itinerary }) {
         <p>
           Review By: {user?.name} {user?.lastName}
         </p>
-        <button className="Itinerary-button" onClick={showComments}>
+        <button className="Activity-button" onClick={showComments}>
           Comments
         </button>
         {isShowingComments && (
           <>
             <hr></hr>
-            <div className="Itinerary-comments"></div>
+            <div className="Activity-comments"></div>
           </>
         )}
       </div>

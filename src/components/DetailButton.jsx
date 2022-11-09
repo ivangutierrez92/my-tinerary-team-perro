@@ -5,7 +5,7 @@ import "../styles/components/detail-button.css"
 export default function HotelDetails({hotel}) {
   return (
     <LinkRouter to={`/hotel/${hotel}`}>
-      <button className="button-detail">Details</button>
+      <button className="CollectionCard-button">Details</button>
     </LinkRouter>
   );
 }
