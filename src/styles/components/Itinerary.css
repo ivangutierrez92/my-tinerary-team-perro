@@ -1,0 +1,64 @@
+.Itinerary {
+  max-width: 1000px;
+  background-color: #00539C;
+  color: var(--white);
+  padding: 20px;
+  border-radius: 4px;
+  margin: auto;
+  margin-bottom: 100px;
+  box-shadow: var(--shadow);
+}
+.Itinerary-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
+.Itinerary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px;  
+  
+}
+.Itinerary-body > h3 {
+  font-size: 28px;
+  text-align: center;
+  text-decoration: underline;
+  
+  
+}
+.Itinerary-info {
+  border-top: 2px dotted var(--white) ;
+  display: flex;
+  padding: 7px 0;
+}
+.Itinerary-info > p {
+  flex-grow: 1;
+}
+
+.Itinerary-button {
+  background-color: transparent;
+  color: var(--white);
+  border-radius: 4px;
+  border: 2px solid var(--white);
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s all ease-in-out;
+  width: 100%;
+  max-width: 150px;
+  margin: auto;
+}
+
+.Itinerary-button:hover {
+  background-color: var(--white);
+  color: var(--black)
+}
+
+
+@media (max-width: 600px) {
+  .CityItinerary-info {
+    flex-direction: column;
+  }
+}

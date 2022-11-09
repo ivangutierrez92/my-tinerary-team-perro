@@ -1,0 +1,79 @@
+.Collection {
+  padding: 30px 100px;
+  width: 100%;
+}
+
+.Collection-title {
+  color: var(--tertiary-color-1);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.Collection-formComponents {
+  display: flex;
+  background-color: var(--tertiary-color-1);
+  box-shadow: var(--light-shadow);
+  padding: 5px;
+  margin-bottom: 30px;
+  color: var(--white);
+  border-radius: 4px;
+  gap: 5px
+}
+
+.Collection-checkboxsContainer {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Collection-inputContainer {
+  flex-grow: 1;
+}
+.Collection-inputContainer > label {
+  display: flex;
+  
+}
+.Collection-inputContainer img {
+  padding: 0 5px 0 8px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 4px 0 0 4px;
+}
+
+.Collection-inputContainer input {
+  width: 100%;
+  height: 30px;
+  border-radius: 0 4px 4px 0;
+  border: 1px 1px 1px 0 solid var(--white);
+  font-size: 18px;
+  padding: 0 5px;
+}
+.Collection-inputContainer input:focus {
+  outline: 3px solid var(--primary-color-1);
+}
+.Collection-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 80px 100px;
+}
+
+@media (max-width: 1200px) {
+  .Collection {
+    padding: 30px 50px;
+  }
+  .Collection-content {
+    gap: 30px 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Collection {
+    padding: 30px 10px;
+  }
+  .Collection-formComponents {
+    flex-direction: column;
+  }
+}

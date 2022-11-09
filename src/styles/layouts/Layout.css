@@ -1,0 +1,14 @@
+.Layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.Layout-main {
+  flex-grow: 1;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+.Layout-main > div {
+  flex-grow: 1;
+}

@@ -1,0 +1,79 @@
+.Home1 {
+  width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+.Home1-content {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px 100px;
+  align-items: center;
+}
+
+.Home1 h1 {
+  font-size: 56px;
+  color: var(--white);
+  text-shadow: var(--shadow);
+}
+
+.Home1-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.Home1-logo {
+  max-width: 800px;
+}
+.Home1-logo > img {
+  width: 100%;
+}
+
+.Home1-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+}
+.Home1-right > a {
+  max-width: 300px;
+  width: 100%;
+  text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+  .Home1 h1 {
+    font-size: 32px;
+  }
+  .Home1-content {
+    padding: 30px;
+  }
+  .Home1-left {
+    justify-content: center;
+    gap: 50px;
+  }
+}
+@media (max-width: 768px) {
+  .Home1-content {
+    max-width: 450px;
+    margin: auto;
+    flex-direction: column;
+    align-items: unset;
+  }
+  .Home1-left {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .Home1-right > a {
+    max-width: unset;
+  }
+}

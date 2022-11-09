@@ -1,0 +1,59 @@
+.form-container{
+
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  align-self: center;
+  padding: 20px 30px;
+}
+.form-new-hotel{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap:1rem;
+  justify-items: center;
+  align-items: center;
+  background-color: var(--tertiary-color-1);
+  width: 50vw;
+  min-width: 220px;
+  max-width: 400px;
+  height: 600px;
+}
+
+.form-container label{
+  color: var(--white);
+}
+
+.new-hotel-form-col{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-width: 200px;
+}
+
+.new-hotel-form-col input{
+  font-size:20px
+
+}
+.new-hotel-form-col select{
+font-size:20px;
+}
+.new-hotel-form-button{
+ 
+  align-self: center;
+  font-size: 16px;
+  background-color: var(--primary-color-1);
+  border: none;
+  color: white;
+  padding: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+
+}
+
+.new-hotel-form-button:hover{
+background-color: var(--primary-color-2);
+  transition: all 0.2s ease-in-out;
+
+
+}
