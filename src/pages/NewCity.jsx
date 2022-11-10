@@ -2,7 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import NewCityForm from "../components/NewCityForm";
 import Layout from "../layouts/Layout";
-import cities from "../data/cities";
+import axios from "axios";
 import "../styles/pages/NewCity.css";
 
 export default function NewCity() {
@@ -16,14 +16,17 @@ export default function NewCity() {
     properties.forEach(property => {
       newCity[property] = formRef.current.elements[property].value;
     });
+    //Hardcoded userId
+    newCity["userId"] = "636d1ed3692e58acbf29845c";
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity)
+      .then(response => {
+        alert(response.data.message);
+      })
+      .catch(error => {
+        alert(`${error.response.data.message}, ${error.message}`);
+      });
 
-    if (cities.some(city => city.name.toLowerCase() === newCity.name.toLowerCase())) {
-      alert("La ciudad que intenta ingresar ya está en la base de datos");
-      return;
-    }
-
-    localStorage.setItem("newCity", JSON.stringify(newCity));
-    alert("La ciudad se ha guardado con éxito");
     formRef.current.reset();
   };
 

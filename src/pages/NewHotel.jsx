@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+
 import FormNewHotel from '../components/FormNewHotel';
 import Layout from '../layouts/Layout'
 import "../styles/pages/new-hotel.css"

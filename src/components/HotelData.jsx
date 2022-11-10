@@ -1,14 +1,18 @@
-import React from 'react'
+import React from "react";
 
 import "../styles/components/hotel-data.css";
 export default function HotelData({ capacity, city, name }) {
   return (
-    <>
-      <h5 className="hotel-title">{name}</h5>
-      <div className="detail">
-        <p>Capacity:{capacity}</p>
-        <p>City:{city}</p>
+    <div className="CollectionCard-body">
+      <h5 className="CollectionCard-title">{name}</h5>
+      <div className="CollectionCard-content">
+        <p>
+          <span className="CollectionCard-label">Capacity</span>:{capacity}
+        </p>
+        <p>
+          <span className="CollectionCard-label">City</span>:{city}
+        </p>
       </div>
-    </>
+    </div>
   );
 }
