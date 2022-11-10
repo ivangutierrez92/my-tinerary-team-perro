@@ -19,7 +19,7 @@ export default function NewCity() {
     //Hardcoded userId
     newCity["userId"] = "636d1ed3692e58acbf29845c";
     axios
-      .post("http://localhost:8000/api/cities/", newCity)
+      .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity)
       .then(response => {
         alert(response.data.message);
       })
