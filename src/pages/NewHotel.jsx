@@ -33,7 +33,7 @@ let inputs=[...event.target.elements]
   return (
     <Layout>
       <div className="form-container">
-        <FormNewHotel onSubmit={sendData}/>
+        <FormNewHotel  onSubmit={sendData}/>
         
       </div>
     </Layout>

@@ -10,7 +10,7 @@ export default function SignIn() {
   const send = event => {
     let object = {};
     event.preventDefault();
-
+    console.log(formRef.current[0].value)
     for (let current of formRef.current) {
       object[current.name] = current.value;
     }

@@ -9,9 +9,11 @@ export default function Hotel() {
     <Layout>
         <SelectSearch />
       <div className='card-contain' >
+
         {
           data.map(hotel=> <HotelCard key={hotel.id}  hotel={hotel}/>)
-        }        
+        }  
+              
       </div>
     </Layout>
   );
