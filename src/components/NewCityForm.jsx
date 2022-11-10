@@ -21,7 +21,7 @@ export default function NewCityForm({ formRef, onSubmit }) {
       </div>
       <div className="NewCityForm-field">
         <label htmlFor="photo">Photo's URL:</label>
-        <input type="url" name="photo" id="photo" required className="NewCityForm-input" />
+        <input type="url" name="photo" id="photo" className="NewCityForm-input" />
       </div>
       <div className="NewCityForm-field">
         <label htmlFor="population">Population:</label>
