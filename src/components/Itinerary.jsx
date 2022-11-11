@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "../styles/components/Activity.css";
 
 export default function Itinerary({ itinerary }) {
   let [isShowingComments, setIsShowingComments] = useState(false);
+  let [indexCarousel, setIndexCarousel] = useState(0);
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (indexCarousel === itinerary.photo.length - 1) {
+        setIndexCarousel(0);
+      } else {
+        setIndexCarousel(indexCarousel + 1);
+      }
+    }, 5000);
+
+    return () => clearTimeout(id);
+  });
 
   const showComments = () => {
     setIsShowingComments(!isShowingComments);
@@ -10,7 +23,7 @@ export default function Itinerary({ itinerary }) {
 
   return (
     <div className="Activity" key={itinerary.key}>
-      <img className="Activity-image" src={itinerary.photo[0]} alt={itinerary.name} />
+      <img className="Activity-image" src={itinerary.photo[indexCarousel]} alt={itinerary.name} />
       <div className="Activity-body">
         <h3>{itinerary.name}</h3>
         <p>{itinerary.description}</p>
