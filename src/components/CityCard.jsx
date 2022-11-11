@@ -6,7 +6,7 @@ export default function CollectionCard({ city }) {
   return (
     <div className="CollectionCard">
       <div className="CollectionCard-photo">
-      <LinkRouter to={`/city/${city.id}`}>
+      <LinkRouter to={`/city/${city._id}`}>
         <img src={city.photo} alt={city.name}></img>
       </LinkRouter>
       </div>
@@ -20,7 +20,7 @@ export default function CollectionCard({ city }) {
             <span className="CollectionCard-label">Population:</span> {city.population.toLocaleString()}
           </p>
           </div>
-          <LinkRouter to={`/city/${city.id}`}>
+          <LinkRouter to={`/city/${city._id}`}>
             <button className="CollectionCard-button">See Itineraries!</button>
           </LinkRouter>
       </div>
