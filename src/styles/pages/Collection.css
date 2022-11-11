@@ -60,6 +60,11 @@
   gap: 80px 100px;
 }
 
+.Collection-message {
+  color: var(--tertiary-color-1);
+  text-align: center;
+}
+
 @media (max-width: 1200px) {
   .Collection {
     padding: 30px 50px;
