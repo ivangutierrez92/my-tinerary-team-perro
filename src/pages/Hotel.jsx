@@ -6,34 +6,18 @@ import "../styles/pages/Hotel.css";
 import DetailHotel from "../components/DetailHotel";
 import Show from "../components/Show";
 import Layout from "../layouts/Layout";
-import axios from "axios";
-
 
 export default function Hotel() {
-  let { name } = useParams();
-  let [hotel, setHotel] = useState({});
+  let { id } = useParams();
+  let [hotel, SetHotel] = useState({});
   let [shows, SetShow] = useState([]);
 
   useEffect(() => {
-    // let aux = HotelData.find((hotel) => hotel.id === id);
-    // SetHotel(aux);
-    // let auxShow = ShowData.filter((show) => show.hotelId === id);
-    // SetShow(auxShow);
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels?name=${name}`)
-      .then(function (response) {
-        // manejar respuesta exitosa
-        setHotel(response.data.response);
-        console.log(response.data.response)
-      })
-      .catch(function (error) {
-        // manejar error
-        console.log(error);
-      });
-
-
-
-  }, [name]);
+    let aux = HotelData.find((hotel) => hotel.id === id);
+    SetHotel(aux);
+    let auxShow = ShowData.filter((show) => show.hotelId === id);
+    SetShow(auxShow);
+  }, [id]);
 
   return (
     <Layout>

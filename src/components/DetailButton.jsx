@@ -3,14 +3,8 @@ import { Link as LinkRouter } from "react-router-dom";
 import "../styles/components/detail-button.css"
 
 export default function HotelDetails({hotel}) {
-
-  
-
-
-
-
   return (
-    <LinkRouter to={`/hotel/name=${hotel.name}`}>
+    <LinkRouter to={`/hotel/${hotel}`}>
       <button className="CollectionCard-button">Details</button>
     </LinkRouter>
   );
