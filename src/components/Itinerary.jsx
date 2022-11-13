@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import "../styles/components/Activity.css";
-import registeredUsers from "../data/registeredUsers";
 
 export default function Itinerary({ itinerary }) {
-  let [user, setUser] = useState("");
   let [isShowingComments, setIsShowingComments] = useState(false);
+  let [indexCarousel, setIndexCarousel] = useState(0);
   useEffect(() => {
-    let itineraryUser = registeredUsers.find(user => user.id === itinerary.userId);
-    setUser(itineraryUser);
-  }, [itinerary]);
+    const id = setTimeout(() => {
+      if (indexCarousel === itinerary.photo.length - 1) {
+        setIndexCarousel(0);
+      } else {
+        setIndexCarousel(indexCarousel + 1);
+      }
+    }, 5000);
+
+    return () => clearTimeout(id);
+  });
 
   const showComments = () => {
     setIsShowingComments(!isShowingComments);
@@ -16,7 +23,7 @@ export default function Itinerary({ itinerary }) {
 
   return (
     <div className="Activity" key={itinerary.key}>
-      <img className="Activity-image" src={itinerary.photo[0]} alt={itinerary.name} />
+      <img className="Activity-image" src={itinerary.photo[indexCarousel]} alt={itinerary.name} />
       <div className="Activity-body">
         <h3>{itinerary.name}</h3>
         <p>{itinerary.description}</p>
@@ -28,9 +35,6 @@ export default function Itinerary({ itinerary }) {
             <span className="bold">Duration:</span> {itinerary.duration} hrs.
           </p>
         </div>
-        <p>
-          Review By: {user?.name} {user?.lastName}
-        </p>
         <button className="Activity-button" onClick={showComments}>
           Comments
         </button>

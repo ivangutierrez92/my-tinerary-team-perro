@@ -1,5 +1,5 @@
-.City-itinerariesTitle {
+.City-title {
   text-align: center;
   color: var(--tertiary-color-1);
-  margin-bottom: 50px;
+  margin: 50px 0;
 }
