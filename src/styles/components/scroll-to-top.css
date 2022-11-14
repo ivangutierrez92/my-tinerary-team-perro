@@ -2,11 +2,11 @@
   position: fixed;
   width: 60px;
   height: 50px;
-  bottom: 170px;
+  bottom: 100px;
   right: 30px;
   border-radius:3px ;
-  background-color: var(--secondary-color-2);
+  background-color: var(--tertiary-color-1);
   cursor: pointer;
-  
-
+  border: none;
+  box-shadow: var(--shadow);
 }
