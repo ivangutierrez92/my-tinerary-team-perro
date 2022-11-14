@@ -8,43 +8,52 @@ import Show from "../components/Show";
 import Layout from "../layouts/Layout";
 import axios from "axios";
 
-
 export default function Hotel() {
-  let { name } = useParams();
   let [hotel, setHotel] = useState({});
-  let [shows, SetShow] = useState([]);
-
+  let [shows, setShow] = useState({});
+  let { id } = useParams();
   useEffect(() => {
-    // let aux = HotelData.find((hotel) => hotel.id === id);
-    // SetHotel(aux);
-    // let auxShow = ShowData.filter((show) => show.hotelId === id);
-    // SetShow(auxShow);
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels?name=${name}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/hotels/${id}`)
       .then(function (response) {
         // manejar respuesta exitosa
         setHotel(response.data.response);
-        console.log(response.data.response)
+        //  console.log(response.data.response);
       })
       .catch(function (error) {
         // manejar error
         console.log(error);
       });
+  }, [id]);
+  console.log(hotel);
 
-
-
-  }, [name]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/shows?hotelId=${id}`)
+      .then(function (response) {
+        // manejar respuesta exitosa
+        setShow(response.data.response);
+      })
+      .catch(function (error) {
+        // manejar error
+        console.log(error);
+      });
+  }, [id]);
 
   return (
     <Layout>
       <div className="container-hotel">
-        
-        <DetailHotel info={hotel} />
-
-        {shows.length > 0 ? (
-          shows?.map((show) => <Show key={show.id} shows={show} />)
+        {Object.keys(hotel).length > 0 ? (
+          <>
+            <DetailHotel info={hotel} />
+            {shows.length > 0 ? (
+              shows?.map((show) => <Show key={show.id} shows={show} />)
+            ) : (
+              <h2 className="no-show">No Show for this Hotel</h2>
+            )}
+          </>
         ) : (
-          <h2 className="no-show">No Show for this Hotel</h2>
+          <h2 className="no-show"> No Hotel </h2>
         )}
       </div>
     </Layout>
