@@ -1,10 +1,22 @@
-import React from 'react'
-import "../styles/components/form-new-hotel.css"
-import cities from "../data/cities";
+import React, { useState, useEffect } from "react";
+import "../styles/components/form-new-hotel.css";
+import axios from "axios";
 
+export default function FormNewHotel({ onSubmit }) {
+  let [city, setCity] = useState([]);
 
-export default function FormNewHotel({onSubmit}) {
-  
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/cities`)
+      .then((response) => {
+        setCity(response.data.response);
+      })
+      .catch((error) => {
+        alert(`${error.response.data.message}, ${error.message}`);
+      });
+  }, []);
+  console.log(city);
+
   return (
     <form className="form-new-hotel" onSubmit={onSubmit}>
       <div className="new-hotel-form-col">
@@ -22,16 +34,10 @@ export default function FormNewHotel({onSubmit}) {
       <div className="new-hotel-form-col">
         <label htmlFor="city-id">City:</label>
         <select defaultValue="" name="cityId" id="city-id">
-          <option value="">Choose city</option>
-          <option value="636d2492b99d56d4e6fdc415">Lanai</option>
-          <option value="636d2492b99d56d4e6fdc416">Paris</option>
-          <option value="636d2492b99d56d4e6fdc417">Rustenburg</option>
-          <option value="636d2492b99d56d4e6fdc418">Los Angeles</option>
-          <option value="636d2492b99d56d4e6fdc413">Buenos Aires</option>
-          <option value="636d2492b99d56d4e6fdc41a">Tremezzo</option>
-          <option value="636d2492b99d56d4e6fdc414">Melbourne</option>
-          <option value="636d2492b99d56d4e6fdc41c"> Singapore</option>
-          <option value="636d2492b99d56d4e6fdc41d">Caibarién</option>
+          <option value="">--Choose city--</option>
+          {city?.map((names) => (
+            <option value={names._id}>{names.name}</option>
+          ))}
         </select>
       </div>
       <input
@@ -43,6 +49,3 @@ export default function FormNewHotel({onSubmit}) {
     </form>
   );
 }
-
-
-
