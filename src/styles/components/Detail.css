@@ -78,3 +78,9 @@
     height: auto;
   }
 }
+
+@media (max-width: 400px) {
+  .Detail {
+    margin-bottom: 200px;
+  }
+}

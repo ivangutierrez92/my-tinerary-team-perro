@@ -8,22 +8,22 @@ export default function Footer(){
   return (
     <>
       <div className="footer">
-        <div>
+        <div className="footer-links">
           <h2>Hotels</h2>
           <LinkRouter to="/hotels">
             <img
               src="/img/hotel.svg"
-              className="footer-icon"
+              className="footer-icon route-icon"
               alt="hotel-icon"
             />
           </LinkRouter>
         </div>
-        <div>
+        <div className="footer-links">
           <h2>Cities</h2>
           <LinkRouter to="/cities">
             <img
               src="/img/cities.svg"
-              className="footer-icon"
+              className="footer-icon route-icon"
               alt="hotel-icon"
             />
           </LinkRouter>
