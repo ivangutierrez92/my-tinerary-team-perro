@@ -4,9 +4,7 @@ import dataHotel from "../data/datosHoteles";
 import cities from "../data/cities";
 import Flechita from "./Flechita";
 import { useState, useEffect } from "react";
-import Footer from "./Footer";
 import Carrousel from "./Carrousel";
-import ScrollToTop from "./ScrollToTop";
 
 export default function Home2() {
  
@@ -63,10 +61,6 @@ let [numero, setNumero] = useState(0);
           <Flechita stylo="prev" verbo="❮" click={previ} />
           <Flechita stylo="next" verbo="❯" click={nexti} />
         </div>
-
-        <ScrollToTop />
-
-        <Footer />
       </div>
     </>
   );

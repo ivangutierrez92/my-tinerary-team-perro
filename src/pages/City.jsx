@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Layout from "../layouts/Layout";
 import "../styles/pages/City.css";
 import Itinerary from "../components/Itinerary";
 import DetailCity from "../components/DetailCity";
@@ -25,10 +24,10 @@ export default function City() {
       .catch(error => {
         console.log(error);
         setLoading(false);
-      })
+      });
   }, [cityId]);
   return (
-    <Layout>
+    <>
       {loading && <h2 className="City-title">Loading...</h2>}
       {!loading && Object.keys(city).length === 0 && <h2 className="City-title">Couldn't find the City</h2>}
       {!loading && Object.keys(city).length > 0 && (
@@ -46,6 +45,6 @@ export default function City() {
           )}
         </div>
       )}
-    </Layout>
+    </>
   );
 }

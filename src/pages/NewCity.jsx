@@ -1,7 +1,6 @@
 import React from "react";
 import { useRef } from "react";
 import NewCityForm from "../components/NewCityForm";
-import Layout from "../layouts/Layout";
 import axios from "axios";
 import "../styles/pages/NewCity.css";
 
@@ -31,12 +30,9 @@ export default function NewCity() {
   };
 
   return (
-    <Layout>
-      <div className="NewCity">
-        <h1 className="NewCity-title">New City</h1>
-        <hr />
-        <NewCityForm formRef={formRef} onSubmit={onSubmit} />
-      </div>
-    </Layout>
+    <div className="NewCity">
+      <h1 className="NewCity-title">New City</h1>
+      <NewCityForm formRef={formRef} onSubmit={onSubmit} />
+    </div>
   );
 }

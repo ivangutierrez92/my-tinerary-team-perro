@@ -10,10 +10,11 @@ import Hotel from "./pages/Hotel";
 import NewCity from "./pages/NewCity";
 import Hotels from "./pages/Hotels";
 import NewHotel from "./pages/NewHotel";
+import Layout from "./layouts/Layout";
 
 function App() {
   return (
-    <>
+    <Layout>
       <Routes>
         <Route index element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -26,7 +27,7 @@ function App() {
         <Route path="/newhotel" element={<NewHotel />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </Layout>
   );
 }
 

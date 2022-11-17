@@ -2,21 +2,20 @@
   max-width: 1000px;
   width: 100%;
   padding: 20px;
-  background-color: var(--lightgray);
   margin: 20px auto;
   height: 100%;  
   display: flex;
   flex-direction: column;
 }
 .SignUp > hr {
-  margin: 10px auto 20px;
+  margin: 30px auto 0px;
   width: 100%;
 }
 .SignUp-title {
   text-align: center;
   color: var(--tertiary-color-1);
 }
-.SignUp-link {
+.sign-link {
   text-align: center;
   margin-top: 20px;
 }

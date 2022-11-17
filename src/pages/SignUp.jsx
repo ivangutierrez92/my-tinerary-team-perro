@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleButton from "../components/GoogleButton";
 import SignUpForm from "../components/SignUpForm";
-import Layout from "../layouts/Layout";
 import registeredUsers from "../data/registeredUsers";
 import "../styles/pages/SignUp.css";
 import { Link as LinkRouter } from "react-router-dom";
@@ -31,14 +30,13 @@ export default function SignUp() {
   };
 
   return (
-    <Layout>
-      <div className="SignUp">
-        <h1 className="SignUp-title">Register to share your adventures!</h1>
-        <hr />
-        <SignUpForm formRef={formRef} onSubmit={sendData} />
-        <GoogleButton content="SIGN UP WITH GOOGLE" />
-        <LinkRouter to="/signin" className="SignUp-link">Already have an account?</LinkRouter>
-      </div>
-    </Layout>
+    <div className="SignUp">
+      <h1 className="SignUp-title">Register to share your adventures!</h1>
+      <SignUpForm formRef={formRef} onSubmit={sendData} />
+      <GoogleButton content="SIGN UP WITH GOOGLE" />
+      <LinkRouter to="/signin" className="sign-link">
+        Already have an account?
+      </LinkRouter>
+    </div>
   );
 }
