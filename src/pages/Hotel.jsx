@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HotelData from "../data/datosHoteles";
-import ShowData from "../data/shows";
 import "../styles/pages/Hotel.css";
 import DetailHotel from "../components/DetailHotel";
 import Show from "../components/Show";
-import Layout from "../layouts/Layout";
 import axios from "axios";
 
 export default function Hotel() {
@@ -41,21 +38,19 @@ export default function Hotel() {
   }, [id]);
 
   return (
-    <Layout>
-      <div className="container-hotel">
-        {Object.keys(hotel).length > 0 ? (
-          <>
-            <DetailHotel info={hotel} />
-            {shows.length > 0 ? (
-              shows?.map((show) => <Show key={show.id} shows={show} />)
-            ) : (
-              <h2 className="no-show">No Show for this Hotel</h2>
-            )}
-          </>
-        ) : (
-          <h2 className="no-show"> No Hotel </h2>
-        )}
-      </div>
-    </Layout>
+    <div className="container-hotel">
+      {Object.keys(hotel).length > 0 ? (
+        <>
+          <DetailHotel info={hotel} />
+          {shows.length > 0 ? (
+            shows?.map(show => <Show key={show.id} shows={show} />)
+          ) : (
+            <h2 className="no-show">No Show for this Hotel</h2>
+          )}
+        </>
+      ) : (
+        <h2 className="no-show"> No Hotel </h2>
+      )}
+    </div>
   );
 }

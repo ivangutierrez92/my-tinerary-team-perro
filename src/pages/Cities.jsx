@@ -1,5 +1,4 @@
 import CityCard from "../components/CityCard";
-import Layout from "../layouts/Layout";
 import "../styles/pages/Cities.css";
 import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
@@ -55,38 +54,30 @@ export default function Cities() {
   };
 
   return (
-    <Layout>
-      <div className="Collection">
-        <h1 className="Collection-title">Discover Cities Around The World</h1>
-        <div className="Cities-formComponents">
-          <div className="Cities-checkboxsContainer">
-            {continents?.map(continent => (
-              <Checkbox name={continent} onClick={filterByContinents} key={continent} />
-            ))}
-          </div>
-          <div className="Cities-inputContainer">
-            <label>
-              <img src="./img/bx-search.svg" alt="search-icon" />
-              <input
-                type="text"
-                name="search"
-                placeholder="Name of city"
-                value={searchValue}
-                onChange={filterBySearch}
-              />
-            </label>
-          </div>
+    <div className="Collection">
+      <h1 className="Collection-title">Discover Cities Around The World</h1>
+      <div className="Cities-formComponents">
+        <div className="Cities-checkboxsContainer">
+          {continents?.map(continent => (
+            <Checkbox name={continent} onClick={filterByContinents} key={continent} />
+          ))}
         </div>
-        {loading && <h2 className="Collection-message">Loading...</h2>}
-        {!loading && cities.length > 0 && (
-          <div className="Collection-content">
-            {cities?.map(city => (
-              <CityCard city={city} key={city._id} />
-            ))}
-          </div>
-        )}
-        {!loading && !cities.length && <h2 className="Collection-message">Couldn't find Cities</h2>}
+        <div className="Cities-inputContainer">
+          <label>
+            <img src="./img/bx-search.svg" alt="search-icon" />
+            <input type="text" name="search" placeholder="Name of city" value={searchValue} onChange={filterBySearch} />
+          </label>
+        </div>
       </div>
-    </Layout>
+      {loading && <h2 className="Collection-message">Loading...</h2>}
+      {!loading && cities.length > 0 && (
+        <div className="Collection-content">
+          {cities?.map(city => (
+            <CityCard city={city} key={city._id} />
+          ))}
+        </div>
+      )}
+      {!loading && !cities.length && <h2 className="Collection-message">Couldn't find Cities</h2>}
+    </div>
   );
 }
