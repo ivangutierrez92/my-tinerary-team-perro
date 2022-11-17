@@ -64,8 +64,8 @@ export default function Cities() {
         </div>
         <div className="Cities-inputContainer">
           <label>
-            <img src="./img/bx-search.svg" alt="search-icon" />
             <input type="text" name="search" placeholder="Name of city" value={searchValue} onChange={filterBySearch} />
+            <img src="./img/bx-search.svg" alt="search-icon" />
           </label>
         </div>
       </div>
