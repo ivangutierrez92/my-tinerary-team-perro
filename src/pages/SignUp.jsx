@@ -32,10 +32,9 @@ export default function SignUp() {
   return (
     <div className="SignUp">
       <h1 className="SignUp-title">Register to share your adventures!</h1>
-      <hr />
       <SignUpForm formRef={formRef} onSubmit={sendData} />
       <GoogleButton content="SIGN UP WITH GOOGLE" />
-      <LinkRouter to="/signin" className="SignUp-link">
+      <LinkRouter to="/signin" className="sign-link">
         Already have an account?
       </LinkRouter>
     </div>

@@ -28,6 +28,7 @@ export default function NewHotel() {
   };
   return (
     <div className="form-container">
+      <h1>New Hotel</h1>
       <FormNewHotel onSubmit={sendData} />
     </div>
   );

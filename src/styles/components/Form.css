@@ -1,4 +1,4 @@
-.NewCityForm {
+.Form {
   font-size: 16px;
   width: 100%;
   max-width: 800px;
@@ -10,11 +10,11 @@
   gap: 25px;
 }
 
-.NewCityForm label {
+.Form label {
   color: var(--black);
 }
 
-.NewCityForm-field {
+.Form-field {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -22,18 +22,18 @@
   gap: 5px;
 }
 
-.NewCityForm-input {
+.Form-input {
   border: 3px solid var(--lightgray);
   font-size: 16px;
   border-radius: 4px;
   height: 30px;
 }
 
-.NewCityForm-input:focus {
+.Form-input:focus {
   outline: 2px solid var(--primary-color-1);
 }
 
-.NewCityForm-button {
+.Form-button {
   align-self: center;
   font-size: 16px;
   background-color: var(--tertiary-color-1);
@@ -45,12 +45,12 @@
   cursor: pointer;
 }
 
-.NewCityForm-button:hover {
+.Form-button:hover {
   background-color: var(--tertiary-color-3);
   transition: all 0.2s ease-in-out;
 }
 @media (max-width: 768px) {
-  .NewCityForm-field {
+  .Form-field {
     width: 100%;
   }
 }

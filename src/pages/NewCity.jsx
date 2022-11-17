@@ -32,7 +32,6 @@ export default function NewCity() {
   return (
     <div className="NewCity">
       <h1 className="NewCity-title">New City</h1>
-      <hr />
       <NewCityForm formRef={formRef} onSubmit={onSubmit} />
     </div>
   );
