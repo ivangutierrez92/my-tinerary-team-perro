@@ -26,7 +26,7 @@ const cityReducer = createReducer(initialState, builder => {
       return { ...state, message: "Loading..." };
     })
     .addCase(getInitialData.rejected, (state, action) => {
-      return { ...state, cities: [], message: "There was an error" };
+      return { ...state, cities: [], message: action.error.message };
     })
     .addCase(getCities.fulfilled, (state, action) => {
       return {
@@ -38,11 +38,10 @@ const cityReducer = createReducer(initialState, builder => {
       };
     })
     .addCase(getCities.rejected, (state, action) => {
-      console.log(action);
       return {
         ...state,
         cities: [],
-        message: "Couldn't find cities",
+        message: action.error.message,
         continents: action.meta.arg.continents,
         search: action.meta.arg.search,
       };

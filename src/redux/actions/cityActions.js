@@ -2,8 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const getInitialData = createAsyncThunk("getInitialData", async data => {
-  const res = await axios.get(process.env.REACT_APP_API_URL + data.endpoint);
-  return res.data.response;
+  try {
+    const res = await axios.get(process.env.REACT_APP_API_URL + data.endpoint);
+    return res.data.response;
+  } catch (error) {
+    throw error.response.data;
+  }
 });
 
 const getCities = createAsyncThunk("getCities", async data => {
@@ -13,9 +17,12 @@ const getCities = createAsyncThunk("getCities", async data => {
       continent: data.continents.filter(continent => continent.checked).map(continent => continent.name),
     },
   };
-  
-  const res = await axios.get(process.env.REACT_APP_API_URL + data.endpoint, query);
-  return { data: res.data.response, search: data.search, continents: data.continents };
+  try {
+    const res = await axios.get(process.env.REACT_APP_API_URL + data.endpoint, query);
+    return { data: res.data.response, search: data.search, continents: data.continents };
+  } catch (error) {
+    throw error.response.data;
+  }
 });
 
 const cityActions = {
