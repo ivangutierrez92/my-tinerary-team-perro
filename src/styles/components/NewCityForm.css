@@ -29,10 +29,6 @@
   height: 30px;
 }
 
-.NewCityForm-input:focus {
-  outline: 2px solid var(--primary-color-1);
-}
-
 .NewCityForm-button {
   align-self: center;
   font-size: 16px;
