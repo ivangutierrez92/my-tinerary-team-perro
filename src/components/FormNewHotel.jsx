@@ -3,7 +3,7 @@ import "../styles/components/form-new-hotel.css";
 import "../styles/components/Form.css"
 import axios from "axios";
 
-export default function FormNewHotel({ onSubmit }) {
+export default function FormNewHotel({ form,onSubmit }) {
   let [city, setCity] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function FormNewHotel({ onSubmit }) {
   console.log(city);
 
   return (
-    <form className="Form" onSubmit={onSubmit}>
+    <form ref={form} className="Form" onSubmit={onSubmit}>
       <div className="Form-field">
         <label htmlFor="hotel-name">Hotel Name: </label>
         <input type="text" name="name" id="hotel-name" className="Form-input"/>
