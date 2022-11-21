@@ -1,8 +1,11 @@
 import FormNewHotel from "../components/FormNewHotel";
 import "../styles/pages/new-hotel.css";
 import axios from "axios";
+import swal from "sweetalert";
+import { useNavigate } from "react-router";
 
 export default function NewHotel() {
+ let nav = useNavigate();
   const sendData = event => {
     let hotelObject = {};
 
@@ -20,10 +23,11 @@ export default function NewHotel() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/hotels/`, hotelObject)
       .then(response => {
-        alert(response.data.message);
+        swal("Hotel created","the Hotel was successfully created","success")
+        nav(`/hotel/${response.data.id}`)
       })
       .catch(error => {
-        alert(`${error.response.data.message}, ${error.message}`);
+        swal("Error creating new Hotel",error.response.data.message.join("\n"),"error")
       });
   };
   return (
@@ -33,3 +37,6 @@ export default function NewHotel() {
     </div>
   );
 }
+
+
+
