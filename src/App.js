@@ -11,6 +11,8 @@ import NewCity from "./pages/NewCity";
 import Hotels from "./pages/Hotels";
 import NewHotel from "./pages/NewHotel";
 import Layout from "./layouts/Layout";
+import MyCities from "./pages/MyCities";
+import EditMyCity from "./pages/EditMyCity";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/mycities" element={<MyCities />} />
+        <Route path="/mycities/:city" element={<EditMyCity />} />
         <Route path="/city/:city" element={<City />} />
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/hotel/:id" element={<Hotel />} />

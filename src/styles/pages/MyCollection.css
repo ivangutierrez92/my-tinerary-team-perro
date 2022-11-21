@@ -1,0 +1,58 @@
+.MyCollection-title {
+  text-align: center;
+  color: var(--tertiary-color-1);
+  margin: 25px 0;
+}
+
+.MyCollection-tableContainer {
+  max-width: 800px;
+  margin: auto;
+  overflow-x: auto;
+  margin-bottom: 50px;
+}
+
+.MyCollection-table {
+  width: 100%;
+  min-width: 380px;
+  border-collapse: collapse;
+}
+.MyCollection-table td,
+.MyCollection-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 6px;
+}
+
+.MyCollection-table tr:nth-child(even){background-color: #eeeded;}
+
+.MyCollection-table th {
+  font-size: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--tertiary-color-1);
+  color: white;
+}
+
+.MyCollection-buttonContainer {
+  text-align: center;
+}
+
+.MyCollection-deleteButton {
+  background-color: #DC5853;
+  border-radius: 4px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer 
+}
+
+.MyCollection-editButton {
+  background-color: #007CBB;
+  border-radius: 4px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer 
+}
+
+.MyCollection-columnButton {
+  width: 70px;
+}
