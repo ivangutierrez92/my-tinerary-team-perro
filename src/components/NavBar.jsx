@@ -58,9 +58,11 @@ export default function Navbar() {
               <button className="user-link border-bottom-white">New City</button>
             </LinkRouter>
             <LinkRouter to="/newhotel">
-              <button className="user-link border-round-bottom">New Hotel</button>
+              <button className="user-link border-bottom-white">New Hotel</button>
             </LinkRouter>
-
+            <LinkRouter to="/mycities">
+              <button className="user-link border-round-bottom">My Cities</button>
+            </LinkRouter>
           </div>
         )}
       </div>

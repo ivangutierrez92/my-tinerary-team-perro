@@ -1,6 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
 import cityActions from "../actions/cityActions";
+import myCitiesActions from "../actions/myCitiesActions";
 const { getInitialData, getCities } = cityActions;
+const { deleteCity } = myCitiesActions;
 
 const initialState = {
   cities: [],
@@ -44,6 +46,13 @@ const cityReducer = createReducer(initialState, builder => {
         message: action.error.message,
         continents: action.meta.arg.continents,
         search: action.meta.arg.search,
+      };
+    })
+    .addCase(deleteCity.fulfilled, (state, action) => {
+      let newCities = state.cities.filter(city => city._id !== action.payload);
+      return {
+        ...state,
+        cities: newCities,
       };
     });
 });
