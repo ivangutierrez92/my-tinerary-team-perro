@@ -27,7 +27,7 @@ export default function NewHotel() {
         nav(`/hotel/${response.data.id}`)
       })
       .catch(error => {
-        swal("Error creating",error.response.data.message.join("\n"),"Error")
+        swal("Error creating new Hotel",error.response.data.message.join("\n"),"error")
       });
   };
   return (
