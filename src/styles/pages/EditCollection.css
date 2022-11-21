@@ -42,6 +42,13 @@
   border-radius: 4px;
   height: 30px;
 }
+.EditCollectionForm-textarea {
+  border: 3px solid var(--lightgray);
+  font-size: 16px;
+  border-radius: 4px;
+  height: 150px;
+  resize: vertical;
+}
 
 .EditCollectionForm-button {
   align-self: center;

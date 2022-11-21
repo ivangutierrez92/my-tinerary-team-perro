@@ -12,13 +12,18 @@ export default function City() {
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getCities = () => axios.get(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`);
-    const getItineraries = () => axios.get(`${process.env.REACT_APP_API_URL}/api/itineraries?cityId=${cityId}`);
-    Promise.all([getCities(), getItineraries()])
-      .then(results => {
-        let [cityResult, itinerariesResult] = results;
-        setCity(cityResult.data.response);
-        setItineraries(itinerariesResult.data.response);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`)
+      .then(res => setCity(res.data.response))
+      .catch(error => {
+        setLoading(false);
+        console.log(error);
+      });
+
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/itineraries?cityId=${cityId}`)
+      .then(res => {
+        setItineraries(res.data.response);
         setLoading(false);
       })
       .catch(error => {
