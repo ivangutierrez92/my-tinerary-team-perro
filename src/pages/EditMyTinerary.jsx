@@ -9,14 +9,20 @@ import "../styles/pages/EditCollection.css";
 export default function EditMyTinerary() {
   let { itinerary: itineraryId } = useParams();
   const [itinerary, setItinerary] = useState(null);
+  const [cities, setCities] = useState([]);
   let navigate = useNavigate();
   let formRef = useRef(null);
   let [message, setMessage] = useState("...Loading");
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`)
-      .then(res => {
-        setItinerary(res.data.response);
+    const getCities = () => axios.get(`${process.env.REACT_APP_API_URL}/api/cities`);
+    const getItineraries = () => axios.get(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`);
+
+    Promise.all([getCities(), getItineraries()])
+      .then(results => {
+        let [citiesRes, itinerariesRes] = results;
+        console.log(citiesRes.data.response);
+        setCities(citiesRes.data.response);
+        setItinerary(itinerariesRes.data.response);
         setMessage("");
       })
       .catch(error => {
@@ -32,7 +38,7 @@ export default function EditMyTinerary() {
   let onSubmit = event => {
     event.preventDefault();
 
-    let properties = ["name", "photo", "price", "duration", "description"];
+    let properties = ["name", "photo", "price", "duration", "description", "cityId"];
     let newItinerary = {};
 
     properties.forEach(property => {
@@ -124,6 +130,24 @@ export default function EditMyTinerary() {
                 defaultValue={itinerary.duration}
                 className="EditCollectionForm-input"
               />
+            </div>
+
+            <div className="EditCollectionForm-field">
+              <label htmlFor="city">City:</label>
+              <select name="cityId" id="city" defaultValue={itinerary.cityId} className="NewCityForm-input">
+                <option value="">-- Select City --</option>
+                {cities.map(city => {
+                  return itinerary.cityId === city._id ? (
+                    <option key={city._id} value={city._id} selected>
+                      {city.name}
+                    </option>
+                  ) : (
+                    <option key={city._id} value={city._id}>
+                      {city.name}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
 
             <div className="EditCollectionForm-field">
