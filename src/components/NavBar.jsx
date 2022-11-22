@@ -81,8 +81,14 @@ export default function Navbar() {
             </LinkRouter>
 
             <LinkRouter to="/myhotels">
-              <button className="user-link border-round-white">
+              <button className="user-link border-bottom-white">
                 My Hotels
+              </button>
+            </LinkRouter>
+
+            <LinkRouter to="/myshows">
+              <button className="user-link border-round-white">
+                My Shows
               </button>
             </LinkRouter>
           </div>
