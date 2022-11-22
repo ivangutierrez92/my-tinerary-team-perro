@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link as LinkRouter} from "react-router-dom";
 import "../styles/pages/MyCollection.css";
 import myHotelsActions from "../redux/actions/myHotelsActions";
 import swal from "sweetalert";
@@ -60,11 +60,11 @@ const  deleteHotel = async(id) => {
                 </button>
               </td>
               <td className="MyCollection-buttonContainer">
-                <Link to={`/myHotels/${hotel._id}`} >
+                <LinkRouter to={`/myHotels/${hotel._id}`} >
                   <button className="MyCollection-editButton">
                     <img src="/img/bx-edit.svg" alt="edit" />
                   </button>
-                </Link>
+                </LinkRouter>
               </td>
             </tr>
            )

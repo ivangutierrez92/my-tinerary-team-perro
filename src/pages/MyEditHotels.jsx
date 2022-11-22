@@ -60,7 +60,7 @@ const onSubmit = (event) => {
     .catch((error) => {
       swal(
         "Error creating new Hotel",
-        error.response.data.message.join("\n"),
+        error.response.data.message,
         "error"
       );
     });
@@ -129,17 +129,21 @@ return (
         </div>
         <div className="Form-field">
           <label htmlFor="city-id">City:</label>
+          {
+            city.length&&( 
           <select
             defaultValue={hotelEdit.cityId}
             name="cityId"
             id="city-id"
             className="Form-input"
           >
-            <option value="">--Choose city--</option>
+            <option  value="">--Choose city--</option>
             {city?.map((names) => (
-              <option value={names._id}>{names.name}</option>
+              <option key={names._id} value={names._id}>{names.name}</option>
             ))}
           </select>
+          )
+          }
         </div>
         <input
           id="form-button"

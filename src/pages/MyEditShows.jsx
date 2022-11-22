@@ -39,7 +39,7 @@ export default function MyEditHotels(params) {
     let showObject = {};
 
     event.preventDefault();
-    let inputs = ["show-name", "photo", "price","description","hotelId"];
+    let inputs = ["name", "photo", "price","description","hotelId"];
 
     inputs.forEach((input) => {
       showObject[input] = form.current.elements[input].value;
@@ -116,6 +116,8 @@ export default function MyEditHotels(params) {
           </div>
           <div className="Form-field">
             <label htmlFor="hotelId">Hotel:</label>
+            {
+              hotel.length && (
             <select
               defaultValue={showEdit.hotelId}
               name="hotelId"
@@ -123,10 +125,12 @@ export default function MyEditHotels(params) {
               className="Form-input"
             >
               <option   value="">--Choose Hotel--</option>
-              {hotel?.map((names) => (
+              {hotel.map((names) => (
                 <option key={names._id}  value={names._id}>{names.name}</option>
               ))}
             </select>
+            )
+            }
           </div>
           <input
             id="form-button"

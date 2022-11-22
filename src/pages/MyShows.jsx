@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link as LinkRouter} from "react-router-dom";
 import "../styles/pages/MyCollection.css";
 import myShowsActions from "../redux/actions/myShowsAction";
 import swal from "sweetalert";
@@ -68,11 +68,11 @@ return (
                   </button>
                 </td>
                 <td className="MyCollection-buttonContainer">
-                  <Link to={`/myShows/${show._id}`}>
+                  <LinkRouter to={`/myShows/${show._id}`}>
                     <button className="MyCollection-editButton">
                       <img src="/img/bx-edit.svg" alt="edit" />
                     </button>
-                  </Link>
+                  </LinkRouter>
                 </td>
               </tr>
             );
