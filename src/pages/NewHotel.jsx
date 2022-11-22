@@ -23,11 +23,17 @@ export default function NewHotel() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/hotels/`, hotelObject)
       .then(response => {
+        if(response.data.success){
         swal("Hotel created","the Hotel was successfully created","success")
         nav(`/hotel/${response.data.id}`)
+        }else{
+        swal("Error creating new Hotel", response.data.message.join("\n"), "error");
+
+        }
       })
+    
       .catch(error => {
-        swal("Error creating new Hotel",error.response.data.message.join("\n"),"error")
+        swal("Error creating new Hotel",error.response.data.message,"error")
       });
   };
   return (

@@ -21,21 +21,23 @@ export default function Hotel() {
         // manejar error
         console.log(error);
       });
+
+       axios
+         .get(`${process.env.REACT_APP_API_URL}/api/shows?hotelId=${id}`)
+         .then(function (response) {
+           // manejar respuesta exitosa
+           setShow(response.data.response);
+         })
+         .catch(function (error) {
+           // manejar error
+           console.log(error);
+         });
+
+
+
   }, [id]);
   console.log(hotel);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/shows?hotelId=${id}`)
-      .then(function (response) {
-        // manejar respuesta exitosa
-        setShow(response.data.response);
-      })
-      .catch(function (error) {
-        // manejar error
-        console.log(error);
-      });
-  }, [id]);
 
   return (
     <div className="container-hotel">
