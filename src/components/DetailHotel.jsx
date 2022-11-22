@@ -4,6 +4,7 @@ import "../styles/components/detail-hotel.css";
 import "../styles/components/Detail.css";
 
 export default function DetailHotel({ info }) {
+  console.log(info)
   return (
     <article className="Detail">
       <div className="Detail-image">

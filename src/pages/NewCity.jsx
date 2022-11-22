@@ -3,10 +3,12 @@ import { useRef } from "react";
 import NewCityForm from "../components/NewCityForm";
 import axios from "axios";
 import "../styles/pages/NewCity.css";
+import swal from "sweetalert";
+import { useNavigate } from "react-router";
 
 export default function NewCity() {
   let formRef = useRef(null);
-
+  let navigate = useNavigate();
   const onSubmit = event => {
     event.preventDefault();
 
@@ -20,10 +22,15 @@ export default function NewCity() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity)
       .then(response => {
-        alert(response.data.message);
+        if (response.data.success) {
+          swal("City created", "The city was created succesfully", "success");
+          navigate(`/city/${response.data.id}`);
+        } else {
+          swal("Error", response.data.message.join("\n"), "error");
+        }
       })
       .catch(error => {
-        alert(`${error.response.data.message}, ${error.message}`);
+        swal("Error", error.response.data.message, "error");
       });
 
     formRef.current.reset();

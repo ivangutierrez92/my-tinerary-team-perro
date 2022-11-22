@@ -1,4 +1,18 @@
-.Form {
+.EditCollection {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px 50px;
+  margin: 20px auto 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.EditCollection-title {
+  text-align: center;
+  color: var(--tertiary-color-1);
+}
+
+.EditCollectionForm {
   font-size: 16px;
   width: 100%;
   max-width: 800px;
@@ -10,11 +24,11 @@
   gap: 25px;
 }
 
-.Form label {
+.EditCollectionForm label {
   color: var(--black);
 }
 
-.Form-field {
+.EditCollectionForm-field {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -22,7 +36,13 @@
   gap: 5px;
 }
 
-.Form-textarea{
+.EditCollectionForm-input {
+  border: 3px solid var(--lightgray);
+  font-size: 16px;
+  border-radius: 4px;
+  height: 30px;
+}
+.EditCollectionForm-textarea {
   border: 3px solid var(--lightgray);
   font-size: 16px;
   border-radius: 4px;
@@ -30,19 +50,10 @@
   resize: vertical;
 }
 
-.Form-input {
-  border: 3px solid var(--lightgray);
-  font-size: 16px;
-  border-radius: 4px;
-  height: 30px;
-}
-
-
-
-.Form-button {
+.EditCollectionForm-button {
   align-self: center;
   font-size: 16px;
-  background-color: var(--tertiary-color-1);
+  background-color: #007cbb;
   border: none;
   color: white;
   border-radius: 10px;
@@ -51,12 +62,12 @@
   cursor: pointer;
 }
 
-.Form-button:hover {
-  background-color: var(--tertiary-color-3);
+.EditCollectionForm-button:hover {
+  background-color: hsl(200, 100%, 25%);
   transition: all 0.2s ease-in-out;
 }
 @media (max-width: 768px) {
-  .Form-field {
+  .EditCollectionForm-field {
     width: 100%;
   }
 }

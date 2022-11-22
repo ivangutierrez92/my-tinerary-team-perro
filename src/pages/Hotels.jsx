@@ -2,53 +2,48 @@ import React from "react";
 import HotelCard from "../components/HotelCard";
 import SelectSearch from "../components/SelectSearch";
 import "../styles/pages/hotels.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import hotelActions from "../redux/actions/hotelActions";
 
 export default function Hotel() {
-  let [data, setData] = useState([]);
-  let [select, setSelect] = useState("");
-  let [search, setSearch] = useState("");
+  let { getHotelAfter, getHotelBefore } = hotelActions;
+
+  let { hotelList, name, order, firstRender } = useSelector(
+    (store) => store.hotel
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels/`)
-      .then(function (response) {
-        // manejar respuesta exitosa
-        setData(response.data.response);
-      })
-      .catch(function (error) {
-        // manejar error
-        console.log(error);
-      });
+    if (firstRender) {
+      dispatch(getHotelBefore({ param: "/api/hotels/"}));
+    }
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels?name=${search}&order=${select}`)
-      .then(function (response) {
-        // manejar respuesta exitosa
-        setData(response.data.response);
+  let capture = (event) => {
+    dispatch(
+      getHotelAfter({
+        param: "/api/hotels/",
+        name: name,
+        order: event.target.value,
       })
-      .catch(function (error) {
-        // manejar error
-        console.log(error);
-      });
-  }, [select, search]);
-
-  let capture = event => {
-    setSelect(event.target.value);
+    );
   };
 
-  let keyvalue = event => {
-    setSearch(event.target.value);
+  let keyvalue = (event) => {
+    dispatch(
+      getHotelAfter({
+        param: "/api/hotels/",
+        name: event.target.value,
+        order: order,
+      })
+    );
   };
-
   return (
     <div className="Collection">
-      <SelectSearch select={capture} searchInput={keyvalue} />
+      <SelectSearch name={name} order={order} select={capture} searchInput={keyvalue} />
       <div className="Collection-content">
-        {data.map(hotel => (
+        {hotelList?.map((hotel) => (
           <HotelCard key={hotel._id} hotel={hotel} />
         ))}
       </div>

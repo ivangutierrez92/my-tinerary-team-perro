@@ -11,6 +11,14 @@ import NewCity from "./pages/NewCity";
 import Hotels from "./pages/Hotels";
 import NewHotel from "./pages/NewHotel";
 import Layout from "./layouts/Layout";
+import MyCities from "./pages/MyCities";
+import EditMyCity from "./pages/EditMyCity";
+import MyHotels from "./pages/MyHotels";
+import MyEditHotels from "./pages/MyEditHotels"
+import MyShows from "./pages/MyShows";
+import MyEditShows from "./pages/MyEditShows";
+import MyTineraries from "./pages/MyTineraries";
+import EditMyTinerary from "./pages/EditMyTinerary";
 
 function App() {
   return (
@@ -21,10 +29,18 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/mycities" element={<MyCities />} />
+        <Route path="/mycities/:city" element={<EditMyCity />} />
         <Route path="/city/:city" element={<City />} />
         <Route path="/newcity" element={<NewCity />} />
+        <Route path="/mytineraries" element={<MyTineraries />} />
+        <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="/newhotel" element={<NewHotel />} />
+        <Route path="/myHotels" element={<MyHotels />} />
+        <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
+        <Route path="/myShows" element={<MyShows />} />
+        <Route path="/myShows/:show" element={<MyEditShows />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
