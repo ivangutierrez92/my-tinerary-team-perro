@@ -13,6 +13,8 @@ import NewHotel from "./pages/NewHotel";
 import Layout from "./layouts/Layout";
 import MyCities from "./pages/MyCities";
 import EditMyCity from "./pages/EditMyCity";
+import MyHotels from "./pages/MyHotels";
+import MyEditHotels from "./pages/MyEditHotels"
 import MyTineraries from "./pages/MyTineraries";
 import EditMyTinerary from "./pages/EditMyTinerary";
 
@@ -33,6 +35,8 @@ function App() {
         <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="/newhotel" element={<NewHotel />} />
+        <Route path="/myHotels" element={<MyHotels />} />
+        <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

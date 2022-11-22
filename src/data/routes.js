@@ -10,5 +10,6 @@ export const userRoutes = [
   { name: "New City", link: "/newcity", className: "user-link border-bottom-white border-round-top" },
   { name: "New Hotel", link: "/newhotel", className: "user-link border-bottom-white border-round-top" },
   { name: "My Cities", link: "/mycities", className: "user-link border-bottom-white border-round-top" },
+  { name: "My Hotels", link: "/myhotels", className: "user-link border-bottom-white border-round-top" },
   { name: "My Tineraries", link: "/mytineraries", className: "user-link border-round-bottom" },
 ];

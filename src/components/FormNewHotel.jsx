@@ -19,34 +19,34 @@ export default function FormNewHotel({ onSubmit }) {
   console.log(city);
 
   return (
-    <form className="Form" onSubmit={onSubmit}>
-      <div className="Form-field">
-        <label htmlFor="hotel-name">Hotel Name: </label>
-        <input type="text" name="name" id="hotel-name" className="Form-input"/>
-      </div>
-      <div className="Form-field">
-        <label htmlFor="photo-url">Photo (URL):</label>
-        <input type="text" name="photo" id="photo-url"  className="Form-input"/>
-      </div>
-      <div className="Form-field">
-        <label htmlFor="capacity">Capacity:</label>
-        <input type="text" name="capacity" id="capacity" className="Form-input" />
-      </div>
-      <div className="Form-field">
-        <label htmlFor="city-id">City:</label>
-        <select defaultValue="" name="cityId" id="city-id" className="Form-input">
-          <option value="">--Choose city--</option>
-          {city?.map((names) => (
-            <option value={names._id}>{names.name}</option>
-          ))}
-        </select>
-      </div>
-      <input
-        id="form-button"
-        type="submit"
-        value="Continue"
-        className="Form-button"
-      />
-    </form>
+        <form className="Form" onSubmit={onSubmit}>
+          <div className="Form-field">
+            <label htmlFor="hotel-name">Hotel Name: </label>
+            <input type="text" name="name" id="hotel-name" className="Form-input"/>
+          </div>
+          <div className="Form-field">
+            <label htmlFor="photo-url">Photo (URL):</label>
+            <input type="text" name="photo" id="photo-url"  className="Form-input"/>
+          </div>
+          <div className="Form-field">
+            <label htmlFor="capacity">Capacity:</label>
+            <input type="text" name="capacity" id="capacity" className="Form-input" />
+          </div>
+          <div className="Form-field">
+            <label htmlFor="city-id">City:</label>
+            <select defaultValue="" name="cityId" id="city-id" className="Form-input">
+              <option value="">--Choose city--</option>
+              {city?.map((names) => (
+                <option value={names._id}>{names.name}</option>
+              ))}
+            </select>
+          </div>
+          <input
+            id="form-button"
+            type="submit"
+            value="Continue"
+            className="Form-button"
+          />
+        </form>
   );
 }

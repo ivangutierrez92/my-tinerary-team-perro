@@ -38,11 +38,12 @@ export default function Navbar() {
           <img src="/img/bx-menu.svg" alt="Menu Icon" />
         </button>
         <div className={`NavBar-dropdown ${hideNav ? "NavBar-hide" : ""}`}>
-          {routes.map((route, index) => (
-            <LinkRouter to={route.link} key={`route-${index}`}>
-              <button className={route.className}>{route.name}</button>
-            </LinkRouter>
-          ))}
+          <LinkRouter to="/cities">
+            <button className="NavBar-link border-bottom-md-white border-round-md-top">Cities</button>
+          </LinkRouter>
+          <LinkRouter to="/hotels">
+            <button className="NavBar-link border-round-md-bottom">Hotels</button>
+          </LinkRouter>
         </div>
       </div>
       <div className="NavBar-user">
@@ -51,13 +52,13 @@ export default function Navbar() {
         </button>
         {!hideUser && (
           <div className="user-buttons">
-            {guestRoutes.map(route => (
-              <LinkRouter to={route.link}>
+            {guestRoutes.map((route, index) => (
+              <LinkRouter to={route.link} key={`guestRoute-${index}`}>
                 <button className={route.className}>{route.name}</button>
               </LinkRouter>
             ))}
-            {userRoutes.map(route => (
-              <LinkRouter to={route.link}>
+            {userRoutes.map((route, index) => (
+              <LinkRouter to={route.link} key={`userRoute-${index}`}>
                 <button className={route.className}>{route.name}</button>
               </LinkRouter>
             ))}
