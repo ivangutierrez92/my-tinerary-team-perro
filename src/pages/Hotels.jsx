@@ -41,7 +41,7 @@ export default function Hotel() {
   };
   return (
     <div className="Collection">
-      <SelectSearch select={capture} searchInput={keyvalue} />
+      <SelectSearch name={name} order={order} select={capture} searchInput={keyvalue} />
       <div className="Collection-content">
         {hotelList?.map((hotel) => (
           <HotelCard key={hotel._id} hotel={hotel} />
