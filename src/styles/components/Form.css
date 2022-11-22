@@ -22,6 +22,14 @@
   gap: 5px;
 }
 
+.Form-textarea{
+  border: 3px solid var(--lightgray);
+  font-size: 16px;
+  border-radius: 4px;
+  height: 150px;
+  resize: vertical;
+}
+
 .Form-input {
   border: 3px solid var(--lightgray);
   font-size: 16px;
@@ -29,9 +37,7 @@
   height: 30px;
 }
 
-.Form-input:focus {
-  outline: 2px solid var(--primary-color-1);
-}
+
 
 .Form-button {
   align-self: center;

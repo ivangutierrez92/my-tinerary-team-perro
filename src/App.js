@@ -15,6 +15,8 @@ import MyCities from "./pages/MyCities";
 import EditMyCity from "./pages/EditMyCity";
 import MyHotels from "./pages/MyHotels";
 import MyEditHotels from "./pages/MyEditHotels"
+import MyShows from "./pages/MyShows";
+import MyEditShows from "./pages/MyEditShows";
 import MyTineraries from "./pages/MyTineraries";
 import EditMyTinerary from "./pages/EditMyTinerary";
 
@@ -37,6 +39,8 @@ function App() {
         <Route path="/newhotel" element={<NewHotel />} />
         <Route path="/myHotels" element={<MyHotels />} />
         <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
+        <Route path="/myShows" element={<MyShows />} />
+        <Route path="/myShows/:show" element={<MyEditShows />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
