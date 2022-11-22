@@ -9,87 +9,84 @@ import "../styles/pages/EditCollection.css";
 
 export default function MyEditHotels(params) {
   let form = useRef(null);
-  let { hotel: hotelid } = useParams();
-  let [hotelEdit, setHotelEdit] = useState(null);
-  let [city, setCity] = useState([]);
+  let { show: showId } = useParams();
+  let [showEdit,setShowEdit] = useState(null);
+  let [hotel, setHotel] = useState([]);
   let nav = useNavigate();
-  console.log(hotelid);
+  console.log(showEdit);
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels/${hotelid}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/shows/${showId}`)
       .then((res) => {
-        setHotelEdit(res.data.response);
+        setShowEdit(res.data.response);
       });
   }, []);
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/cities`)
+      .get(`${process.env.REACT_APP_API_URL}/api/hotels`)
       .then((response) => {
-        setCity(response.data.response);
+        setHotel(response.data.response);
       })
       .catch((error) => {
         alert(`${error.response.data.message}, ${error.message}`);
       });
   }, []);
-  console.log(city);
+  console.log(hotel);
 
   const onSubmit = (event) => {
-    let hotelObject = {};
+    let showObject = {};
 
     event.preventDefault();
-    let inputs = ["name", "capacity", "cityId"];
+    let inputs = ["show-name", "photo", "price","description","hotelId"];
 
     inputs.forEach((input) => {
-      hotelObject[input] = form.current.elements[input].value;
+      showObject[input] = form.current.elements[input].value;
     });
-    hotelObject.photo = [...form.current.elements["photo"]].map(
-      (photo) => photo.value
-    );
-    // hotelObject["userId"] = "636d1ed3692e58acbf29845d";
+    // showObject["userId"] = "636d1ed3692e58acbf29845d";
     axios
       .patch(
-        `${process.env.REACT_APP_API_URL}/api/hotels/${hotelid}`,
-        hotelObject
+        `${process.env.REACT_APP_API_URL}/api/shows/${showId}`,
+        showObject
       )
       .then((response) => {
         swal(
-          "Hotel upgraded",
-          "the Hotel was successfully upgraded",
+          "Show upgraded",
+          "the Show was successfully upgraded",
           "success"
         );
-        nav(`/hotel/${response.data.id}`);
+        nav(`/myshows`);
       })
       .catch((error) => {
         swal(
-          "Error creating new Hotel",
-          error.response.data.message.join("\n"),
+          "Error creating new Show",
+          error.response.data.message,
           "error"
         );
       });
   };
 
-  console.log(hotelEdit);
+  console.log(showEdit);
 
   return (
     <form ref={form} className="Form" onSubmit={onSubmit}>
-      {hotelEdit && (
+      {showEdit && (
         <>
           <div className="Form-field">
-            <label htmlFor="hotel-name">Hotel Name: </label>
+            <label htmlFor="show-name">Hotel Name: </label>
             <input
-              defaultValue={hotelEdit.name}
+              defaultValue={showEdit.name}
               type="text"
               name="name"
-              id="hotel-name"
+              id="show-name"
               className="Form-input"
             />
           </div>
           <div className="Form-field">
             <label htmlFor="photo-url">Photo (URL):</label>
             <input
-              defaultValue={hotelEdit.photo[0] ? hotelEdit.photo[0] : ""}
+              defaultValue={showEdit.photo ? showEdit.photo : ""}
               type="text"
               name="photo"
               id="photo-url"
@@ -97,48 +94,37 @@ export default function MyEditHotels(params) {
             />
           </div>
           <div className="Form-field">
-            <label htmlFor="photo-url2">Photo (URL):</label>
+            <label htmlFor="price">Price:</label>
             <input
-              defaultValue={hotelEdit.photo[1] ? hotelEdit.photo[1] : ""}
+              defaultValue={showEdit.price}
               type="text"
-              name="photo"
-              id="photo-url2"
+              name="price"
+              id="price"
               className="Form-input"
             />
           </div>
 
           <div className="Form-field">
-            <label htmlFor="photo-url3">Photo (URL):</label>
-            <input
-              defaultValue={hotelEdit.photo[2] ? hotelEdit.photo[2] : ""}
+            <label htmlFor="description">Description:</label>
+            <textarea
+              defaultValue={showEdit.description}
               type="text"
-              name="photo"
-              id="photo-url3"
-              className="Form-input"
-            />
-          </div>
-
-          <div className="Form-field">
-            <label htmlFor="capacity">Capacity:</label>
-            <input
-              defaultValue={hotelEdit.capacity}
-              type="text"
-              name="capacity"
-              id="capacity"
-              className="Form-input"
+              name="description"
+              id="description"
+              className="Form-textarea"
             />
           </div>
           <div className="Form-field">
-            <label htmlFor="city-id">City:</label>
+            <label htmlFor="hotelId">Hotel:</label>
             <select
-              defaultValue={hotelEdit.cityId}
-              name="cityId"
-              id="city-id"
+              defaultValue={showEdit.hotelId}
+              name="hotelId"
+              id="hotelId"
               className="Form-input"
             >
-              <option value="">--Choose city--</option>
-              {city?.map((names) => (
-                <option value={names._id}>{names.name}</option>
+              <option   value="">--Choose Hotel--</option>
+              {hotel?.map((names) => (
+                <option key={names._id}  value={names._id}>{names.name}</option>
               ))}
             </select>
           </div>

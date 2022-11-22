@@ -8,7 +8,7 @@ const initialState = {
 
 const myShowsReducer = createReducer(initialState, (builder) =>{
   builder.addCase(myShowsInit.fulfilled, (state, action) => {
-    return { ...state, hotelist: action.payload };
+    return { ...state, showsList: action.payload };
   }).addCase(myShowsDelete.fulfilled, (state, action) => {
     const newShowsList= state.showsList.filter(shows=>shows._id != action.payload)
   
