@@ -54,10 +54,15 @@
   outline: 3px solid var(--primary-color-1);
 }
 .Collection-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 455px);
   gap: 80px 100px;
+  justify-content: center;
+}
+
+.Collection-message {
+  color: var(--tertiary-color-1);
+  text-align: center;
 }
 
 @media (max-width: 1200px) {
@@ -75,5 +80,8 @@
   }
   .Collection-formComponents {
     flex-direction: column;
+  }
+  .Collection-content {
+    grid-template-columns: none;
   }
 }

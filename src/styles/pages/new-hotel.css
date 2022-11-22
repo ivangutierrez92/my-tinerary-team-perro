@@ -1,8 +1,12 @@
 .form-container{
+  margin: 30px;
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  max-width: 800px;
+}
+.form-container h1 {
+ color: var(--tertiary-color-1)
 }
 
 

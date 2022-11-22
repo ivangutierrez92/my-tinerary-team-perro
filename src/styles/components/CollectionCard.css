@@ -1,8 +1,8 @@
 .CollectionCard {
-  flex: 1 400px;
   border-radius: 8px;
   background-color: rgb(240, 240, 240);
-  box-shadow: var(--light-shadow) 
+  box-shadow: var(--light-shadow);
+  
 }
 
 .CollectionCard-photo {
@@ -22,6 +22,11 @@
 .CollectionCard-photo img:hover {
   transform: scale(1.1);
 }
+.CollectionCard-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 .CollectionCard-title {
   font-size: 28px;
   margin: 15px 0 15px 15px;
@@ -32,6 +37,7 @@
   flex-direction: column;
   gap: 10px;
   padding-left: 15px;
+  flex-grow: 1;
 }
 .CollectionCard-label {
   font-weight: 700;
