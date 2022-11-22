@@ -134,20 +134,16 @@ export default function EditMyTinerary() {
 
             <div className="EditCollectionForm-field">
               <label htmlFor="city">City:</label>
-              <select name="cityId" id="city" defaultValue={itinerary.cityId} className="NewCityForm-input">
-                <option value="">-- Select City --</option>
-                {cities.map(city => {
-                  return itinerary.cityId === city._id ? (
-                    <option key={city._id} value={city._id} selected>
-                      {city.name}
-                    </option>
-                  ) : (
+              {cities.length && (
+                <select name="cityId" id="city" defaultValue={itinerary.cityId} className="NewCityForm-input">
+                  <option value="">-- Select City --</option>
+                  {cities.map(city => (
                     <option key={city._id} value={city._id}>
                       {city.name}
                     </option>
-                  );
-                })}
-              </select>
+                  ))}
+                </select>
+              )}
             </div>
 
             <div className="EditCollectionForm-field">
