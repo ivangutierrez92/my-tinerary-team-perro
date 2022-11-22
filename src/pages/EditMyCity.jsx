@@ -22,7 +22,7 @@ export default function EditMyCity() {
       })
       .catch(error => {
         if (error.response) {
-          setMessage(error.message.join("\n"));
+          setMessage(error.response.data.message.join("\n"));
         } else {
           setMessage(error.message);
         }
