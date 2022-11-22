@@ -50,9 +50,6 @@
   font-size: 18px;
   padding: 0 5px;
 }
-.Collection-inputContainer input:focus {
-  outline: 3px solid var(--primary-color-1);
-}
 .Collection-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, 455px);

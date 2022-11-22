@@ -12,7 +12,7 @@ const getInitialMyTineraries = createAsyncThunk("getInitialMyTineraries", async 
     return res.data.response;
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message.join("\n");
+      throw error.response.data.message;
     } else {
       throw error;
     }
@@ -25,7 +25,7 @@ const deleteItinerary = createAsyncThunk("deleteItinerary", async data => {
     return res.data.id;
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message.join("\n");
+      throw error.response.data.message;
     } else {
       throw error;
     }

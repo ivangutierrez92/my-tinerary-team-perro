@@ -7,7 +7,7 @@ const getInitialData = createAsyncThunk("getInitialData", async data => {
     return res.data.response;
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message.join("\n");
+      throw error.response.data.message;
     } else {
       throw error;
     }
@@ -25,11 +25,7 @@ const getCities = createAsyncThunk("getCities", async data => {
     const res = await axios.get(process.env.REACT_APP_API_URL + data.endpoint, query);
     return { data: res.data.response, search: data.search, continents: data.continents };
   } catch (error) {
-    if (error.response) {
-      throw error.response.data.message[0];
-    } else {
-      throw error;
-    }
+    throw error.response.data.message;
   }
 });
 

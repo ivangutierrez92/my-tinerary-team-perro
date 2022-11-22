@@ -50,9 +50,6 @@
   font-size: 18px;
   padding: 0 5px;
 }
-.Cities-inputContainer input:focus {
-  outline: 3px solid var(--primary-color-1);
-}
 .Cities-content {
   display: flex;
   flex-wrap: wrap;
