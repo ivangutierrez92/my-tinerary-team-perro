@@ -44,7 +44,12 @@ export default function EditMyCity() {
         navigate(`/city/${response.data.id}`);
       })
       .catch(error => {
-        swal("Error", error.response.data.message.join("\n"), "error");
+        if(error.response) {
+          swal("Error", error.response.data.message, "error");
+        } else {
+          swal("Error", error, "error");
+        }
+        
       });
   };
 

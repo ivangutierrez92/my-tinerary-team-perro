@@ -22,11 +22,15 @@ export default function NewCity() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity)
       .then(response => {
-        swal("City created", "The city was created succesfully", "success");
-        navigate(`/city/${response.data.id}`);
+        if (response.data.success) {
+          swal("City created", "The city was created succesfully", "success");
+          navigate(`/city/${response.data.id}`);
+        } else {
+          swal("Error", response.data.message.join("\n"), "error");
+        }
       })
       .catch(error => {
-        swal("Error", error.response.data.message.join("\n"), "error");
+        swal("Error", error.response.data.message, "error");
       });
 
     formRef.current.reset();
