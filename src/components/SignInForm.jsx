@@ -16,7 +16,7 @@ export default function SingInForm({ formRef, onSubmit }) {
         </div>
       
       
-      <input type="submit" value="Continue" className="Form-button" />
+      <input type="submit" value="Sign in" className="Form-button" />
     </form>
 
 
