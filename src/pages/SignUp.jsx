@@ -1,32 +1,57 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import GoogleButton from "../components/GoogleButton";
 import SignUpForm from "../components/SignUpForm";
-import registeredUsers from "../data/registeredUsers";
 import "../styles/pages/SignUp.css";
 import { Link as LinkRouter } from "react-router-dom";
+import swal from "sweetalert";
+import axios from "axios";
 
 export default function SignUp() {
   let formRef = useRef(null);
-  let navigate = useNavigate();
 
-  const sendData = event => {
+  const sendData = async event => {
     event.preventDefault();
-    let properties = ["name", "lastName", "email", "password", "age"];
+    let properties = ["name", "lastName", "email", "password", "photo", "age"];
     let newUser = {};
 
     properties.forEach(property => {
       newUser[property] = formRef.current.elements[property].value;
     });
-    if (registeredUsers.some(user => user.email.toLowerCase() === newUser.email.toLowerCase())) {
-      alert("That email is already in use. Maybe you want to sing in?");
-      return;
+    newUser.role = "user";
+    let confirmation;
+    try {
+      confirmation = await swal(
+        "Is the information right?",
+        `Name: ${newUser.name}
+        Last Name: ${newUser.lastName}
+        Email: ${newUser.email}
+        Age: ${newUser.age}`,
+        { buttons: ["Cancel", "Yes"] }
+      );
+    } catch (error) {
+      console.log(error);
     }
-
-    localStorage.setItem("newUser", JSON.stringify(newUser));
-    formRef.current.reset();
-    alert("Thank for registering! you will be redirected soon...");
-    navigate("/");
+    if (confirmation) {
+      try {
+        let response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, newUser);
+        if (response.data.success) {
+          swal(
+            "User created",
+            "The user was created successfully, you will recieve a confirmation mail, please confirm it to continue",
+            "success"
+          );
+          formRef.current.reset();
+        } else {
+          swal("Error", response.data.message.join("\n"), "error");
+        }
+      } catch (error) {
+        if (error.response) {
+          swal("Error", error.response.data.message, "error");
+        } else {
+          swal("Error", error.message, "error");
+        }
+      }
+    }
   };
 
   return (
