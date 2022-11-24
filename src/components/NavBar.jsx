@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../styles/components/NavBar.css";
 import { Link as LinkRouter, useLocation } from "react-router-dom";
-import { routes, guestRoutes, userRoutes } from "../data/routes";
+import { routes, adminRoutes, guestRoutes, userRoutes } from "../data/routes";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [hideNav, setHideNav] = useState(true);
   const [hideUser, setHideUser] = useState(true);
   const [isHome, setIsHome] = useState(true);
-
+  //let user = useSelector(store => store.signInReduder.user);
   let location = useLocation();
   useEffect(() => {
     setHideUser(true);
@@ -37,14 +38,26 @@ export default function Navbar() {
         <button className="NavBar-menuButton" onClick={toggleHideNav}>
           <img src="/img/bx-menu.svg" alt="Menu Icon" />
         </button>
-        <div className={`NavBar-dropdown ${hideNav ? "NavBar-hide" : ""}`}>
-          <LinkRouter to="/cities">
-            <button className="NavBar-link border-bottom-md-white border-round-md-top">Cities</button>
-          </LinkRouter>
-          <LinkRouter to="/hotels">
-            <button className="NavBar-link border-round-md-bottom">Hotels</button>
-          </LinkRouter>
-        </div>
+        {!hideNav && (
+          <div className={`NavBar-dropdown`}>
+            {routes.map((route, index) => (
+              <LinkRouter to={route.link} key={`route-${index}`}>
+                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+              </LinkRouter>
+            ))}
+            {adminRoutes.map((route, index) => (
+              <LinkRouter to={route.link} key={`userRoute-${index}`}>
+                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+              </LinkRouter>
+            ))}
+            {/* {user.role === "user" || user.role === "admin"} */}
+            {userRoutes.map((route, index) => (
+              <LinkRouter to={route.link} key={`userRoute-${index}`}>
+                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+              </LinkRouter>
+            ))}
+          </div>
+        )}
       </div>
       <div className="NavBar-user">
         <button className="user-button" onClick={toggleHideUser}>
@@ -54,12 +67,7 @@ export default function Navbar() {
           <div className="user-buttons">
             {guestRoutes.map((route, index) => (
               <LinkRouter to={route.link} key={`guestRoute-${index}`}>
-                <button className={route.className}>{route.name}</button>
-              </LinkRouter>
-            ))}
-            {userRoutes.map((route, index) => (
-              <LinkRouter to={route.link} key={`userRoute-${index}`}>
-                <button className={route.className}>{route.name}</button>
+                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
               </LinkRouter>
             ))}
           </div>
