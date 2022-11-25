@@ -8,7 +8,7 @@ export default function Navbar() {
   const [hideNav, setHideNav] = useState(true);
   const [hideUser, setHideUser] = useState(true);
   const [isHome, setIsHome] = useState(true);
-  //let user = useSelector(store => store.signInReduder.user);
+  let user = useSelector(store => store.signIn);
   let location = useLocation();
   useEffect(() => {
     setHideUser(true);
@@ -50,12 +50,12 @@ export default function Navbar() {
                 <button className="user-link border-bottom-white border-round-top">{route.name}</button>
               </LinkRouter>
             ))}
-            {/* {user.role === "user" || user.role === "admin"} */}
-            {userRoutes.map((route, index) => (
-              <LinkRouter to={route.link} key={`userRoute-${index}`}>
-                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
-              </LinkRouter>
-            ))}
+            {(user.role === "user" || user.role === "admin") &&
+              userRoutes.map((route, index) => (
+                <LinkRouter to={route.link} key={`userRoute-${index}`}>
+                  <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+                </LinkRouter>
+              ))}
           </div>
         )}
       </div>
