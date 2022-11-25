@@ -69,12 +69,12 @@ export default function Navbar() {
                 <button className="user-link border-bottom-white border-round-top">{route.name}</button>
               </LinkRouter>
             ))}
-            {(user.role === "admin") &&
+            {user.role === "admin" &&
               adminRoutes.map((route, index) => (
-              <LinkRouter to={route.link} key={`userRoute-${index}`}>
-                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
-              </LinkRouter>
-            ))}
+                <LinkRouter to={route.link} key={`userRoute-${index}`}>
+                  <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+                </LinkRouter>
+              ))}
             {(user.role === "user" || user.role === "admin") &&
               userRoutes.map((route, index) => (
                 <LinkRouter to={route.link} key={`userRoute-${index}`}>
@@ -86,16 +86,18 @@ export default function Navbar() {
       </div>
       <div className="NavBar-user">
         <button className="user-button" onClick={toggleHideUser}>
-          <img src={user.logged ? user.photo :"/img/bx-user-circle.svg"} className="user-icon" alt="user icon" />
+          <img src={user.logged ? user.photo : "/img/bx-user-circle.svg"} className="user-icon" alt="user icon" />
         </button>
         {!hideUser && (
           <div className="user-buttons">
             {user.logged ? (
               <>
-              <p className="user-name">{user.name}</p>
-              <button onClick={signout} className="user-link border-round-bottom">
-                Sign out
-              </button>
+                <LinkRouter>
+                  <button className="user-name">{user.name}</button>
+                </LinkRouter>
+                <button onClick={signout} className="user-link border-round-bottom">
+                  Sign out
+                </button>
               </>
             ) : (
               guestRoutes.map((route, index) => (
