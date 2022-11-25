@@ -37,7 +37,7 @@ export default function Navbar() {
 
   const signout = async () => {
     try {
-      let confirmation = await swal("confirmation", "¿Are you sure you want to Sign out?", {
+      let confirmation = await swal("confirmation", "Are you sure you want to Sign out?", {
         buttons: ["Cancel", "Yes"],
         dangerMode: true,
       });
