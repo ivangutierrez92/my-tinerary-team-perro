@@ -1,15 +1,14 @@
 import { createReducer } from "@reduxjs/toolkit";
 import swal from "sweetalert";
 import signInActions from "../actions/signInActions"
-const {sendData,resendData}=signInActions;
+const {sendData,resendData, signout}=signInActions;
 
 const initialState = {
   name:"",
   photo:"",
-  online:false,
+  logged:false,
   role:"",
   token:"",
-
 }
 
 const signInReducer= createReducer(initialState,(builder)=>{
@@ -24,7 +23,7 @@ const signInReducer= createReducer(initialState,(builder)=>{
       ...state,
       name:user.name,
       photo:user.photo,
-      online:true,
+      logged:true,
       role:user.role,
       token:token
     }
@@ -48,7 +47,7 @@ const signInReducer= createReducer(initialState,(builder)=>{
       ...state,
       name:user.name,
       photo:user.photo,
-      online:true,
+      logged:true,
       role:user.role,
       token:token,
     }
@@ -64,8 +63,21 @@ const signInReducer= createReducer(initialState,(builder)=>{
    } 
 
   })
-
-})
+  .addCase(signout.fulfilled, (state, action) => {
+    const {success} = action.payload;
+    if(success) {
+      localStorage.removeItem('token');
+      return {
+        ...state, 
+        name:"",
+        photo:"",
+        logged:false,
+        role:"",
+        token:"",
+      }
+    }
+  });
+});
 
 export default signInReducer
 

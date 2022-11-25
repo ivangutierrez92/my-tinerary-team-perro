@@ -37,41 +37,34 @@ function App() {
     <Layout>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
+
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/city/:city" element={<City />} />
+        <Route path="/hotel/:id" element={<Hotel />} />
 
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={user.role === "admin"}
-              redirect="/signin"
-            />
-          }
-        >
+        <Route element={<ProtectedRoute isAllowed={user.role === "admin"} redirect="/signin" />}>
           <Route path="/mycities" element={<MyCities />} />
           <Route path="/mycities/:city" element={<EditMyCity />} />
-          <Route path="/city/:city" element={<City />} />
           <Route path="/newcity" element={<NewCity />} />
-          <Route path="/hotel/:id" element={<Hotel />} />
           <Route path="/newhotel" element={<NewHotel />} />
           <Route path="/myHotels" element={<MyHotels />} />
           <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
         </Route>
+
         <Route
-          element={
-            <ProtectedRoute
-              isAllowed={user.role === "user" || user.role === "admin"}
-              redirect="/signin"
-            />
-          }
+          element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}
         >
           <Route path="/mytineraries" element={<MyTineraries />} />
           <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
           <Route path="/myShows" element={<MyShows />} />
           <Route path="/myShows/:show" element={<MyEditShows />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
