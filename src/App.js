@@ -41,6 +41,8 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/city/:city" element={<City />} />
+        <Route path="/hotel/:id" element={<Hotel />} />
 
         <Route
           element={
@@ -52,9 +54,7 @@ function App() {
         >
           <Route path="/mycities" element={<MyCities />} />
           <Route path="/mycities/:city" element={<EditMyCity />} />
-          <Route path="/city/:city" element={<City />} />
           <Route path="/newcity" element={<NewCity />} />
-          <Route path="/hotel/:id" element={<Hotel />} />
           <Route path="/newhotel" element={<NewHotel />} />
           <Route path="/myHotels" element={<MyHotels />} />
           <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
