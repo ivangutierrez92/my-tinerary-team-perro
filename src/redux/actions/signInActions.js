@@ -2,20 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const sendData = createAsyncThunk("sendData", async (data) => {
-  console.log(data);
+ 
   try {
     let response = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/auth/sign-in`,
       data
     );
-    // .then(response => {
+   
 
-    console.log(response);
+  
     return response.data;
-    // }
-    // })
+  
   } catch (error) {
-    console.log(error);
+   
     if (error.response) {
       return {message: error.response.data.message, success:false};
     } else {
@@ -45,7 +44,6 @@ const resendData = createAsyncThunk("resendData", async (token) => {
     
 
   } catch (error) {
-    console.log(error);
     if (error.response) {
       return { message: error.response.data.message, success: false };
     } else {
