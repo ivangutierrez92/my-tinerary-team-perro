@@ -40,10 +40,15 @@
 .user-button {
   background-color: var(--tertiary-color-1);
   border: none;
-  padding: 8px 8px 4px 8px;
+  padding: 4px 4px 2px 4px;
   border-radius: 100%;
   cursor: pointer;
   box-shadow: var(--shadow);
+  width: 60px;
+  height: 60px;
+}
+.user-button img {
+  width: 100%;
 }
 .user-button:hover {
   transform: scale(1.1);
@@ -131,4 +136,14 @@
 }
 .bg-navbar button {
   box-shadow: none;
+}
+.user-name {
+  width: 90%;
+  margin: auto;
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 15px 0 5px 0;
+  text-align: center;
 }

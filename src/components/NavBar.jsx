@@ -85,14 +85,17 @@ export default function Navbar() {
       </div>
       <div className="NavBar-user">
         <button className="user-button" onClick={toggleHideUser}>
-          <img src="/img/bx-user-circle.svg" className="user-icon" alt="user icon" />
+          <img src={user.logged ? user.photo :"/img/bx-user-circle.svg"} className="user-icon" alt="user icon" />
         </button>
         {!hideUser && (
           <div className="user-buttons">
             {user.logged ? (
+              <>
+              <p className="user-name">{user.name}</p>
               <button onClick={signout} className="user-link border-round-bottom">
                 Sign out
               </button>
+              </>
             ) : (
               guestRoutes.map((route, index) => (
                 <LinkRouter to={route.link} key={`guestRoute-${index}`}>
