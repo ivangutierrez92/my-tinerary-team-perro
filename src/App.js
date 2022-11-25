@@ -37,7 +37,7 @@ function App() {
     <Layout>
       <Routes>
         <Route index element={<Home />} />
-        <Route element={<ProtectedRoute isAllowed={user.logged} redirect="/" />}>
+        <Route element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
         </Route>
