@@ -41,15 +41,32 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
-        <Route path="/mycities" element={<MyCities />} />
-        <Route path="/mycities/:city" element={<EditMyCity />} />
-        <Route path="/city/:city" element={<City />} />
-        <Route path="/newcity" element={<NewCity />} />
-        <Route path="/hotel/:id" element={<Hotel />} />
-        <Route path="/newhotel" element={<NewHotel />} />
-        <Route path="/myHotels" element={<MyHotels />} />
-        <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
-        <Route element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}>
+
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "admin"}
+              redirect="/signin"
+            />
+          }
+        >
+          <Route path="/mycities" element={<MyCities />} />
+          <Route path="/mycities/:city" element={<EditMyCity />} />
+          <Route path="/city/:city" element={<City />} />
+          <Route path="/newcity" element={<NewCity />} />
+          <Route path="/hotel/:id" element={<Hotel />} />
+          <Route path="/newhotel" element={<NewHotel />} />
+          <Route path="/myHotels" element={<MyHotels />} />
+          <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
+        </Route>
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "user" || user.role === "admin"}
+              redirect="/signin"
+            />
+          }
+        >
           <Route path="/mytineraries" element={<MyTineraries />} />
           <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
           <Route path="/myShows" element={<MyShows />} />

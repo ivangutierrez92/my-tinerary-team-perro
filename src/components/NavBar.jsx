@@ -45,7 +45,8 @@ export default function Navbar() {
                 <button className="user-link border-bottom-white border-round-top">{route.name}</button>
               </LinkRouter>
             ))}
-            {adminRoutes.map((route, index) => (
+            {(user.role === "admin") &&
+              adminRoutes.map((route, index) => (
               <LinkRouter to={route.link} key={`userRoute-${index}`}>
                 <button className="user-link border-bottom-white border-round-top">{route.name}</button>
               </LinkRouter>
