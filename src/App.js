@@ -19,8 +19,19 @@ import MyShows from "./pages/MyShows";
 import MyEditShows from "./pages/MyEditShows";
 import MyTineraries from "./pages/MyTineraries";
 import EditMyTinerary from "./pages/EditMyTinerary";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import signInActions from "./redux/actions/signInActions"
 function App() {
+  let { online } = useSelector((store) => store.signIn);
+  let dispatch= useDispatch();
+  let {resendData}= signInActions
+  useEffect(()=>{
+    let token =JSON.parse(localStorage.getItem('token'))
+    if(token){
+      dispatch(resendData(token.token.user))
+    }
+  },[])
   return (
     <Layout>
       <Routes>
@@ -48,4 +59,3 @@ function App() {
 }
 
 export default App;
-// http://localhost:3000/hotel/ho1
