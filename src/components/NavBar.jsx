@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/components/NavBar.css";
 import { Link as LinkRouter, useLocation } from "react-router-dom";
 import { routes, adminRoutes, guestRoutes, userRoutes } from "../data/routes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import signInActions from "../redux/actions/signInActions";
+import swal from "sweetalert";
 
 export default function Navbar() {
   const [hideNav, setHideNav] = useState(true);
@@ -10,6 +12,9 @@ export default function Navbar() {
   const [isHome, setIsHome] = useState(true);
   let user = useSelector(store => store.signIn);
   let location = useLocation();
+  let dispatch = useDispatch();
+  let { signout: signoutAction } = signInActions;
+
   useEffect(() => {
     setHideUser(true);
     setHideNav(true);
@@ -28,6 +33,25 @@ export default function Navbar() {
   const toggleHideNav = () => {
     setHideUser(true);
     setHideNav(!hideNav);
+  };
+
+  const signout = async () => {
+    try {
+      let confirmation = await swal("confirmation", "¿Are you sure you want to Sign out?", {
+        buttons: ["Cancel", "Yes"],
+        dangerMode: true,
+      });
+      if (confirmation) {
+        let res = await dispatch(signoutAction(user.token)).unwrap();
+        if (res.success) {
+          swal("success", res.message, "success");
+        } else {
+          swal("error", res.message, "error");
+        }
+      }
+    } catch (error) {
+      swal("error", error, "error");
+    }
   };
   return (
     <nav className={`NavBar ${!isHome ? "bg-navbar" : ""}`}>
@@ -65,11 +89,17 @@ export default function Navbar() {
         </button>
         {!hideUser && (
           <div className="user-buttons">
-            {guestRoutes.map((route, index) => (
-              <LinkRouter to={route.link} key={`guestRoute-${index}`}>
-                <button className="user-link border-bottom-white border-round-top">{route.name}</button>
-              </LinkRouter>
-            ))}
+            {user.logged ? (
+              <button onClick={signout} className="user-link border-round-bottom">
+                Sign out
+              </button>
+            ) : (
+              guestRoutes.map((route, index) => (
+                <LinkRouter to={route.link} key={`guestRoute-${index}`}>
+                  <button className="user-link border-bottom-white border-round-top">{route.name}</button>
+                </LinkRouter>
+              ))
+            )}
           </div>
         )}
       </div>
