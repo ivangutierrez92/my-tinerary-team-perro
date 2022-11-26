@@ -19,6 +19,7 @@ import MyShows from "./pages/MyShows";
 import MyEditShows from "./pages/MyEditShows";
 import MyTineraries from "./pages/MyTineraries";
 import EditMyTinerary from "./pages/EditMyTinerary";
+import UpdateProfile from "./pages/UpdateProfile";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import signInActions from "./redux/actions/signInActions";
@@ -59,6 +60,7 @@ function App() {
         <Route
           element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}
         >
+          <Route path="/profile" element={<UpdateProfile />}/>
           <Route path="/mytineraries" element={<MyTineraries />} />
           <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
           <Route path="/myShows" element={<MyShows />} />
