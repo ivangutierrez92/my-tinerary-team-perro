@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import signInActions from "./redux/actions/signInActions";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NewItinerary from "./pages/NewItinerary";
 function App() {
   let user = useSelector(store => store.signIn);
   let dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
           element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}
         >
           <Route path="/mytineraries" element={<MyTineraries />} />
+          <Route path="/mytineraries/new" element={<NewItinerary />}/>
           <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
           <Route path="/myShows" element={<MyShows />} />
           <Route path="/myShows/:show" element={<MyEditShows />} />

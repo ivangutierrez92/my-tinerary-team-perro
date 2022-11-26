@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router";
-import swal from "sweetalert";
 import "../styles/pages/EditCollection.css";
 
 export default function EditMyTinerary() {
@@ -28,7 +28,7 @@ export default function EditMyTinerary() {
       .catch(error => {
         console.log(error);
         if (error.response) {
-          setMessage(error.response.data.message.join("\n"));
+          setMessage("error", error.response.data.message, "error");
         } else {
           setMessage(error.message);
         }
@@ -52,11 +52,19 @@ export default function EditMyTinerary() {
     axios
       .put(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`, newItinerary)
       .then(response => {
-        swal("Itinerary edited", "The itinerary was edited succesfully", "success");
-        navigate(`/mytineraries`);
+        if (response.success) {
+          swal("Itinerary edited", "The itinerary was edited succesfully", "success");
+          navigate(`/mytineraries`);
+        } else {
+          swal("Error", "Something went wrong", "error");
+        }
       })
       .catch(error => {
-        swal("Error", error.response.data.message.join("\n"), "error");
+        if (error.response) {
+          swal("Error", error.response.data.message || error.response.data, "error");
+        } else {
+          swal("Error", error.message, "error");
+        }
       });
   };
 
@@ -101,7 +109,7 @@ export default function EditMyTinerary() {
             </div>
 
             <div className="EditCollectionForm-field">
-              <label htmlFor="photo3">Photo 3 URLs:</label>
+              <label htmlFor="photo3">Photo 3 URL:</label>
               <input
                 type="text"
                 name="photo"
