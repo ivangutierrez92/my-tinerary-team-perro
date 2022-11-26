@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../styles/pages/EditCollection.css";
+import { useSelector } from "react-redux";
 
 export default function EditMyTinerary() {
   let { itinerary: itineraryId } = useParams();
+  let { token } = useSelector(store => store.signIn);
   const [itinerary, setItinerary] = useState(null);
   const [cities, setCities] = useState([]);
   let navigate = useNavigate();
@@ -26,9 +28,8 @@ export default function EditMyTinerary() {
         setMessage("");
       })
       .catch(error => {
-        console.log(error);
         if (error.response) {
-          setMessage("error", error.response.data.message, "error");
+          setMessage("error", error.response.data.message || error.response.data, "error");
         } else {
           setMessage(error.message);
         }
@@ -40,6 +41,7 @@ export default function EditMyTinerary() {
 
     let properties = ["name", "photo", "price", "duration", "description", "cityId"];
     let newItinerary = {};
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
 
     properties.forEach(property => {
       if (property === "photo") {
@@ -50,9 +52,9 @@ export default function EditMyTinerary() {
     });
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`, newItinerary)
+      .put(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`, newItinerary, headers)
       .then(response => {
-        if (response.success) {
+        if (response.data.success) {
           swal("Itinerary edited", "The itinerary was edited succesfully", "success");
           navigate(`/mytineraries`);
         } else {
@@ -163,8 +165,7 @@ export default function EditMyTinerary() {
                 className="EditCollectionForm-textarea"
               />
             </div>
-
-            <input type="submit" value="Edit City" className="EditCollectionForm-button" />
+            <input type="submit" value="Edit Itinerary" className="EditCollectionForm-button" />
           </form>
         )
       )}

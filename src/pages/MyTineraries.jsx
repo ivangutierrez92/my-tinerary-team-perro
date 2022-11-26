@@ -8,26 +8,34 @@ import "../styles/pages/MyCollection.css";
 import { Link as LinkRouter } from "react-router-dom";
 
 export default function MyTineraries() {
-  let user = useSelector(store => store.signUp);
+  let user = useSelector(store => store.signIn);
   let { itineraries, message } = useSelector(state => state.myTineraries);
   let dispatch = useDispatch();
   let { getInitialMyTineraries, deleteItinerary: deleteItineraryAction } = myTinerariesActions;
   useEffect(() => {
-    dispatch(getInitialMyTineraries({ endpoint: "/api/itineraries", userId: "636d1ed3692e58acbf29845c" }));
+    dispatch(getInitialMyTineraries({ endpoint: "/api/itineraries", userId: user.id }));
   }, []);
 
   const deleteItinerary = async (id, name) => {
-    let res;
     try {
-      res = await swal("Are you sure you want to delete " + name, {
+      let res = await swal("Are you sure you want to delete " + name, {
         buttons: ["Cancel", "Delete"],
         dangerMode: true,
       });
+      if (res) {
+        let dispatchResponse = await dispatch(
+          deleteItineraryAction({ itineraryId: id, endpoint: "/api/itineraries/", token: user.token })
+        ).unwrap();
+        if (!dispatchResponse.success) {
+          swal("Error", dispatchResponse.message);
+        }
+      }
     } catch (error) {
-      swal("Error", "Something went wrong", "error");
-    }
-    if (res) {
-      dispatch(deleteItineraryAction({ itineraryId: id, endpoint: "/api/itineraries/", token: user.token }));
+      if (error.response) {
+        swal("Error", error.response.data.message || error.response.data, "error");
+      } else {
+        swal("Error", error.message, "error");
+      }
     }
   };
   return (
@@ -35,7 +43,7 @@ export default function MyTineraries() {
       <h1 className="MyCollection-title">My Tineraries</h1>
       <div className="MyCollection-newButtonContainer">
         <LinkRouter to="/mytineraries/new">
-        <button className="MyCollection-newButton">New Itinerary</button>
+          <button className="MyCollection-newButton">New Itinerary</button>
         </LinkRouter>
       </div>
       {message ? (

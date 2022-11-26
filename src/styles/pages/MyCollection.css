@@ -1,3 +1,6 @@
+.MyCollection {
+  padding: 10px;
+}
 .MyCollection-title {
   text-align: center;
   color: var(--tertiary-color-1);

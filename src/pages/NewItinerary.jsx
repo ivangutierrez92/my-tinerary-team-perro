@@ -46,15 +46,20 @@ export default function NewItinerary() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/itineraries`, newItinerary, headers)
       .then(response => {
-        if (response.success) {
-          swal("Itinerary edited", "The itinerary was edited succesfully", "success");
-          navigate(`/mytineraries`);
+        console.log(response);
+        if (response.data.success) {
+          swal("Itinerary created", "The itinerary was created succesfully", "success");
+          navigate("/mytineraries");
         } else {
           swal("Error", response.data.message.join("\n"), "error");
         }
       })
       .catch(error => {
-        swal("Error", error.response.data.message || error.response.data, "error");
+        if (error.response) {
+          swal("Error", error.response.data.message || error.response.data, "error");
+        } else {
+          swal("Error", error.message, "error");
+        }
       });
   };
 
