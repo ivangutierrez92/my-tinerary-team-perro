@@ -15,6 +15,7 @@ export const userRoutes = [
     name: "My Tineraries",
     link: "/mytineraries",
   },
+
 ];
 export const adminRoutes = [
   {
