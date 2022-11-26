@@ -4,6 +4,7 @@ import signInActions from "../actions/signInActions"
 const {sendData,resendData, signout}=signInActions;
 
 const initialState = {
+  id:"",
   name:"",
   photo:"",
   logged:false,
@@ -18,9 +19,11 @@ const signInReducer= createReducer(initialState,(builder)=>{
     
    if(success){
      let { user, token } = response;
+      console.log(user)
      localStorage.setItem("token", JSON.stringify({token: {user:token}}));
     let newState={
       ...state,
+      id: user.id,
       name:user.name,
       photo:user.photo,
       logged:true,
@@ -45,6 +48,7 @@ const signInReducer= createReducer(initialState,(builder)=>{
 
     let newState={
       ...state,
+      id: user.id,
       name:user.name,
       photo:user.photo,
       logged:true,
@@ -68,7 +72,8 @@ const signInReducer= createReducer(initialState,(builder)=>{
     if(success) {
       localStorage.removeItem('token');
       return {
-        ...state, 
+        ...state,
+        id:"", 
         name:"",
         photo:"",
         logged:false,

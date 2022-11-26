@@ -92,7 +92,7 @@ export default function Navbar() {
           <div className="user-buttons">
             {user.logged ? (
               <>
-                <LinkRouter>
+                <LinkRouter to={`/profile`}>
                   <button className="user-name">{user.name}</button>
                 </LinkRouter>
                 <button onClick={signout} className="user-link border-round-bottom">
