@@ -22,7 +22,6 @@ export default function EditMyTinerary() {
     Promise.all([getCities(), getItineraries()])
       .then(results => {
         let [citiesRes, itinerariesRes] = results;
-        console.log(citiesRes.data.response);
         setCities(citiesRes.data.response);
         setItinerary(itinerariesRes.data.response);
         setMessage("");

@@ -18,7 +18,6 @@ useEffect(() => {
   axios
   .get(`${process.env.REACT_APP_API_URL}/api/auth/me/${user.id}`,headers)
   .then((response) => {
-  console.log(response);
 
     setGetUser(response.data.response)
 
@@ -47,7 +46,6 @@ useEffect(() => {
     properties.forEach((property) => {
       profileUpdated[property] = formRef.current.elements[property].value;
     });
-    console.log(profileUpdated)
 
     try {
       alertConfirmation = await swal(

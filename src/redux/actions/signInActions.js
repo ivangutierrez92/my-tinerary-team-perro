@@ -40,7 +40,6 @@ const signout = createAsyncThunk("signout", async token => {
     let res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-out`, null, headers);
     return res.data;
   } catch (error) {
-    console.log(error)
     let message;
     if (error.response) {
       if(!error.response.data.message) {

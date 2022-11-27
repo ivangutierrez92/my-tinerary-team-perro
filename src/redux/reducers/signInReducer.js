@@ -19,11 +19,10 @@ const signInReducer= createReducer(initialState,(builder)=>{
     
    if(success){
      let { user, token } = response;
-      console.log(user)
      localStorage.setItem("token", JSON.stringify({token: {user:token}}));
     let newState={
       ...state,
-      id: user.id,
+      id: user._id,
       name:user.name,
       photo:user.photo,
       logged:true,

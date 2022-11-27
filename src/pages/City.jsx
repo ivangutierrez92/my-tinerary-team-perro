@@ -17,7 +17,6 @@ export default function City() {
       .then(res => setCity(res.data.response))
       .catch(error => {
         setLoading(false);
-        console.log(error);
       });
 
     axios
@@ -27,7 +26,6 @@ export default function City() {
         setLoading(false);
       })
       .catch(error => {
-        console.log(error);
         setLoading(false);
       });
   }, [cityId]);

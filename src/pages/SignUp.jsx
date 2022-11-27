@@ -29,7 +29,6 @@ export default function SignUp() {
         { buttons: ["Cancel", "Yes"] }
       );
     } catch (error) {
-      console.log(error);
     }
     if (confirmation) {
       try {

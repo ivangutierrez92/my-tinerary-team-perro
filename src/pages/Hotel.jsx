@@ -15,11 +15,9 @@ export default function Hotel() {
       .then(function (response) {
         // manejar respuesta exitosa
         setHotel(response.data.response);
-        //  console.log(response.data.response);
       })
       .catch(function (error) {
         // manejar error
-        console.log(error);
       });
 
        axios
@@ -30,13 +28,11 @@ export default function Hotel() {
          })
          .catch(function (error) {
            // manejar error
-           console.log(error);
          });
 
 
 
   }, [id]);
-  console.log(hotel);
 
 
   return (

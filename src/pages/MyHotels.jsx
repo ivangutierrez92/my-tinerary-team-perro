@@ -14,10 +14,8 @@ export default function MyHotels() {
   let {hotelList}=useSelector((store)=> store.myHotels)
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(user?.id)
     dispatch(myHotelInit({userId:`${user.id}`}));
   }, []);
-  console.log(hotelList);
   
 
 const  deleteHotel = async(id) => {
