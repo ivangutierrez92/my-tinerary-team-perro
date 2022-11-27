@@ -25,7 +25,7 @@ export default function City() {
         setItineraries(res.data.response);
         setLoading(false);
       })
-      .catch(error => {
+      .catch(() => {
         setLoading(false);
       });
   }, [cityId]);

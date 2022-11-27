@@ -5,7 +5,6 @@ const { getInitialMyCities, deleteCity } = myCitiesActions;
 const initialState = {
   cities: [],
   message: "",
-  cityToEdit: null
 };
 
 const myCitiesReducer = createReducer(initialState, builder => {
@@ -24,8 +23,12 @@ const myCitiesReducer = createReducer(initialState, builder => {
       };
     })
     .addCase(deleteCity.fulfilled, (state, action) => {
-      let newCities = state.cities.filter(city => city._id !== action.payload);
-      return { ...state, message: "", cities: newCities };
+      if(action.payload.success) {
+        let newCities = state.cities.filter(city => city._id !== action.payload.id);
+        let message = "";
+        message = newCities.length ? "" : "Couldn't find cities";
+        return { ...state, message, cities: newCities };
+      } 
     });
 });
 
