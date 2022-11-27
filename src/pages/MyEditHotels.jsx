@@ -6,9 +6,10 @@ import { useRef } from "react";
 import { useNavigate, useParams } from "react-router";
 import swal from "sweetalert";
 import "../styles/pages/EditCollection.css";
+import { useSelector } from "react-redux";
 
-
-export default function MyEditHotels(params) {
+export default function MyEditHotels() {
+  let {token}= useSelector(store=>store.signIn)
   let form = useRef(null)
   let {hotel:hotelid} = useParams();
   let [hotelEdit,setHotelEdit]=useState(null)
@@ -39,6 +40,7 @@ axios
 
 
 const onSubmit = (event) => {
+  let headers = { headers: { Authorization: `Bearer ${token}` } };
   let hotelObject = {};
 
   event.preventDefault();
@@ -52,17 +54,13 @@ const onSubmit = (event) => {
   hotelObject.photo=[...form.current.elements["photo"]].map((photo)=>photo.value);
   // hotelObject["userId"] = "636d1ed3692e58acbf29845d";
   axios
-    .patch(`${process.env.REACT_APP_API_URL}/api/hotels/${hotelid}`,hotelObject)
+    .patch(`${process.env.REACT_APP_API_URL}/api/hotels/${hotelid}`,hotelObject,headers)
     .then((response) => {
       swal("Hotel upgraded", "the Hotel was successfully upgraded", "success");
       nav(`/hotel/${response.data.id}`);
     })
     .catch((error) => {
-      swal(
-        "Error creating new Hotel",
-        error.response.data.message,
-        "error"
-      );
+      swal("Error creating new Hotel",error.response.data.message,"error");
     });
 };
 
