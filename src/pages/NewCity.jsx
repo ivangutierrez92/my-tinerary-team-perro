@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
 export default function NewCity() {
-  let {id, token} = useSelector(store => store.signIn);
+  let {token} = useSelector(store => store.signIn);
   let formRef = useRef(null);
   let navigate = useNavigate();
   const onSubmit = event => {
@@ -21,12 +21,12 @@ export default function NewCity() {
       newCity[property] = formRef.current.elements[property].value;
     });
 
-    newCity["userId"] = id;
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity, headers)
       .then(response => {
         if (response.data.success) {
           swal("City created", "The city was created succesfully", "success");
+          formRef.current.reset();
           navigate(`/city/${response.data.id}`);
         } else {
           swal("Error", response.data.message.join("\n"), "error");
@@ -39,8 +39,6 @@ export default function NewCity() {
           swal("Error", error.message, "error");
         }
       });
-
-    formRef.current.reset();
   };
 
   return (
