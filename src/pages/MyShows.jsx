@@ -10,7 +10,6 @@ import swal from "sweetalert";
 
 export default function MyShows() {
    let { id,token } = useSelector((store) => store.signIn);
-console.log(token)
 let {myShowsInit,myShowsDelete}= myShowsActions;
 let{showsList}=useSelector((store)=>store.myShows)
 const dispatch= useDispatch();
@@ -21,7 +20,6 @@ dispatch(myShowsInit({ userId: id }));
 
 },[])
 
-console.log(showsList)
 
 
 const deleteShows= async(id)=>{

@@ -27,7 +27,6 @@ const onSubmit= (event)=>{
    newShow[input] = formRef.current.elements[input].value;
  });
  newShow["userId"]=id
- console.log(newShow);
  axios
    .post(`${process.env.REACT_APP_API_URL}/api/shows/`, newShow,headers)
    .then((response) => {

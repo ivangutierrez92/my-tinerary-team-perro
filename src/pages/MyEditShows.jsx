@@ -15,7 +15,6 @@ export default function MyEditHotels(params) {
   let [hotel, setHotel] = useState([]);
   let nav = useNavigate();
   let { token }= useSelector(store => store.signIn);
-  console.log(showEdit);
 
   useEffect(() => {
     axios
@@ -35,7 +34,6 @@ export default function MyEditHotels(params) {
         alert(`${error.response.data.message}, ${error.message}`);
       });
   }, []);
-  console.log(hotel);
 
   const onSubmit = (event) => {
     let headers = { headers: { Authorization: `Bearer ${token}`}}
@@ -70,7 +68,6 @@ export default function MyEditHotels(params) {
       });
   };
 
-  console.log(showEdit);
 
   return (
     <form ref={form} className="Form" onSubmit={onSubmit}>

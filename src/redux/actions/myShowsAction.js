@@ -7,10 +7,8 @@ const myShowsInit = createAsyncThunk("myShowsInit", async (data) => {
     const response = await axios.get(
       `${process.env.REACT_APP_API_URL}/api/shows?userId=${data.userId}`
     );
-    console.log(response.data.response);
     return response.data.response;
   } catch (error) {
-    console.log(error);
   }
 });
 
@@ -20,10 +18,8 @@ const myShowsDelete = createAsyncThunk("myShowsDelete", async (data) => {
 
   try {
     const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/shows/${data.show}`,headers);
-    console.log(response.data.response);
     return response.data.id;
   } catch (error) {
-    console.log(error);
   }
 });
 

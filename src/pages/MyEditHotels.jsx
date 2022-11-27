@@ -15,7 +15,6 @@ export default function MyEditHotels() {
   let [hotelEdit,setHotelEdit]=useState(null)
   let [city, setCity] = useState([]);
    let nav = useNavigate();
-  console.log(hotelid)
 
 
 useEffect(()=>{
@@ -36,7 +35,6 @@ axios
        alert(`${error.response.data.message}, ${error.message}`);
      });
  }, []);
- console.log(city);
 
 
 const onSubmit = (event) => {
@@ -67,7 +65,6 @@ const onSubmit = (event) => {
 
 
 
-console.log(hotelEdit)
 
 return (
   <form ref={form} className="Form" onSubmit={onSubmit}>

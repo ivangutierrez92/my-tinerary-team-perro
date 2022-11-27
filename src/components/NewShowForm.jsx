@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 
 
 export default function UpdateProfileForm({ onSubmit, formRef, user }) {
-  // console.log(user);
 
   let [hotel, setHotel] = useState([]);
   
