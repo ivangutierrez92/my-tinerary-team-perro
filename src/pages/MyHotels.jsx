@@ -8,7 +8,7 @@ import swal from "sweetalert";
 
 export default function MyHotels() {
   let user = useSelector((store)=>store.signIn)
-  let { token } = useSelector((store) => store.signIn);
+  
   
   let { myHotelInit,myHotelDelete }= myHotelsActions;
   let {hotelList}=useSelector((store)=> store.myHotels)
@@ -28,7 +28,7 @@ const  deleteHotel = async(id) => {
       dangerMode: true,
     });
     if (answer) {
-      dispatch(myHotelDelete({ hotelId: id,token:token}));
+      dispatch(myHotelDelete({ hotelId: id,token:user.token}));
     }
   } catch (error) {
     swal("Something wrong",error.message,"error")
