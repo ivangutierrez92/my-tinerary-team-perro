@@ -7,25 +7,32 @@ import myCitiesActions from "../redux/actions/myCitiesActions";
 import "../styles/pages/MyCollection.css";
 
 export default function MyCities() {
+  let { id: userId, token } = useSelector(store => store.signIn);
   let { cities, message } = useSelector(state => state.myCities);
   let dispatch = useDispatch();
   let { getInitialMyCities, deleteCity: deleteCityAction } = myCitiesActions;
   useEffect(() => {
-    dispatch(getInitialMyCities({ endpoint: "/api/cities", userId: "636d1ed3692e58acbf29845c" }));
+    dispatch(getInitialMyCities({ endpoint: "/api/cities", userId }));
   }, []);
 
   const deleteCity = async (id, name) => {
-    let res;
     try {
-      res = await swal("Are you sure you want to delete " + name, {
+      let res = await swal("Are you sure you want to delete " + name, {
         buttons: ["Cancel", "Delete"],
         dangerMode: true,
       });
+      if (res) {
+        let dispatchResponse = await dispatch(deleteCityAction({ cityId: id, endpoint: "/api/cities/", token })).unwrap();
+        if (!dispatchResponse.success) {
+          swal("Error", dispatchResponse.message, "error");
+        }
+      }
     } catch (error) {
-      swal("Error", "Sucedió un error", "error");
-    }
-    if (res) {
-      dispatch(deleteCityAction({ cityId: id, endpoint: "/api/cities/" }));
+      if (error.response) {
+        swal("Error", error.response.data.message || error.response.message);
+      } else {
+        swal("Error", error.message, "error");
+      }
     }
   };
   return (

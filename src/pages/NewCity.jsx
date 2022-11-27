@@ -5,8 +5,10 @@ import axios from "axios";
 import "../styles/pages/NewCity.css";
 import swal from "sweetalert";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function NewCity() {
+  let {id, token} = useSelector(store => store.signIn);
   let formRef = useRef(null);
   let navigate = useNavigate();
   const onSubmit = event => {
@@ -14,13 +16,14 @@ export default function NewCity() {
 
     let properties = ["name", "continent", "population", "photo"];
     let newCity = {};
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
     properties.forEach(property => {
       newCity[property] = formRef.current.elements[property].value;
     });
-    //Hardcoded userId
-    newCity["userId"] = "636d1ed3692e58acbf29845c";
+
+    newCity["userId"] = id;
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity)
+      .post(`${process.env.REACT_APP_API_URL}/api/cities/`, newCity, headers)
       .then(response => {
         if (response.data.success) {
           swal("City created", "The city was created succesfully", "success");
@@ -30,7 +33,11 @@ export default function NewCity() {
         }
       })
       .catch(error => {
-        swal("Error", error.response.data.message, "error");
+        if(error.response) {
+          swal("Error", error.response.data.message || error.response.data, "error");
+        } else {
+          swal("Error", error.message, "error");
+        }
       });
 
     formRef.current.reset();

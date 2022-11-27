@@ -27,7 +27,7 @@ export default function MyTineraries() {
           deleteItineraryAction({ itineraryId: id, endpoint: "/api/itineraries/", token: user.token })
         ).unwrap();
         if (!dispatchResponse.success) {
-          swal("Error", dispatchResponse.message);
+          swal("Error", dispatchResponse.message, "error");
         }
       }
     } catch (error) {
