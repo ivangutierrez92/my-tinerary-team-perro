@@ -24,7 +24,6 @@ export default function SignIn() {
       (prop) => (object[prop] = formRef.current.elements[prop].value)
     );
 
-    console.log(object);
     try {
       let res = await dispatch(sendData(object));
       if (res.payload.success) {

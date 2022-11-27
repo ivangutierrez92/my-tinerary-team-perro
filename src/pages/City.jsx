@@ -17,7 +17,6 @@ export default function City() {
       .then(res => setCity(res.data.response))
       .catch(error => {
         setLoading(false);
-        console.log(error);
       });
 
     axios

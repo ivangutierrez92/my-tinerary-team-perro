@@ -46,7 +46,6 @@ export default function NewItinerary() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/itineraries`, newItinerary, headers)
       .then(response => {
-        console.log(response);
         if (response.data.success) {
           swal("Itinerary created", "The itinerary was created succesfully", "success");
           navigate("/mytineraries");

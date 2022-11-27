@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function UpdateProfileForm({ onSubmit, formRef, user }) {
-  console.log(user);
 
   return (
     <form className="Form" onSubmit={onSubmit} ref={formRef}>

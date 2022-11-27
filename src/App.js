@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import signInActions from "./redux/actions/signInActions";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NewItinerary from "./pages/NewItinerary";
+import NewShow from "./pages/NewShow";
 function App() {
   let user = useSelector(store => store.signIn);
   let dispatch = useDispatch();
@@ -39,7 +40,9 @@ function App() {
     <Layout>
       <Routes>
         <Route index element={<Home />} />
-        <Route element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}>
+        <Route
+          element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}
+        >
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
         </Route>
@@ -49,7 +52,14 @@ function App() {
         <Route path="/city/:city" element={<City />} />
         <Route path="/hotel/:id" element={<Hotel />} />
 
-        <Route element={<ProtectedRoute isAllowed={user.role === "admin"} redirect="/signin" />}>
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "admin"}
+              redirect="/signin"
+            />
+          }
+        >
           <Route path="/mycities" element={<MyCities />} />
           <Route path="/mycities/:city" element={<EditMyCity />} />
           <Route path="/newcity" element={<NewCity />} />
@@ -59,13 +69,19 @@ function App() {
         </Route>
 
         <Route
-          element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "user" || user.role === "admin"}
+              redirect="/signin"
+            />
+          }
         >
-          <Route path="/profile" element={<UpdateProfile />}/>
+          <Route path="/profile" element={<UpdateProfile />} />
           <Route path="/mytineraries" element={<MyTineraries />} />
-          <Route path="/mytineraries/new" element={<NewItinerary />}/>
+          <Route path="/mytineraries/new" element={<NewItinerary />} />
           <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
           <Route path="/myShows" element={<MyShows />} />
+          <Route path="/myshows/new" element={<NewShow />} />
           <Route path="/myShows/:show" element={<MyEditShows />} />
         </Route>
 
