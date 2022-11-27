@@ -9,12 +9,14 @@ import swal from "sweetalert";
 
 
 export default function MyShows() {
+   let { id,token } = useSelector((store) => store.signIn);
+console.log(token)
 let {myShowsInit,myShowsDelete}= myShowsActions;
 let{showsList}=useSelector((store)=>store.myShows)
 const dispatch= useDispatch();
 
 useEffect(()=>{
-dispatch(myShowsInit({ userId: "636d1ed3692e58acbf29845e" }));
+dispatch(myShowsInit({ userId: id }));
 
 
 },[])
@@ -27,9 +29,8 @@ const deleteShows= async(id)=>{
 
 try {
  let answer = await swal("Are you sure you want to delete this show?",{buttons:["cancel","delete"],dangerMode:true})
-  
 if(answer){
-  dispatch(myShowsDelete({show:id}))
+  dispatch(myShowsDelete({show:id,token:token}))
 }
 
 } catch (error) {
@@ -46,6 +47,11 @@ return (
   <div className="MyCollection">
     <h1 className="MyCollection-title">My Shows</h1>
     <div className="MyCollection-tableContainer">
+      <div className="MyCollection-newButtonContainer">
+        <LinkRouter to="/myshows/new">
+          <button className="MyCollection-newButton">New Show</button>
+        </LinkRouter>
+      </div>
       <table className="MyCollection-table">
         <thead>
           <tr>

@@ -34,4 +34,6 @@ export const adminRoutes = [
     name: "My Hotels",
     link: "/myhotels",
   },
+
+
 ];
