@@ -17,19 +17,16 @@ export default function MyEditHotels(params) {
   let { token }= useSelector(store => store.signIn);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/shows/${showId}`)
-      .then((res) => {
-        setShowEdit(res.data.response);
-      });
-  }, []);
+    const getShow=()=>axios.get(`${process.env.REACT_APP_API_URL}/api/shows/${showId}`)
+    
+    const getHotels=()=> axios.get(`${process.env.REACT_APP_API_URL}/api/hotels`)
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels`)
-      .then((response) => {
-        setHotel(response.data.response);
+      Promise.all([getShow(), getHotels()])
+      .then(([showRes,hotelsRes]) => {
+        setShowEdit(showRes.data.response);
+        setHotel(hotelsRes.data.response);
       })
+    
       .catch((error) => {
         alert(`${error.response.data.message}, ${error.message}`);
       });
@@ -45,7 +42,6 @@ export default function MyEditHotels(params) {
     inputs.forEach((input) => {
       showObject[input] = form.current.elements[input].value;
     });
-    // showObject["userId"] = "636d1ed3692e58acbf29845d";
     axios
       .patch(
         `${process.env.REACT_APP_API_URL}/api/shows/${showId}`,
@@ -67,6 +63,7 @@ export default function MyEditHotels(params) {
         );
       });
   };
+
 
 
   return (
