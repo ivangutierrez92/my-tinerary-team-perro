@@ -116,7 +116,7 @@ export default function NewItinerary() {
             <textarea name="description" id="description" className="EditCollectionForm-textarea" />
           </div>
 
-          <input type="submit" value="Create City" className="EditCollectionForm-newButton" />
+          <input type="submit" value="Create Itinerary" className="EditCollectionForm-newButton" />
         </form>
       )}
     </div>
