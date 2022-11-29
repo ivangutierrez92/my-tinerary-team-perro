@@ -3,10 +3,15 @@ import "../styles/pages/new-hotel.css";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function NewHotel() {
+   let {id,token} = useSelector((store) => store.signIn);
+
  let nav = useNavigate();
   const sendData = event => {
+      let headers = { headers: { Authorization: `Bearer ${token}` } };
+
     let hotelObject = {};
 
     event.preventDefault();
@@ -19,9 +24,9 @@ export default function NewHotel() {
       }
     });
 
-    hotelObject["userId"] = "636d1ed3692e58acbf29845d";
+    hotelObject["userId"] =id
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/hotels/`, hotelObject)
+      .post(`${process.env.REACT_APP_API_URL}/api/hotels/`, hotelObject,headers)
       .then(response => {
         if(response.data.success){
         swal("Hotel created","the Hotel was successfully created","success")

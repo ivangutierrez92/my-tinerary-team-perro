@@ -1,7 +1,27 @@
+.MyCollection {
+  padding: 10px;
+}
 .MyCollection-title {
   text-align: center;
   color: var(--tertiary-color-1);
   margin: 25px 0;
+}
+
+.MyCollection-newButtonContainer {
+  max-width: 800px;
+  margin: 0 auto 10px;
+}
+.MyCollection-newButton {
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(59, 165, 91);
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.MyCollection-newButton:hover {
+  background-color: hsl(138, 47%, 35%);
 }
 
 .MyCollection-tableContainer {

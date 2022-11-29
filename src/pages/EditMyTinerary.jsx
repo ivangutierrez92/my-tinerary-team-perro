@@ -1,13 +1,15 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router";
-import swal from "sweetalert";
 import "../styles/pages/EditCollection.css";
+import { useSelector } from "react-redux";
 
 export default function EditMyTinerary() {
   let { itinerary: itineraryId } = useParams();
+  let { token } = useSelector(store => store.signIn);
   const [itinerary, setItinerary] = useState(null);
   const [cities, setCities] = useState([]);
   let navigate = useNavigate();
@@ -20,15 +22,13 @@ export default function EditMyTinerary() {
     Promise.all([getCities(), getItineraries()])
       .then(results => {
         let [citiesRes, itinerariesRes] = results;
-        console.log(citiesRes.data.response);
         setCities(citiesRes.data.response);
         setItinerary(itinerariesRes.data.response);
         setMessage("");
       })
       .catch(error => {
-        console.log(error);
         if (error.response) {
-          setMessage(error.response.data.message.join("\n"));
+          setMessage("error", error.response.data.message || error.response.data, "error");
         } else {
           setMessage(error.message);
         }
@@ -40,6 +40,7 @@ export default function EditMyTinerary() {
 
     let properties = ["name", "photo", "price", "duration", "description", "cityId"];
     let newItinerary = {};
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
 
     properties.forEach(property => {
       if (property === "photo") {
@@ -50,13 +51,21 @@ export default function EditMyTinerary() {
     });
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`, newItinerary)
+      .put(`${process.env.REACT_APP_API_URL}/api/itineraries/${itineraryId}`, newItinerary, headers)
       .then(response => {
-        swal("Itinerary edited", "The itinerary was edited succesfully", "success");
-        navigate(`/mytineraries`);
+        if (response.data.success) {
+          swal("Itinerary edited", "The itinerary was edited succesfully", "success");
+          navigate(`/mytineraries`);
+        } else {
+          swal("Error", "Something went wrong", "error");
+        }
       })
       .catch(error => {
-        swal("Error", error.response.data.message.join("\n"), "error");
+        if (error.response) {
+          swal("Error", error.response.data.message || error.response.data, "error");
+        } else {
+          swal("Error", error.message, "error");
+        }
       });
   };
 
@@ -101,7 +110,7 @@ export default function EditMyTinerary() {
             </div>
 
             <div className="EditCollectionForm-field">
-              <label htmlFor="photo3">Photo 3 URLs:</label>
+              <label htmlFor="photo3">Photo 3 URL:</label>
               <input
                 type="text"
                 name="photo"
@@ -155,8 +164,7 @@ export default function EditMyTinerary() {
                 className="EditCollectionForm-textarea"
               />
             </div>
-
-            <input type="submit" value="Edit City" className="EditCollectionForm-button" />
+            <input type="submit" value="Edit Itinerary" className="EditCollectionForm-button" />
           </form>
         )
       )}

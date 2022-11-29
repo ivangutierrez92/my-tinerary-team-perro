@@ -12,7 +12,7 @@ const getInitialMyCities = createAsyncThunk("getInitialMyCities", async data => 
     return res.data.response;
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message;
+      throw error.response.data.message || error.response.data;
     } else {
       throw error;
     }
@@ -20,14 +20,15 @@ const getInitialMyCities = createAsyncThunk("getInitialMyCities", async data => 
 });
 
 const deleteCity = createAsyncThunk("deleteCity", async data => {
+  let headers = {headers: {"Authorization": `Bearer ${data.token}`}}
   try {
-    const res = await axios.delete(process.env.REACT_APP_API_URL + data.endpoint + data.cityId);
-    return res.data.id;
+    const res = await axios.delete(process.env.REACT_APP_API_URL + data.endpoint + data.cityId, headers);
+    return {success: true, id: res.data.id};
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message;
+      return {success: false, message: error.response.data.message || error.response.data};
     } else {
-      throw error;
+      return {success: false, message: error.message};
     }
   }
 });

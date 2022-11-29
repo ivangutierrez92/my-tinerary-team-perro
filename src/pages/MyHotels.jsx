@@ -7,13 +7,15 @@ import myHotelsActions from "../redux/actions/myHotelsActions";
 import swal from "sweetalert";
 
 export default function MyHotels() {
+  let user = useSelector((store)=>store.signIn)
+  
+  
   let { myHotelInit,myHotelDelete }= myHotelsActions;
   let {hotelList}=useSelector((store)=> store.myHotels)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(myHotelInit({userId:"636d1ed3692e58acbf29845d"}));
+    dispatch(myHotelInit({userId:`${user.id}`}));
   }, []);
-  console.log(hotelList);
   
 
 const  deleteHotel = async(id) => {
@@ -24,7 +26,7 @@ const  deleteHotel = async(id) => {
       dangerMode: true,
     });
     if (answer) {
-      dispatch(myHotelDelete({ hotelId: id }));
+      dispatch(myHotelDelete({ hotelId: id,token:user.token}));
     }
   } catch (error) {
     swal("Something wrong",error.message,"error")

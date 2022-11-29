@@ -1,0 +1,14 @@
+.update-profile-title {
+  text-align: center;
+  color: var(--tertiary-color-1);
+}
+
+.update-profile {
+  max-width: 1000px;
+  width: 100%;
+  padding: 20px;
+  margin: 20px auto;
+  height: 100%;  
+  display: flex;
+  flex-direction: column;
+}

@@ -16,7 +16,6 @@ export default function FormNewHotel({ onSubmit }) {
         alert(`${error.response.data.message}, ${error.message}`);
       });
   }, []);
-  console.log(city);
 
   return (
         <form className="Form" onSubmit={onSubmit}>

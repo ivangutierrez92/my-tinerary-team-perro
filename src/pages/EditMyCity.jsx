@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import swal from "sweetalert";
 import "../styles/pages/EditCollection.css";
@@ -10,6 +11,7 @@ import "../styles/pages/EditCollection.css";
 export default function EditMyCity() {
   let { city: cityId } = useParams();
   const [city, setCity] = useState(null);
+  let { token } = useSelector(store => store.signIn);
   let navigate = useNavigate();
   let formRef = useRef(null);
   let [message, setMessage] = useState("...Loading");
@@ -17,12 +19,14 @@ export default function EditMyCity() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`)
       .then(res => {
+        if (res.data.success) {
+        }
         setCity(res.data.response);
         setMessage("");
       })
       .catch(error => {
         if (error.response) {
-          setMessage(error.response.data.message.join("\n"));
+          setMessage(error.response.data.message || error.response.data);
         } else {
           setMessage(error.message);
         }
@@ -31,25 +35,24 @@ export default function EditMyCity() {
 
   let onSubmit = event => {
     event.preventDefault();
-
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     let properties = ["name", "continent", "population", "photo"];
     let newCity = {};
     properties.forEach(property => {
       newCity[property] = formRef.current.elements[property].value;
     });
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`, newCity)
+      .put(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`, newCity, headers)
       .then(response => {
         swal("City Edited", "The city was edited succesfully", "success");
         navigate(`/city/${response.data.id}`);
       })
       .catch(error => {
-        if(error.response) {
-          swal("Error", error.response.data.message, "error");
+        if (error.response) {
+          swal("Error", error.response.data.message || error.response.data, "error");
         } else {
-          swal("Error", error, "error");
+          swal("Error", error.message, "error");
         }
-        
       });
   };
 

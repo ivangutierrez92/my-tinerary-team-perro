@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import swal from "sweetalert";
 import "../styles/pages/EditCollection.css";
@@ -13,29 +14,26 @@ export default function MyEditHotels(params) {
   let [showEdit,setShowEdit] = useState(null);
   let [hotel, setHotel] = useState([]);
   let nav = useNavigate();
-  console.log(showEdit);
+  let { token }= useSelector(store => store.signIn);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/shows/${showId}`)
-      .then((res) => {
-        setShowEdit(res.data.response);
-      });
-  }, []);
+    const getShow=()=>axios.get(`${process.env.REACT_APP_API_URL}/api/shows/${showId}`)
+    
+    const getHotels=()=> axios.get(`${process.env.REACT_APP_API_URL}/api/hotels`)
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/hotels`)
-      .then((response) => {
-        setHotel(response.data.response);
+      Promise.all([getShow(), getHotels()])
+      .then(([showRes,hotelsRes]) => {
+        setShowEdit(showRes.data.response);
+        setHotel(hotelsRes.data.response);
       })
+    
       .catch((error) => {
         alert(`${error.response.data.message}, ${error.message}`);
       });
   }, []);
-  console.log(hotel);
 
   const onSubmit = (event) => {
+    let headers = { headers: { Authorization: `Bearer ${token}`}}
     let showObject = {};
 
     event.preventDefault();
@@ -44,11 +42,10 @@ export default function MyEditHotels(params) {
     inputs.forEach((input) => {
       showObject[input] = form.current.elements[input].value;
     });
-    // showObject["userId"] = "636d1ed3692e58acbf29845d";
     axios
       .patch(
         `${process.env.REACT_APP_API_URL}/api/shows/${showId}`,
-        showObject
+        showObject,headers
       )
       .then((response) => {
         swal(
@@ -67,14 +64,14 @@ export default function MyEditHotels(params) {
       });
   };
 
-  console.log(showEdit);
+
 
   return (
     <form ref={form} className="Form" onSubmit={onSubmit}>
       {showEdit && (
         <>
           <div className="Form-field">
-            <label htmlFor="show-name">Hotel Name: </label>
+            <label htmlFor="show-name">Show Name: </label>
             <input
               defaultValue={showEdit.name}
               type="text"

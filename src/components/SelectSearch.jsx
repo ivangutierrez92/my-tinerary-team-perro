@@ -3,7 +3,6 @@ import "../styles/components/select-search.css";
 
 
 export default function SelectSearch({select,searchInput,name,order}) {
-  console.log(name)
   return (
     <>
       <div className="select-search">

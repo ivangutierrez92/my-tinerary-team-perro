@@ -12,7 +12,6 @@ export default function HotelCard({ hotel }) {
     
     setCity(hotel.cityId);
   }, [hotel]);
-  // console.log(city.name)
   return (
     <>
       <article className="CollectionCard">
