@@ -26,15 +26,15 @@ export const adminRoutes = [
     link: "/newhotel",
   },
   {
+    name: "New Reaction",
+    link: "/newreaction",
+  },
+  {
     name: "My Cities",
     link: "/mycities",
   },
   {
     name: "My Hotels",
     link: "/myhotels",
-  },
-  {
-    name: "New Reaction",
-    link: "/newreaction",
   },
 ];
