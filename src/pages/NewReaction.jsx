@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
 export default function NewReaction() {
   const [itineraries, setItineraries] = useState([]);
   const [message, setMessage] = useState("");
-
+  const formRef = useRef(null);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/itineraries`)
@@ -22,6 +23,9 @@ export default function NewReaction() {
       });
   });
 
+  const onSubmit = () => {
+    
+  }
   return (
     <div className="EditCollection">
       <h1 className="EditCollection-title">New Reaction</h1>
