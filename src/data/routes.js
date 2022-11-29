@@ -15,7 +15,6 @@ export const userRoutes = [
     name: "My Tineraries",
     link: "/mytineraries",
   },
-
 ];
 export const adminRoutes = [
   {
@@ -34,6 +33,8 @@ export const adminRoutes = [
     name: "My Hotels",
     link: "/myhotels",
   },
-
-
+  {
+    name: "New Reaction",
+    link: "/newreaction",
+  },
 ];
