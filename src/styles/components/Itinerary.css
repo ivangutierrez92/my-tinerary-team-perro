@@ -56,7 +56,6 @@
   color: var(--black)
 }
 
-
 @media (max-width: 600px) {
   .CityItinerary-info {
     flex-direction: column;

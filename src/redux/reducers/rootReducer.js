@@ -1,5 +1,6 @@
 import cityReducer from "./cityReducer";
 import hotelReducer from "./hotelReducer";
+import reactionsReducer from "./reactionsReducer";
 import myCitiesReducer from "./myCitiesReducer";
 import myHotelsReducer from "./myHotelsReducer";
 import myShowsReducer from "./myShowsReducer";
@@ -14,6 +15,7 @@ const rootReducer = {
   myShows: myShowsReducer,
   myTineraries: myTinerariesReducer,
   signIn: signInReducer,
+  reactions: reactionsReducer,
 
 };
 

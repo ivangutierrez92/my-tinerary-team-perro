@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../styles/components/Activity.css";
+import Reaction from "./Reaction";
 
 export default function Itinerary({ itinerary }) {
+  let reactions = useSelector(store => store.reactions);
   let [isShowingComments, setIsShowingComments] = useState(false);
   let [indexCarousel, setIndexCarousel] = useState(0);
   useEffect(() => {
@@ -45,6 +48,13 @@ export default function Itinerary({ itinerary }) {
           </>
         )}
       </div>
+      {reactions[itinerary._id] && (
+        <div className="Activity-reactionContainer">
+          {reactions[itinerary._id].map(reaction => (
+            <Reaction key={reaction._id} name={reaction.name} icon={reaction.iconBack} count={reaction.count} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

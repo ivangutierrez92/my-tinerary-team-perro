@@ -1,0 +1,19 @@
+.Reaction {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 5px 10px 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black
+}
+.Reaction button {
+  border: none;
+  background-color: transparent;
+}
+.Reaction-icon {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  filter: grayscale(100);
+}
