@@ -4,7 +4,7 @@ import "../styles/pages/City.css";
 import Itinerary from "../components/Itinerary";
 import DetailCity from "../components/DetailCity";
 import axios from "axios";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import reactionsActions from "../redux/actions/reactionsActions";
 
 export default function City() {
@@ -14,7 +14,7 @@ export default function City() {
   let dispatch = useDispatch();
   let { getReactions } = reactionsActions;
   let [itineraries, setItineraries] = useState([]);
-
+  let {token} = useSelector(store => store.signIn);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`)
@@ -32,7 +32,7 @@ export default function City() {
     try {
       let res = await axios.get(`${process.env.REACT_APP_API_URL}/api/itineraries?cityId=${cityId}`);
       setItineraries(res.data.response)
-        dispatch(getReactions(res.data.response));
+        dispatch(getReactions({itineraries: res.data.response, token}));
       
     } catch (error) {
       setItineraries([]);

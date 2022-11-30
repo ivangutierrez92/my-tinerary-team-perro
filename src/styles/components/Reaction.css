@@ -10,8 +10,16 @@
 .Reaction button {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 .Reaction-icon {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+
+.Reaction-iconBack {
   width: 25px;
   height: 25px;
   object-fit: cover;
