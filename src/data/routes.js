@@ -15,6 +15,10 @@ export const userRoutes = [
     name: "My Tineraries",
     link: "/mytineraries",
   },
+  {
+    name: "My Reactions",
+    link: "/myreactions",
+  },
 ];
 export const adminRoutes = [
   {

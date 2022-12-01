@@ -5,13 +5,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
-import Swal from "sweetalert2";
 
 export default function NewReaction() {
   const [itineraries, setItineraries] = useState([]);
   const [message, setMessage] = useState("");
   const formRef = useRef(null);
-  const {token} = useSelector(store => store.signIn);
+  const { token } = useSelector(store => store.signIn);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/itineraries`)
@@ -31,24 +30,17 @@ export default function NewReaction() {
     event.preventDefault();
     let properties = ["name", "icon", "iconBack", "itineraryId"];
     let newReaction = {};
-    let headers = {headers: {"Authorization": `Bearer ${token}`}}
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     properties.forEach(property => {
       newReaction[property] = formRef.current.elements[property].value;
     });
     try {
-      let confirmation = await Swal.fire({
-        title: "Is the information correct?",
-        html: `
-      <ul style="list-style: none; display: flex; flex-direction: column; align-items: center;">
-      <li style="margin-bottom: 5px">Name: ${newReaction.name}</li>
-      <li style="margin-bottom: 5px; display: flex; align-items: center; gap: 5px">Icon: <img src="${newReaction.icon}" style="width: 30px; height: 30px; object-fit: cover;"</li>
-      <li style="margin-bottom: 5px; display: flex; align-items: center; gap: 5px">Icon Back: <img src="${newReaction.iconBack}" style="width: 30px; height: 30px; object-fit: cover;"/></li>
-      </ul>`,
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "cancel",
+      let confirmation = await swal({
+        title: "Is the icon correct?",
+        icon: newReaction.icon,
+        buttons: ["Cancel", "Confirm"],
       });
-      if (confirmation.isConfirmed) {
+      if (confirmation) {
         let res = await axios.post(`${process.env.REACT_APP_API_URL}/api/reactions`, newReaction, headers);
         if (res.data.success) {
           swal("Success", "The reaction was created successfully", "success");
