@@ -26,6 +26,7 @@ import signInActions from "./redux/actions/signInActions";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NewItinerary from "./pages/NewItinerary";
 import NewShow from "./pages/NewShow";
+import NewReaction from "./pages/NewReaction";
 function App() {
   let user = useSelector(store => store.signIn);
   let dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
             />
           }
         >
+          <Route path="/newreaction" element={<NewReaction />}/>
           <Route path="/mycities" element={<MyCities />} />
           <Route path="/mycities/:city" element={<EditMyCity />} />
           <Route path="/newcity" element={<NewCity />} />

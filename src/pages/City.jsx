@@ -4,31 +4,40 @@ import "../styles/pages/City.css";
 import Itinerary from "../components/Itinerary";
 import DetailCity from "../components/DetailCity";
 import axios from "axios";
+import { useDispatch, useSelector} from "react-redux";
+import reactionsActions from "../redux/actions/reactionsActions";
 
 export default function City() {
   let { city: cityId } = useParams();
   let [city, setCity] = useState({});
-  let [itineraries, setItineraries] = useState([]);
   let [loading, setLoading] = useState(true);
-
+  let dispatch = useDispatch();
+  let { getReactions } = reactionsActions;
+  let [itineraries, setItineraries] = useState([]);
+  let {token} = useSelector(store => store.signIn);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/cities/${cityId}`)
-      .then(res => setCity(res.data.response))
+      .then(res => {
+        setCity(res.data.response);
+        setLoading(false);
+      })
       .catch(error => {
         setLoading(false);
       });
-
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/itineraries?cityId=${cityId}`)
-      .then(res => {
-        setItineraries(res.data.response);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      setInitialItineraries();
   }, [cityId]);
+
+  const setInitialItineraries = async() => {
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_API_URL}/api/itineraries?cityId=${cityId}`);
+      setItineraries(res.data.response)
+        dispatch(getReactions({itineraries: res.data.response, token}));
+      
+    } catch (error) {
+      setItineraries([]);
+    }
+   }
   return (
     <>
       {loading && <h2 className="City-title">Loading...</h2>}
