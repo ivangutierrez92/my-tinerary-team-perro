@@ -37,13 +37,10 @@ export default function NewReaction() {
     });
     try {
       let confirmation = await Swal.fire({
-        title: "Is the information correct?",
-        html: `
-      <ul style="list-style: none; display: flex; flex-direction: column; align-items: center;">
-      <li style="margin-bottom: 5px">Name: ${newReaction.name}</li>
-      <li style="margin-bottom: 5px; display: flex; align-items: center; gap: 5px">Icon: <img src="${newReaction.icon}" style="width: 30px; height: 30px; object-fit: cover;"</li>
-      <li style="margin-bottom: 5px; display: flex; align-items: center; gap: 5px">Icon Back: <img src="${newReaction.iconBack}" style="width: 30px; height: 30px; object-fit: cover;"/></li>
-      </ul>`,
+        title: "Is the icon correct?",
+        imageUrl: newReaction.icon,
+        imageWidth: 50,
+        imageHeight: 50,
         showCancelButton: true,
         confirmButtonText: "Yes",
         cancelButtonText: "cancel",
