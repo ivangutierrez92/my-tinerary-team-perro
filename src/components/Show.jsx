@@ -1,10 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/components/show.css";
 import "../styles/components/Activity.css";
-export default function Show({ shows }) {
-  let [buttonComent, SetButtonComent] = useState(false);
+import Comments from "./Comments";
+import NewComment from "./NewComment";
+import { useRef } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
+import commentsActions from "../redux/actions/commentsActions";
+import { createPath } from "react-router";
 
+export default function Show({ shows }) {
+
+  let comments = useSelector((store) => store.comments);
+  let formRef = useRef(null);
+  let [buttonComent, SetButtonComent] = useState(false);
   const buttonClick = () => SetButtonComent(!buttonComent);
+  let user = useSelector((store) => store.signIn);
+  let dispatch = useDispatch();
+  let { getInicialComments, createComment } = commentsActions;
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    let newComment = {};
+    newComment["comment"] = formRef.current.elements["comment"].value;
+    newComment["showId"] = shows._id;
+  
+    try {
+      let answer = await swal("This comment will be posted", {
+        buttons: ["cancel", "ok"],
+        dangerMode: true,
+      });
+
+      if (answer) {
+        let headers = { headers: { Authorization: `Bearer ${user.token}` } };
+        let response =await dispatch(createComment({newComment,headers})).unwrap()
+
+        if (response.success) {
+              swal(
+                "Comment Posted",
+                "New Comment added successfully",
+                "success"
+              );
+              formRef.current.reset();
+            } else {
+              swal("Error", response.data.message.join("\n"), "error");
+            }
+    
+      }
+    } catch (error) {
+      swal("Something went wrong", error.message, "error");
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getInicialComments(shows._id));
+  }, []);
+
+  console.log(comments[shows._id]);
+   
 
   return (
     <article className="Activity">
@@ -18,7 +73,24 @@ export default function Show({ shows }) {
         <button className="Activity-button" onClick={buttonClick}>
           Comments
         </button>
-        {buttonComent ? <hr></hr> : ""}
+        {buttonComent ? (
+          <>
+            <NewComment formRef={formRef} onSubmit={onSubmit} user={user}  />
+          {
+              comments[shows._id]?.map((comment)=>(
+
+              <Comments comment={comment} user={comment.userId.name ||user.name} isUser = {user.id === (comment.userId._id||comment.userId)  }/>
+              
+              ))
+
+
+
+          }
+          
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </article>
   );
