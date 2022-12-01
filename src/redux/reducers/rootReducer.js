@@ -5,6 +5,8 @@ import myHotelsReducer from "./myHotelsReducer";
 import myShowsReducer from "./myShowsReducer";
 import myTinerariesReducer from "./myTinerariesReducer";
 import signInReducer from "./signInReducer";
+import commentsReducer from "./commentsReducer";
+
 
 const rootReducer = {
   city: cityReducer,
@@ -14,7 +16,7 @@ const rootReducer = {
   myShows: myShowsReducer,
   myTineraries: myTinerariesReducer,
   signIn: signInReducer,
-
+  comments: commentsReducer,
 };
 
 export default rootReducer;
