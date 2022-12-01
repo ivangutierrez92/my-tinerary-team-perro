@@ -5,47 +5,42 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
-import Swal from "sweetalert2";
 
 export default function NewReaction() {
   const [itineraries, setItineraries] = useState([]);
-  const [message, setMessage] = useState("");
+  const [shows, setShows] = useState([]);
   const formRef = useRef(null);
-  const {token} = useSelector(store => store.signIn);
+  const { token } = useSelector(store => store.signIn);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/itineraries`)
       .then(res => {
         setItineraries(res.data.response);
       })
-      .catch(error => {
-        if (error.response) {
-          setMessage(error.response.data.message || error.response.data);
-        } else {
-          setMessage(error.message);
-        }
-      });
+      .catch();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/shows`)
+      .then(res => {
+        setShows(res.data.response);
+      })
+      .catch(() => {});
   }, []);
 
   const onSubmit = async event => {
     event.preventDefault();
     let properties = ["name", "icon", "iconBack", "itineraryId"];
     let newReaction = {};
-    let headers = {headers: {"Authorization": `Bearer ${token}`}}
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     properties.forEach(property => {
       newReaction[property] = formRef.current.elements[property].value;
     });
     try {
-      let confirmation = await Swal.fire({
+      let confirmation = await swal({
         title: "Is the icon correct?",
-        imageUrl: newReaction.icon,
-        imageWidth: 50,
-        imageHeight: 50,
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "cancel",
+        icon: newReaction.icon,
+        buttons: ["Cancel", "Confirm"],
       });
-      if (confirmation.isConfirmed) {
+      if (confirmation) {
         let res = await axios.post(`${process.env.REACT_APP_API_URL}/api/reactions`, newReaction, headers);
         if (res.data.success) {
           swal("Success", "The reaction was created successfully", "success");
@@ -65,8 +60,8 @@ export default function NewReaction() {
   return (
     <div className="EditCollection">
       <h1 className="EditCollection-title">New Reaction</h1>
-      {message ? (
-        <h2 className="EditCollection-title">{message}</h2>
+      {!shows.length && !itineraries.length ? (
+        <h2 className="EditCollection-title">There aren't activities</h2>
       ) : (
         <form ref={formRef} onSubmit={onSubmit} className="EditCollectionForm">
           <div className="EditCollectionForm-field">
@@ -86,11 +81,21 @@ export default function NewReaction() {
           <div className="EditCollectionForm-field">
             <label htmlFor="itinerary">Itinerary:</label>
             {itineraries.length && (
-              <select name="itineraryId" id="itinerary" defaultValue="" className="NewCityForm-input">
+              <select name="itineraryId" id="itinerary" defaultValue="" className="EditCollectionForm-input">
                 <option value="">-- Select Itinerary --</option>
                 {itineraries.map(itinerary => (
                   <option key={itinerary._id} value={itinerary._id}>
                     {itinerary.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            {shows.length && (
+              <select name="showId" id="show" defaultValue="" className="EditCollectionForm-input">
+                <option value="">-- Select Show --</option>
+                {shows.map(show => (
+                  <option key={show._id} value={show._id}>
+                    {show.name}
                   </option>
                 ))}
               </select>
