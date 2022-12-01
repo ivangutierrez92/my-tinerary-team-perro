@@ -27,6 +27,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NewItinerary from "./pages/NewItinerary";
 import NewShow from "./pages/NewShow";
 import NewReaction from "./pages/NewReaction";
+import MyReactions from "./pages/MyReactions";
 function App() {
   let user = useSelector(store => store.signIn);
   let dispatch = useDispatch();
@@ -85,6 +86,7 @@ function App() {
           <Route path="/myShows" element={<MyShows />} />
           <Route path="/myshows/new" element={<NewShow />} />
           <Route path="/myShows/:show" element={<MyEditShows />} />
+          <Route path="/myreactions" element={<MyReactions />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
