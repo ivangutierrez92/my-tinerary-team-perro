@@ -31,12 +31,17 @@ let dispatch=useDispatch()
 
   
   }
-  const trash = ()=>{
+  const trash =async ()=>{
   let id= comment._id;
     
   let headers = { headers: { Authorization: `Bearer ${token}` } };
+    let res = await swal("Are you sure you want to delete ", {
+        buttons: ["Cancel", "Delete"],
+        dangerMode: true,
+      });
+      if(res){
    dispatch(deleteComments({ id, headers,showId:comment.showId }));
-
+      }
   }
 
 
