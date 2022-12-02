@@ -4,11 +4,10 @@ import "../styles/components/Activity.css";
 import Comments from "./Comments";
 import NewComment from "./NewComment";
 import { useRef } from "react";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import commentsActions from "../redux/actions/commentsActions";
-import { createPath } from "react-router";
 
 export default function Show({ shows }) {
 
@@ -45,7 +44,7 @@ export default function Show({ shows }) {
               );
               formRef.current.reset();
             } else {
-              swal("Error", response.data.message.join("\n"), "error");
+              swal("Error", response.message.join("\n"), "error");
             }
     
       }
@@ -59,7 +58,6 @@ export default function Show({ shows }) {
   }, []);
 
   console.log(comments[shows._id]);
-   
 
   return (
     <article className="Activity">

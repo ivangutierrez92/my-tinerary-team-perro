@@ -46,10 +46,60 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers}
 
 
 
-
-
   
 )
+
+const deleteComments = createAsyncThunk(
+  "deleteComment",
+  async ({ id, headers,showId }) => {
+    console.log(id)
+    console.log(headers)
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/comments/${id}`,
+        headers
+      );
+      console.log(response.data);
+      return{
+        
+        success: true,
+        id: response.data.id,
+        showId
+
+      } 
+    } catch (error) {
+      return {
+        success: false,
+        message: error.data.message || error.response.data || error.message,
+      };
+    }
+  }
+);
+
+const updateComments = createAsyncThunk(
+  "updateComments",
+  async ({ id,text,headers, showId }) => {
+  
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/comments/${id}`,{comment:text,showId:showId},
+        headers
+      );
+      console.log(response.data.id);
+      return {
+        success: true,
+        id: response.data.id,
+        comment:text,
+        showId,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.data.message || error.response.data || error.message,
+      };
+    }
+  }
+);
 
 
 
@@ -60,6 +110,8 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers}
 const commentsActions = {
   getInicialComments,
   createComment,
+  deleteComments,
+  updateComments,
 };
 
 export default commentsActions;

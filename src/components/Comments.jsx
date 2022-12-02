@@ -1,11 +1,43 @@
-import React from 'react'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
+import commentsActions from "../redux/actions/commentsActions";
+import "../styles/components/Comments.css";
 
-import "../styles/components/Comments.css"
-export default function Comments({comment,user,isUser}) {
+let { deleteComments, updateComments } = commentsActions;
+
+export default function Comments({ comment, user, isUser }) {
+  let {token}= useSelector(store=>store.signIn)
   let date = comment.createdAt.split("T");
+let dispatch=useDispatch()
+  const editing=()=>{
+  let id = comment._id;
+  let headers = { headers: { Authorization: `Bearer ${token}` } };
+  swal("Write something here:", {
+    content: "input",buttons:["cancel","update"]
+  }).then((value) =>{
+    console.log(value)
+    if (value != 0) {  
+      let text = value;
+      
+      dispatch(updateComments({ id, text, headers, showId: comment.showId })).unwrap();
+    }else{
+          swal("Error","Not be empty", "error");
+    }
+  });  
 
-  console.log(user)
 
+
+
+  
+  }
+  const trash = ()=>{
+  let id= comment._id;
+    
+  let headers = { headers: { Authorization: `Bearer ${token}` } };
+   dispatch(deleteComments({ id, headers,showId:comment.showId }));
+
+  }
 
 
 
@@ -19,14 +51,13 @@ export default function Comments({comment,user,isUser}) {
             <h4>{user}</h4>
             <h5>Date: {date[0]}</h5>
           </div>
-          <div className='user-options'>
+          <div className="user-options">
             <p>{comment.comment}</p>
             {isUser ? (
-              <img
-                src="/img/options.png"
-                alt="options"
-                className="options-comment"
-              ></img>
+              <div className="editing">
+                <img src="/img/bx-edit.svg" alt="" onClick={editing} />
+                <img src="/img/bx-trash.svg" alt="" onClick={trash}/>
+              </div>
             ) : null}
           </div>
         </div>
@@ -34,3 +65,5 @@ export default function Comments({comment,user,isUser}) {
     </div>
   );
 }
+
+
