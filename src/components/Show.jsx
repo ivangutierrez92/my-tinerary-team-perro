@@ -4,11 +4,11 @@ import "../styles/components/Activity.css";
 import Comments from "./Comments";
 import NewComment from "./NewComment";
 import { useRef } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import commentsActions from "../redux/actions/commentsActions";
-import { createPath } from "react-router";
+import Reaction from "./Reaction";
+import reactionsActions from "../redux/actions/reactionsActions";
 
 export default function Show({ shows }) {
 
@@ -19,6 +19,12 @@ export default function Show({ shows }) {
   let user = useSelector((store) => store.signIn);
   let dispatch = useDispatch();
   let { getInicialComments, createComment } = commentsActions;
+  let reactions = useSelector(store => store.reactions)
+  let {toggleShowReactions} = reactionsActions;
+
+  const onReaction = (name, showId) => {
+    dispatch(toggleShowReactions({name, showId, token: user.token}))
+  }
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -92,6 +98,13 @@ export default function Show({ shows }) {
           ""
         )}
       </div>
+      {reactions[shows._id] && (
+      <div className="Activity-reactionContainer">
+        {reactions[shows._id].map(reaction => (
+        <Reaction key={reaction._id} name={reaction.name} icon={reaction.icon} iconBack={reaction.iconBack} reacted={reaction.reacted} count={reaction.userId} onReaction={() => onReaction(reaction.name, shows._id)}/>
+    ))}
+            </div>
+          )}
     </article>
   );
 }

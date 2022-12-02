@@ -40,8 +40,8 @@ export default function MyReactions() {
                 <h2 className="MyReactions-title">{key}</h2>
                 {reactions[key].map(reaction => (
                   <div className="MyReactions-activity" style={{ backgroundColor: reactionColors[key] || "black" }}>
-                    <h3>{reaction.itineraryId.name}</h3>
-                    <img className="MyReactions-activity-image" src={reaction.itineraryId.photo[0]} />
+                    <h3>{reaction.itineraryId ? reaction.itineraryId.name : reaction.showId.name}</h3>
+                    <img className="MyReactions-activity-image" src={reaction.itineraryId ? reaction.itineraryId.photo[0] : reaction.showId.photo} />
                     <button
                       className="MyReactions-activity-button"
                       onClick={() => onDeleteReaction(reaction._id, reaction.name)}
