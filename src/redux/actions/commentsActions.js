@@ -32,7 +32,6 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers}
 
   try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/comments`,newComment,headers)
-      console.log(response.data)
       return response.data
 
 
@@ -52,14 +51,11 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers}
 const deleteComments = createAsyncThunk(
   "deleteComment",
   async ({ id, headers,showId }) => {
-    console.log(id)
-    console.log(headers)
     try {
       const response = await axios.delete(
         `${process.env.REACT_APP_API_URL}/api/comments/${id}`,
         headers
       );
-      console.log(response.data);
       return{
         
         success: true,
@@ -85,7 +81,6 @@ const updateComments = createAsyncThunk(
         `${process.env.REACT_APP_API_URL}/api/comments/${id}`,{comment:text,showId:showId},
         headers
       );
-      console.log(response.data.id);
       return {
         success: true,
         id: response.data.id,
