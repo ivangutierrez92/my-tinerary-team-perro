@@ -40,60 +40,46 @@ function App() {
   }, []);
   return (
     <Layout>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route
-          element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}
-        >
-        <Route path="/signin" element={<SignIn />} />
-        </Route>
-        <Route
-          element={<ProtectedRoute isAllowed={!user.logged || (user.role === "admin")} redirect="/" />}
-        >
-          <Route path="/signup" element={<SignUp userRole={user.role === "admin" ? "admin" : "user"} />} />
-        </Route>
-        <Route path="/hotels" element={<Hotels />} />
-        <Route path="/cities" element={<Cities />} />
-        <Route path="/city/:city" element={<City />} />
-        <Route path="/hotel/:id" element={<Hotel />} />
+      {!user.loading && (
+        <Routes>
+          <Route index element={<Home />} />
+          <Route element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}>
+            <Route path="/signin" element={<SignIn />} />
+          </Route>
+          <Route element={<ProtectedRoute isAllowed={!user.logged || user.role === "admin"} redirect="/" />}>
+            <Route path="/signup" element={<SignUp userRole={user.role === "admin" ? "admin" : "user"} />} />
+          </Route>
+          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/city/:city" element={<City />} />
+          <Route path="/hotel/:id" element={<Hotel />} />
 
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={user.role === "admin"}
-              redirect="/signin"
-            />
-          }
-        >
-          <Route path="/newreaction" element={<NewReaction />}/>
-          <Route path="/mycities" element={<MyCities />} />
-          <Route path="/mycities/:city" element={<EditMyCity />} />
-          <Route path="/newcity" element={<NewCity />} />
-          <Route path="/newhotel" element={<NewHotel />} />
-          <Route path="/myHotels" element={<MyHotels />} />
-          <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
-        </Route>
+          <Route element={<ProtectedRoute isAllowed={user.role === "admin"} redirect="/signin" />}>
+            <Route path="/newreaction" element={<NewReaction />} />
+            <Route path="/mycities" element={<MyCities />} />
+            <Route path="/mycities/:city" element={<EditMyCity />} />
+            <Route path="/newcity" element={<NewCity />} />
+            <Route path="/newhotel" element={<NewHotel />} />
+            <Route path="/myHotels" element={<MyHotels />} />
+            <Route path="/myHotels/:hotel" element={<MyEditHotels />} />
+          </Route>
 
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={user.role === "user" || user.role === "admin"}
-              redirect="/signin"
-            />
-          }
-        >
-          <Route path="/profile" element={<UpdateProfile />} />
-          <Route path="/mytineraries" element={<MyTineraries />} />
-          <Route path="/mytineraries/new" element={<NewItinerary />} />
-          <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
-          <Route path="/myShows" element={<MyShows />} />
-          <Route path="/myshows/new" element={<NewShow />} />
-          <Route path="/myShows/:show" element={<MyEditShows />} />
-          <Route path="/myreactions" element={<MyReactions />} />
-        </Route>
+          <Route
+            element={<ProtectedRoute isAllowed={user.role === "user" || user.role === "admin"} redirect="/signin" />}
+          >
+            <Route path="/profile" element={<UpdateProfile />} />
+            <Route path="/mytineraries" element={<MyTineraries />} />
+            <Route path="/mytineraries/new" element={<NewItinerary />} />
+            <Route path="/mytineraries/:itinerary" element={<EditMyTinerary />} />
+            <Route path="/myShows" element={<MyShows />} />
+            <Route path="/myshows/new" element={<NewShow />} />
+            <Route path="/myShows/:show" element={<MyEditShows />} />
+            <Route path="/myreactions" element={<MyReactions />} />
+          </Route>
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
     </Layout>
   );
 }
