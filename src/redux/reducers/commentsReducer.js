@@ -58,7 +58,6 @@ const commentsReducer = createReducer(initialState, (builder) => {
             return comment;
           }
         });
-        console.log(newComments);
 
         return {
           ...state,
