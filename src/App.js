@@ -45,10 +45,13 @@ function App() {
         <Route
           element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}
         >
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn />} />
         </Route>
-
+        <Route
+          element={<ProtectedRoute isAllowed={!user.logged || (user.role === "admin")} redirect="/" />}
+        >
+          <Route path="/signup" element={<SignUp userRole={user.role === "admin" ? "admin" : "user"} />} />
+        </Route>
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/city/:city" element={<City />} />

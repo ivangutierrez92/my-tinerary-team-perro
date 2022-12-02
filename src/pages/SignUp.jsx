@@ -6,7 +6,7 @@ import { Link as LinkRouter } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 
-export default function SignUp() {
+export default function SignUp({ userRole }) {
   let formRef = useRef(null);
 
   const sendData = async event => {
@@ -17,7 +17,7 @@ export default function SignUp() {
     properties.forEach(property => {
       newUser[property] = formRef.current.elements[property].value;
     });
-    newUser.role = "user";
+    newUser.role = userRole;
     let confirmation;
     try {
       confirmation = await swal(
@@ -28,8 +28,7 @@ export default function SignUp() {
         Age: ${newUser.age}`,
         { buttons: ["Cancel", "Yes"] }
       );
-    } catch (error) {
-    }
+    } catch (error) {}
     if (confirmation) {
       try {
         let response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, newUser);
@@ -55,7 +54,9 @@ export default function SignUp() {
 
   return (
     <div className="SignUp">
-      <h1 className="SignUp-title">Register to share your adventures!</h1>
+      <h1 className="SignUp-title">
+        {userRole === "admin" ? "Create a new Admin" : "Register to share your adventures!"}
+      </h1>
       <SignUpForm formRef={formRef} onSubmit={sendData} />
       <GoogleButton content="SIGN UP WITH GOOGLE" />
       <LinkRouter to="/signin" className="sign-link">
