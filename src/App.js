@@ -20,7 +20,7 @@ import MyEditShows from "./pages/MyEditShows";
 import MyTineraries from "./pages/MyTineraries";
 import EditMyTinerary from "./pages/EditMyTinerary";
 import UpdateProfile from "./pages/UpdateProfile";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import signInActions from "./redux/actions/signInActions";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -30,17 +30,20 @@ import NewReaction from "./pages/NewReaction";
 import MyReactions from "./pages/MyReactions";
 function App() {
   let user = useSelector(store => store.signIn);
+  let [loading, setLoading] = useState(true);
   let dispatch = useDispatch();
   let { resendData } = signInActions;
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token) {
       dispatch(resendData(token.token.user));
+    } else {
+      setLoading(false);
     }
   }, []);
   return (
     <Layout>
-      {!user.loading && (
+      {(!user.loading || !loading) && (
         <Routes>
           <Route index element={<Home />} />
           <Route element={<ProtectedRoute isAllowed={!user.logged} redirect="/" />}>

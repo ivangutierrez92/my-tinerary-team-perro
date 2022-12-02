@@ -27,7 +27,7 @@ const resendData = createAsyncThunk("resendData", async token => {
     };
   } catch (error) {
     if (error.response) {
-      return { message: error.response.data.message, success: false };
+      return { message: error.response.data.message || error.response.data, success: false };
     } else {
       return { message: error.message, success: false };
     }
