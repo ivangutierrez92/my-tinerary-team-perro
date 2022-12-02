@@ -57,7 +57,6 @@ export default function Show({ shows }) {
     dispatch(getInicialComments(shows._id));
   }, []);
 
-  console.log(comments[shows._id]);
 
   return (
     <article className="Activity">
