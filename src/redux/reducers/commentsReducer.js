@@ -13,7 +13,6 @@ const commentsReducer = createReducer(initialState, (builder) => {
           ...state,
         };
         newState[action.payload.showId] = action.payload.response;
-        // console.log(newState);
         return newState;
       } else {
         let newState = {
@@ -24,7 +23,6 @@ const commentsReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(createComment.fulfilled, (state, action) => {
-      console.log(action);
       if (action.payload.success) {
         let newState = {
           ...state,
@@ -42,7 +40,6 @@ const commentsReducer = createReducer(initialState, (builder) => {
         let newComments = state[action.payload.showId].filter(
           (coment) => coment._id !== action.payload.id
         );
-        console.log(action.payload);
         return {
           ...state,
           [action.payload.showId]: newComments,
