@@ -16,7 +16,6 @@ let dispatch=useDispatch()
   swal("Write something here:", {
     content: "input",buttons:["cancel","update"]
   }).then((value) =>{
-    console.log(value)
     if (value != 0) {  
       let text = value;
       
