@@ -1,7 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import commentsActions from "../actions/commentsActions";
+import signInActions from "../actions/signInActions";
 const { getInicialComments, createComment, deleteComments, updateComments } =
   commentsActions;
+const {signout} = signInActions;
 
 const initialState = {};
 
@@ -63,6 +65,11 @@ const commentsReducer = createReducer(initialState, (builder) => {
           ...state,
           [action.payload.showId]: newComments,
         };
+      }
+    })
+    .addCase(signout.fulfilled, (state, action) => {
+      if (action.payload.success) {
+        return initialState;
       }
     });
 });

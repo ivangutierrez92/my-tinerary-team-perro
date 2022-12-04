@@ -1,7 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import hotelActions from "../actions/hotelActions";
+import signInActions from "../actions/signInActions";
 
 const { getHotelBefore, getHotelAfter } = hotelActions;
+const {signout} = signInActions;
 
 const initialState = {
   hotelList: [],
@@ -33,6 +35,11 @@ const hotelReducer = createReducer(initialState, (builder) => {
         ...state,
         hotelList: [],
       };
+    })
+    .addCase(signout.fulfilled, (state, action) => {
+      if (action.payload.success) {
+        return initialState;
+      }
     });
 });
 
