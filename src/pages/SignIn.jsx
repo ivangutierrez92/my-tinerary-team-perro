@@ -3,14 +3,13 @@ import SignInForm from "../components/SignInForm";
 import "../styles/pages/sign-in.css";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import signInActions from "../redux/actions/signInActions";
 import { useNavigate } from "react-router";
 import swal from "sweetalert";
 
 export default function SignIn() {
   const nav = useNavigate();
-  let { logged } = useSelector((store) => store.signIn);
   let { sendData } = signInActions;
 
   let formRef = useRef(null);

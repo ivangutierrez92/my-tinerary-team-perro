@@ -19,8 +19,8 @@ const getInicialComments = createAsyncThunk(
     } catch (error) {
       return {
       success: false,
-      message:error.response.data.message || error.response.data|| error.message
-
+      message:error.response.data.message || error.response.data|| error.message,
+      id
       }
 
     }
@@ -45,7 +45,8 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers,
   } catch (error) {
       return{
         success:false,
-        message:error.data.message|| error.response.data || error.message
+        message:error.data.message|| error.response.data || error.message,
+        
       }
     }
   }
