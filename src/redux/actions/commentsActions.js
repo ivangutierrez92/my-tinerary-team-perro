@@ -3,15 +3,15 @@ import axios from "axios";
 
 const getInicialComments = createAsyncThunk(
   "getInicialComments",
-  async (id) => {
+  async ({id,query}) => {
 
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/comments?showId=${id}`
+        `${process.env.REACT_APP_API_URL}/api/comments`,query
       );
-     
+     console.log(response.data)
       return {
-        showId: id,
+        id,
         success:true,
         response:response.data.response,
 
@@ -28,12 +28,18 @@ const getInicialComments = createAsyncThunk(
 );
 
 
-const createComment= createAsyncThunk("createComment",async({newComment,headers})=>{
+const createComment= createAsyncThunk("createComment",async({newComment,headers,id})=>{
 
   try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/comments`,newComment,headers)
       console.log(response.data)
-      return response.data
+      return {
+      success: true,
+      response:response.data.response,
+      id,
+      }
+      
+      
 
 
   } catch (error) {
@@ -51,7 +57,7 @@ const createComment= createAsyncThunk("createComment",async({newComment,headers}
 
 const deleteComments = createAsyncThunk(
   "deleteComment",
-  async ({ id, headers,showId }) => {
+  async ({ id, headers,activityId }) => {
     console.log(id)
     console.log(headers)
     try {
@@ -64,13 +70,14 @@ const deleteComments = createAsyncThunk(
         
         success: true,
         id: response.data.id,
-        showId
+        activityId
 
       } 
     } catch (error) {
       return {
         success: false,
-        message: error.data.message || error.response.data || error.message,
+        //! para mostrar todos los errores 
+        message: error.response.data.message || error.response.data || error.message,
       };
     }
   }
@@ -78,19 +85,19 @@ const deleteComments = createAsyncThunk(
 
 const updateComments = createAsyncThunk(
   "updateComments",
-  async ({ id,text,headers, showId }) => {
-  
+  async ({ id, text, headers, activityId }) => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/comments/${id}`,{comment:text,showId:showId},
+        `${process.env.REACT_APP_API_URL}/api/comments/${id}`,
+        { comment: text },
         headers
       );
       console.log(response.data.id);
       return {
         success: true,
         id: response.data.id,
-        comment:text,
-        showId,
+        comment: text,
+        activityId,
       };
     } catch (error) {
       return {

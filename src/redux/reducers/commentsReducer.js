@@ -12,14 +12,14 @@ const commentsReducer = createReducer(initialState, (builder) => {
         let newState = {
           ...state,
         };
-        newState[action.payload.showId] = action.payload.response;
-        // console.log(newState);
+        newState[action.payload.id] = action.payload.response;
+        
         return newState;
       } else {
         let newState = {
           ...state,
         };
-        newState[action.payload.showId] = [];
+        newState[action.payload.id] = [];
         return newState;
       }
     })
@@ -30,28 +30,28 @@ const commentsReducer = createReducer(initialState, (builder) => {
           ...state,
         };
 
-        newState[action.payload.response.showId] = [
+        newState[action.payload.id] = [
           action.payload.response,
-          ...newState[action.payload.response.showId],
+          ...newState[action.payload.id],
         ];
         return newState;
       }
     })
     .addCase(deleteComments.fulfilled, (state, action) => {
       if (action.payload.success) {
-        let newComments = state[action.payload.showId].filter(
+        let newComments = state[action.payload.activityId].filter(
           (coment) => coment._id !== action.payload.id
         );
         console.log(action.payload);
         return {
           ...state,
-          [action.payload.showId]: newComments,
+          [action.payload.activityId]: newComments,
         };
       }
     })
     .addCase(updateComments.fulfilled, (state, action) => {
       if (action.payload.success) {
-        let newComments = state[action.payload.showId].map((comment) => {
+        let newComments = state[action.payload.activityId].map((comment) => {
           if (comment._id === action.payload.id) {
             return {
               ...comment,
@@ -65,7 +65,7 @@ const commentsReducer = createReducer(initialState, (builder) => {
 
         return {
           ...state,
-          [action.payload.showId]: newComments,
+          [action.payload.activityId]: newComments,
         };
       }
     });
