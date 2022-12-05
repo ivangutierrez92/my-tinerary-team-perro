@@ -1,6 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
 import myTinerariesActions from "../actions/myTinerariesActions";
+import signInActions from "../actions/signInActions";
 const { getInitialMyTineraries, deleteItinerary } = myTinerariesActions;
+const {signout} = signInActions;
 
 const initialState = {
   itineraries: [],
@@ -24,6 +26,11 @@ const myTinerariesReducer = createReducer(initialState, builder => {
         let message = "";
         message = newItineraries.length ? "" : "Couldn't find itineraries for this user";
         return { ...state, message, itineraries: newItineraries };
+      }
+    })
+    .addCase(signout.fulfilled, (state, action) => {
+      if (action.payload.success) {
+        return initialState;
       }
     });
 });

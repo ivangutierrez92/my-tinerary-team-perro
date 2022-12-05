@@ -1,8 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
 import cityActions from "../actions/cityActions";
 import myCitiesActions from "../actions/myCitiesActions";
+import signInActions from "../actions/signInActions";
 const { getInitialData, getCities } = cityActions;
 const { deleteCity } = myCitiesActions;
+const { signout } = signInActions;
 
 const initialState = {
   cities: [],
@@ -54,6 +56,11 @@ const cityReducer = createReducer(initialState, builder => {
         ...state,
         cities: newCities,
       };
+    })
+    .addCase(signout.fulfilled, (state, action) => {
+      if (action.payload.success) {
+        return initialState;
+      }
     });
 });
 

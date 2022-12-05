@@ -46,7 +46,7 @@ export default function Navbar() {
         let res = await dispatch(signoutAction(user.token)).unwrap();
         if (res.success) {
           swal("success", res.message, "success");
-          navigate('/');
+          navigate("/");
         } else {
           swal("error", res.message, "error");
         }
@@ -97,6 +97,11 @@ export default function Navbar() {
                 <LinkRouter to={`/profile`}>
                   <button className="user-name">{user.name}</button>
                 </LinkRouter>
+                {user.role === "admin" && (
+                  <LinkRouter to={`/signup`}>
+                    <button className="user-link border-bottom-white border-round-top">New Admin</button>
+                  </LinkRouter>
+                )}
                 <button onClick={signout} className="user-link border-round-bottom">
                   Sign out
                 </button>

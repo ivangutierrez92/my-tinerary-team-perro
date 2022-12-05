@@ -1,6 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
 import myReactionsActions from "../actions/myReactionsActions";
+import signInActions from "../actions/signInActions";
 const { getMyReactions, deleteMyReaction } = myReactionsActions;
+const {signout} = signInActions;
 
 const initialState = null;
 
@@ -25,6 +27,11 @@ const myReactionsReducer = createReducer(initialState, builder => {
           return reaction._id !== action.payload.id;
         });
         return newState;
+      }
+    })
+    .addCase(signout.fulfilled, (state, action) => {
+      if (action.payload.success) {
+        return initialState;
       }
     });
 });
