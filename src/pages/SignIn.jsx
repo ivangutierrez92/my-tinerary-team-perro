@@ -3,14 +3,13 @@ import SignInForm from "../components/SignInForm";
 import "../styles/pages/sign-in.css";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import signInActions from "../redux/actions/signInActions";
 import { useNavigate } from "react-router";
+import swal from "sweetalert";
 
 export default function SignIn() {
   const nav = useNavigate();
-
-  let { logged } = useSelector((store) => store.signIn);
   let { sendData } = signInActions;
 
   let formRef = useRef(null);
@@ -25,9 +24,15 @@ export default function SignIn() {
     );
 
     try {
-      let res = await dispatch(sendData(object));
+      let res = await dispatch(sendData(object)).unwrap();
       if (res.payload.success) {
         nav(`/`);
+      } else {
+        if (Array.isArray(res.payload.message)) {
+          swal("error", res.payload.message.join("\n"), "error");
+        } else {
+          swal("error", res.payload.message, "error");
+        }
       }
     } catch (error) {}
   };

@@ -40,7 +40,7 @@ export default function Show({ shows }) {
 
       if (answer) {
         let headers = { headers: { Authorization: `Bearer ${user.token}` } };
-        let response = await dispatch(createComment({ newComment, headers })).unwrap();
+        let response =await dispatch(createComment({newComment,headers,id:shows._id})).unwrap()
 
         if (response.success) {
           swal("Comment Posted", "New Comment added successfully", "success");
@@ -55,7 +55,7 @@ export default function Show({ shows }) {
   };
 
   useEffect(() => {
-    dispatch(getInicialComments(shows._id));
+    dispatch(getInicialComments({id:shows._id,query:{params:{showId:shows._id}}}));
   }, []);
 
   return (
@@ -72,14 +72,22 @@ export default function Show({ shows }) {
         </button>
         {buttonComent ? (
           <>
-            <NewComment formRef={formRef} onSubmit={onSubmit} user={user} />
-            {comments[shows._id]?.map(comment => (
-              <Comments
-                comment={comment}
-                user={comment.userId.name || user.name}
-                isUser={user.id === (comment.userId._id || comment.userId)}
-              />
-            ))}
+          {
+            user.logged &&
+            <NewComment formRef={formRef} onSubmit={onSubmit} user={user}  />
+          }
+          {
+
+              comments[shows._id]?.map((comment)=>(
+
+              <Comments comment={comment} user={comment.userId.name ||user.name} isUser = {user.id === (comment.userId._id||comment.userId) } activityId={shows._id} />
+              
+              ))
+
+
+
+          }
+          
           </>
         ) : (
           ""

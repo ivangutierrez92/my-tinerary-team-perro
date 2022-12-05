@@ -16,8 +16,7 @@
   background-color: rgba(112, 112, 112, 0.568);
   padding: 1rem;
   border-radius: 0rem 1rem 1rem 1rem;
-  width: 40vw;
-
+  flex-grow: 1;
 }
 
 .text-comment-other{
@@ -25,8 +24,8 @@
     background-color: var(--primary-color-1);
   padding: 1rem;
   border-radius: 0rem 1rem 1rem 1rem;
-  width: 40vw;
 
+  flex-grow: 1;
 
 
 }
@@ -40,6 +39,10 @@
   display: flex;
   justify-content: space-between;
   
+}
+.info-comments{
+  display: flex;
+  width: 100%;
 }
 
 
@@ -132,7 +135,14 @@ flex-grow: 1;
   display: flex;
     justify-content: space-between;
     align-items: center;
+   word-break: break-all;
 }
 
 
 
+
+
+.editing img:hover{
+  cursor: pointer;
+  scale: 1.1;
+}

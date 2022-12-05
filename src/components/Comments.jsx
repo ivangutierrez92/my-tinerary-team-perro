@@ -6,44 +6,39 @@ import "../styles/components/Comments.css";
 
 let { deleteComments, updateComments } = commentsActions;
 
-export default function Comments({ comment, user, isUser }) {
-  let {token}= useSelector(store=>store.signIn)
+export default function Comments({ comment, user, isUser, activityId }) {
+  let { token } = useSelector((store) => store.signIn);
   let date = comment.createdAt.split("T");
-let dispatch=useDispatch()
-  const editing=()=>{
-  let id = comment._id;
-  let headers = { headers: { Authorization: `Bearer ${token}` } };
-  swal("Write something here:", {
-    content: "input",buttons:["cancel","update"]
-  }).then((value) =>{
-    if (value != 0) {  
-      let text = value;
-      
-      dispatch(updateComments({ id, text, headers, showId: comment.showId })).unwrap();
-    }else{
-          swal("Error","Not be empty", "error");
-    }
-  });  
+  let dispatch = useDispatch();
+  const editing = () => {
+    let id = comment._id;
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
+    swal("Write something here:", {
+      content: "input",
+      buttons: ["cancel", "update"],
+    }).then((value) => {
+      console.log(value);
+      if (value !== 0) {
+        let text = value;
 
-
-
-
-  
-  }
-  const trash =async ()=>{
-  let id= comment._id;
-    
-  let headers = { headers: { Authorization: `Bearer ${token}` } };
-    let res = await swal("Are you sure you want to delete ", {
-        buttons: ["Cancel", "Delete"],
-        dangerMode: true,
-      });
-      if(res){
-   dispatch(deleteComments({ id, headers,showId:comment.showId }));
+        dispatch(updateComments({ id, text, headers, activityId })).unwrap();
+      } else {
+        swal("Error", "Not be empty", "error");
       }
-  }
+    });
+  };
+  const trash = async () => {
+    let id = comment._id;
 
-
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
+    let res = await swal("Are you sure you want to delete ", {
+      buttons: ["Cancel", "Delete"],
+      dangerMode: true,
+    });
+    if (res) {
+      dispatch(deleteComments({ id, headers, activityId }));
+    }
+  };
 
   return (
     <div className="comments">
@@ -60,7 +55,7 @@ let dispatch=useDispatch()
             {isUser ? (
               <div className="editing">
                 <img src="/img/bx-edit.svg" alt="" onClick={editing} />
-                <img src="/img/bx-trash.svg" alt="" onClick={trash}/>
+                <img src="/img/bx-trash.svg" alt="" onClick={trash} />
               </div>
             ) : null}
           </div>

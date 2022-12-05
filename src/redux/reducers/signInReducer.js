@@ -31,14 +31,8 @@ const signInReducer= createReducer(initialState,(builder)=>{
     }
  
     return newState;
-   }else{
-    if(Array.isArray(action.payload.message)){
-      swal("error",action.payload.message.join("\n"),"error")
-
-    }else{
-      swal("error",action.payload.message,"error")
-    }
-   } 
+   }
+   
   })
   .addCase(resendData.fulfilled, (state, action)=>{
     const{success,response,token}= action.payload       
