@@ -8,32 +8,38 @@ import swal from "sweetalert";
 
 export default function NewReaction() {
   const [itineraries, setItineraries] = useState([]);
-  const [message, setMessage] = useState("");
+  const [shows, setShows] = useState([]);
   const formRef = useRef(null);
   const { token } = useSelector(store => store.signIn);
+  const [activity, setActivity] = useState("itineraryId");
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/itineraries`)
       .then(res => {
         setItineraries(res.data.response);
       })
-      .catch(error => {
-        if (error.response) {
-          setMessage(error.response.data.message || error.response.data);
-        } else {
-          setMessage(error.message);
-        }
-      });
+      .catch();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/shows`)
+      .then(res => {
+        setShows(res.data.response);
+      })
+      .catch(() => {});
   }, []);
+
+  const changeActivity = activityChanged => {
+    setActivity(activityChanged);
+  };
 
   const onSubmit = async event => {
     event.preventDefault();
-    let properties = ["name", "icon", "iconBack", "itineraryId"];
+    let properties = ["name", "icon", "iconBack"];
     let newReaction = {};
     let headers = { headers: { Authorization: `Bearer ${token}` } };
     properties.forEach(property => {
       newReaction[property] = formRef.current.elements[property].value;
     });
+    newReaction[activity] = formRef.current.elements[activity].value;
     try {
       let confirmation = await swal({
         title: "Is the icon correct?",
@@ -60,8 +66,8 @@ export default function NewReaction() {
   return (
     <div className="EditCollection">
       <h1 className="EditCollection-title">New Reaction</h1>
-      {message ? (
-        <h2 className="EditCollection-title">{message}</h2>
+      {!shows.length && !itineraries.length ? (
+        <h2 className="EditCollection-title">There aren't activities</h2>
       ) : (
         <form ref={formRef} onSubmit={onSubmit} className="EditCollectionForm">
           <div className="EditCollectionForm-field">
@@ -78,19 +84,44 @@ export default function NewReaction() {
             <input type="text" name="iconBack" id="iconBack" className="EditCollectionForm-input" />
           </div>
 
-          <div className="EditCollectionForm-field">
-            <label htmlFor="itinerary">Itinerary:</label>
-            {itineraries.length && (
-              <select name="itineraryId" id="itinerary" defaultValue="" className="NewCityForm-input">
-                <option value="">-- Select Itinerary --</option>
-                {itineraries.map(itinerary => (
-                  <option key={itinerary._id} value={itinerary._id}>
-                    {itinerary.name}
-                  </option>
-                ))}
-              </select>
-            )}
+          <div>
+            <button type="button" onClick={() => changeActivity("itineraryId")}>
+              Itineraries
+            </button>
+            <button type="button" onClick={() => changeActivity("showId")}>
+              Shows
+            </button>
           </div>
+          {activity === "itineraryId" ? (
+            <>
+              <label htmlFor="itinerary">Itinerary:</label>
+              {itineraries.length && (
+                <select name="itineraryId" id="itinerary" defaultValue="" className="EditCollectionForm-input">
+                  <option value="">-- Select Itinerary --</option>
+                  {itineraries.map(itinerary => (
+                    <option key={itinerary._id} value={itinerary._id}>
+                      {itinerary.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </>
+          ) : (
+            <>
+              <label htmlFor="show">Show:</label>
+              {shows.length && (
+                <select name="showId" id="show" defaultValue="" className="EditCollectionForm-input">
+                  <option value="">-- Select Show --</option>
+                  {shows.map(show => (
+                    <option key={show._id} value={show._id}>
+                      {show.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </>
+          )}
+          <div className="EditCollectionForm-field"></div>
 
           <input type="submit" value="Create Reaction" className="EditCollectionForm-newButton" />
         </form>

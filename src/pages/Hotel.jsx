@@ -4,11 +4,17 @@ import "../styles/pages/Hotel.css";
 import DetailHotel from "../components/DetailHotel";
 import Show from "../components/Show";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import reactionsActions from "../redux/actions/reactionsActions";
 
 export default function Hotel() {
   let [hotel, setHotel] = useState({});
   let [shows, setShow] = useState({});
   let { id } = useParams();
+  let { token } = useSelector(store => store.signIn);
+  let {getShowsReactions} = reactionsActions;
+
+  let dispatch = useDispatch();
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/hotels/${id}`)
@@ -20,20 +26,22 @@ export default function Hotel() {
         // manejar error
       });
 
-       axios
-         .get(`${process.env.REACT_APP_API_URL}/api/shows?hotelId=${id}`)
-         .then(function (response) {
-           // manejar respuesta exitosa
-           setShow(response.data.response);
-         })
-         .catch(function (error) {
-           // manejar error
-         });
-
-
-
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/shows?hotelId=${id}`)
+      .then(function (response) {
+        // manejar respuesta exitosa
+        setShow(response.data.response);
+      })
+      .catch(function (error) {
+        // manejar error
+      });
   }, [id]);
 
+  useEffect(() => {
+    if (Object.keys(shows).length) {
+      dispatch(getShowsReactions({ shows, token }));
+    }
+  }, [shows]);
 
   return (
     <div className="container-hotel">
