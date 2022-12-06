@@ -10,6 +10,7 @@ const initialState = {
   logged:false,
   role:"",
   token:"",
+  loading: true
 }
 
 const signInReducer= createReducer(initialState,(builder)=>{
@@ -31,14 +32,8 @@ const signInReducer= createReducer(initialState,(builder)=>{
     }
  
     return newState;
-   }else{
-    if(Array.isArray(action.payload.message)){
-      swal("error",action.payload.message.join("\n"),"error")
-
-    }else{
-      swal("error",action.payload.message,"error")
-    }
-   } 
+   }
+   
   })
   .addCase(resendData.fulfilled, (state, action)=>{
     const{success,response,token}= action.payload       
@@ -53,16 +48,16 @@ const signInReducer= createReducer(initialState,(builder)=>{
       logged:true,
       role:user.role,
       token:token,
+      loading: false
     }
    
     return newState;
    }else{
-    if(Array.isArray(action.payload.message)){
-      swal("error",action.payload.message.join("\n"),"error")
-
-    }else{
-      swal("error",action.payload.message,"error")
+    let newState = {
+      ...state,
+      loading: false
     }
+    return newState;
    } 
 
   })

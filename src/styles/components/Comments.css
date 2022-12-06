@@ -1,0 +1,148 @@
+
+.comments {
+  display: flex;
+  gap: 1rem;
+  
+  /* flex-wrap: wrap; */
+}
+
+.photo-profile {
+  height: 60px;
+  border-radius: 10rem;
+}
+
+.text-comment {
+  /* background-color:var(--tertiary-color-1); */
+  background-color: rgba(112, 112, 112, 0.568);
+  padding: 1rem;
+  border-radius: 0rem 1rem 1rem 1rem;
+  flex-grow: 1;
+}
+
+.text-comment-other{
+
+    background-color: var(--primary-color-1);
+  padding: 1rem;
+  border-radius: 0rem 1rem 1rem 1rem;
+
+  flex-grow: 1;
+
+
+}
+
+
+
+
+
+
+.info-comment {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.info-comments{
+  display: flex;
+  width: 100%;
+}
+
+
+.new-comments {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  /* flex-wrap: wrap; */
+}
+
+.container-comment input{
+
+border:solid 3px  rgba(112, 112, 112, 0.568) ;  
+border-radius:  0rem 3rem 3rem 3rem;
+background-color: #00539C;
+font-size: 1.2rem;
+height: 50px;
+padding: 1rem;
+color: var(--white);
+/* width: 50%; */
+flex-grow: 1;
+}
+
+.container-comment input:focus{
+  outline-color: var(--white);
+
+}
+.button-comment{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: .1rem; */
+  padding: 6px;
+  height:50px;
+  background-color:#00539C ;
+  border:none;
+  border-radius: 1rem;
+  color: var(--white);
+  width: 90px;
+}
+
+.button-comment img{
+  transform: rotate(-45deg);
+
+}
+
+.button-comment:hover{
+  background-color:rgba(112, 112, 112, 0.568); 
+  cursor: pointer;
+  transition: .5s;
+}
+.container-comment{
+  flex-grow: 1;
+  display: flex;
+  /* position: relative; */
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;  
+}
+
+.clean-button{
+  
+  right: 1px;
+  width: 60px;
+  height: 50px;
+  border:none;
+  border-radius:1rem;
+  cursor:pointer;
+  background-color:#00539C ;
+
+}
+
+.clean-button:hover{
+
+ background-color:rgba(112, 112, 112, 0.568); 
+  cursor: pointer;
+  transition: .5s;
+
+
+
+
+}
+
+.options-comment{
+  scale: 0.5;
+
+}
+
+.user-options{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+   word-break: break-all;
+}
+
+
+
+
+
+.editing img:hover{
+  cursor: pointer;
+  scale: 1.1;
+}

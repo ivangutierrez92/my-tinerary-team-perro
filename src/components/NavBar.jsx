@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/components/NavBar.css";
-import { Link as LinkRouter, useLocation } from "react-router-dom";
+import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
 import { routes, adminRoutes, guestRoutes, userRoutes } from "../data/routes";
 import { useDispatch, useSelector } from "react-redux";
 import signInActions from "../redux/actions/signInActions";
@@ -13,6 +13,7 @@ export default function Navbar() {
   let user = useSelector(store => store.signIn);
   let location = useLocation();
   let dispatch = useDispatch();
+  let navigate = useNavigate();
   let { signout: signoutAction } = signInActions;
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export default function Navbar() {
         let res = await dispatch(signoutAction(user.token)).unwrap();
         if (res.success) {
           swal("success", res.message, "success");
+          navigate("/");
         } else {
           swal("error", res.message, "error");
         }
@@ -95,6 +97,11 @@ export default function Navbar() {
                 <LinkRouter to={`/profile`}>
                   <button className="user-name">{user.name}</button>
                 </LinkRouter>
+                {user.role === "admin" && (
+                  <LinkRouter to={`/signup`}>
+                    <button className="user-link border-bottom-white border-round-top">New Admin</button>
+                  </LinkRouter>
+                )}
                 <button onClick={signout} className="user-link border-round-bottom">
                   Sign out
                 </button>
